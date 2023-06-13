@@ -30,10 +30,11 @@ def get_pdf_text(pdf_docs):
 
 def get_text_chunks(text):
     text_splitter = RecursiveCharacterTextSplitter(  # metodo spezza-testo
-        separator="\n",
+        separators= [",",".","\n",";"],
+        keep_separator=True,
         chunk_size=1000,  # grandezza chunck
         chunk_overlap=200,  # Spazio di sicurezza, così non spezzi la frase male
-        length_function=len,
+        length_function=len
     )
     chunks = text_splitter.split_text(text)  # ritorna lista di testi spezzati
     return chunks
@@ -42,11 +43,8 @@ def get_text_chunks(text):
 
 def get_vectorstore(text_chunks):
     embeddings = OpenAIEmbeddings()
-    vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
+    vectorstore = Chroma.from_texts(texts=text_chunks, embedding=embeddings)  # sostituzione di FAISS con Chroma
     return vectorstore
-    # 32:20 a 36:20
-    # embedding hugging 36:25 to 41:00
-    # LLM hugginface 1:02:10
 
 
 def get_conversation_chain(vectorstore):
