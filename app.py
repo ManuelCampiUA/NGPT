@@ -21,9 +21,7 @@ def get_pdf_text(pdf_docs):
     text = ""
     for pdf in pdf_docs:
         pdf_reader = PdfReader(pdf)
-        pdf_reader = PdfReader(pdf)
-        # pdf_bytes = BytesIO(pdf.read())
-        # pdf_reader= PdfReader(pdf_bytes)
+        pdf_reader = PdfReader(pdf) 
         for page in pdf_reader.pages:
             text += page.extract_text()  # estrae il testo raw dal pdf
         return text
@@ -105,7 +103,7 @@ def main():
     with st.sidebar:
         st.subheader("Your document")
         pdf_docs = st.file_uploader(
-            "Upload your PDFs here and click on 'Process'", accept_multiple_files=True
+            "Upload your PDFs here and click on 'Process'", accept_multiple_files=True, type=["txt","pdf"] 
         )
         if st.button("Process"):  # quando viene cliccato
             with st.spinner(
