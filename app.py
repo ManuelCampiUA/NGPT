@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from pypdf import PdfReader
 from io import BytesIO
 from langchain.text_splitter import CharacterTextSplitter
+#from langchain.text_splitter import RecursiveCharacterTextSplitter controllare se meglio questo
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chat_models import ChatOpenAI
@@ -13,6 +14,9 @@ from htmlTemplates import css, bot_template, user_template
 # dotenv si occupa della funzione che permette al tuo main di usare .env
 from langchain.memory import ConversationBufferMemory  # libreria memoria
 from langchain.chains import ConversationalRetrievalChain  # permette di chattare
+from langchain.vectorstores import Chroma
+
+
 
 
 def get_pdf_text(pdf_docs):
