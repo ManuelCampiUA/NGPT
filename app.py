@@ -1,9 +1,7 @@
 import streamlit as st
 from dotenv import load_dotenv
 from pypdf import PdfReader
-from io import BytesIO
-from langchain.text_splitter import CharacterTextSplitter
-#from langchain.text_splitter import RecursiveCharacterTextSplitter controllare se meglio questo
+from langchain.text_splitter import RecursiveCharacterTextSplitter #controllare se meglio questo
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chat_models import ChatOpenAI
@@ -33,7 +31,7 @@ def get_pdf_text(pdf_docs):
 
 
 def get_text_chunks(text):
-    text_splitter = CharacterTextSplitter(  # metodo spezza-testo
+    text_splitter = RecursiveCharacterTextSplitter(  # metodo spezza-testo
         separator="\n",
         chunk_size=1000,  # grandezza chunck
         chunk_overlap=200,  # Spazio di sicurezza, così non spezzi la frase male
