@@ -58,7 +58,7 @@ def get_conversation_chain(vectorstore):
     return conversation_chain
 
 
-# da 41:00 a 46:00
+# da 41:00 a 46:00 
 
 
 def handle_userinput(user_question):
