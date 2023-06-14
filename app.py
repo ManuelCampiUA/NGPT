@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 from pypdf import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter #controllare se meglio questo
 from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import FAISS
 from langchain.chat_models import ChatOpenAI
 from htmlTemplates import css, bot_template, user_template
 
@@ -25,7 +24,6 @@ def get_pdf_text(pdf_docs):
         for page in pdf_reader.pages:
             text += page.extract_text()  # estrae il testo raw dal pdf
         return text
-    # da min 19:50 a min 24:40
 
 
 def get_text_chunks(text):
@@ -38,13 +36,22 @@ def get_text_chunks(text):
     )
     chunks = text_splitter.split_text(text)  # ritorna lista di testi spezzati
     return chunks
-    # da min 24:50 a 29:30
 
 
 def get_vectorstore(text_chunks):
+    persist_directory='db'
+    db = Chroma.from_documents(text_chunks, embeddings, 
+                                persist_directory=persist_directory)
     embeddings = OpenAIEmbeddings()
     vectorstore = Chroma.from_texts(texts=text_chunks, embedding=embeddings)  # sostituzione di FAISS con Chroma
+    db.persist()
+    db=Chroma(persist_directory=persist_directory, 
+    embedding_function=embeddings)
+    retriever = db.as_retriever()
     return vectorstore
+
+    
+
 
 
 def get_conversation_chain(vectorstore):
@@ -56,9 +63,6 @@ def get_conversation_chain(vectorstore):
         llm=llm, retriever=vectorstore.as_retriever(), memory=memory
     )
     return conversation_chain
-
-
-# da 41:00 a 46:00 
 
 
 def handle_userinput(user_question):
