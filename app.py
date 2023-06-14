@@ -43,7 +43,7 @@ def get_vectorstore(text_chunks):
     db = Chroma.from_documents(text_chunks, embeddings, 
                                 persist_directory=persist_directory)
     embeddings = OpenAIEmbeddings()
-    vectorstore = Chroma.from_texts(texts=text_chunks, embedding=embeddings)  # sostituzione di FAISS con Chroma
+    vectorstore = Chroma.from_texts(texts=text_chunks, embeddings=embeddings)  # sostituzione di FAISS con Chroma
     db.persist()
     db=Chroma(persist_directory=persist_directory, 
     embedding_function=embeddings)
