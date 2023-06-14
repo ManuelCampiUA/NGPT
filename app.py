@@ -6,6 +6,7 @@ from langchain.vectorstores import FAISS
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
+import openai
 
 
 def get_pdf_text(pdf_path):
@@ -39,15 +40,35 @@ def get_conversation_chain(vectorstore):
     return conversation_chain
 
 
+def ask_openai(question):
+    response = openai.Completion.create(
+        engine="ada2",
+        prompt=f"Q: {question}\nA:",
+        temperature=0,
+        max_tokens=1024,
+        n=1,
+        stop=None,
+        timeout=10,
+    )
+    answer = response.choices[0].text.strip()
+    return answer
+
+
 def main():
     load_dotenv()
+    openai.api_key = "YOUR_API_KEY"
     raw_text = get_pdf_text("INSDG4457-20.pdf")
     text_chunks = get_text_chunks(raw_text)
     vectorstore = get_vectorstore(text_chunks)
     conversation_chain = get_conversation_chain(vectorstore)
-    user_question = input("Ask a question about your documents:")
-    response = conversation_chain.run(user_question)
-    print(response)
+    while True:
+        user_question = input("Ask a question about your documents: ")
+        if user_question.lower() == "exit":
+            break
+        answer = ask_openai(user_question)
+        print(answer)
+        conversation_chain.add_utterance(user_question)
+        conversation_chain.add_utterance(answer)
 
 
 if __name__ == "__main__":
