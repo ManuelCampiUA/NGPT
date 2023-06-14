@@ -4,10 +4,9 @@ from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
-from langchain.chat_models import ChatOpenAI
-from langchain.memory import ConversationBufferMemory
-from langchain.chains import ConversationalRetrievalChain
-import openai
+from langchain.chains.question_answering import load_qa_chain
+from langchain.llms import OpenAI
+from langchain.callbacks import get_openai_callback
 
 
 def get_pdf_text(pdf_path):
@@ -32,44 +31,29 @@ def get_vectorstore(text_chunks):
     return vectorstore
 
 
-def get_conversation_chain(vectorstore):
-    llm = ChatOpenAI()
-    memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-    conversation_chain = ConversationalRetrievalChain.from_llm(
-        llm=llm, retriever=vectorstore.as_retriever(), memory=memory
-    )
+def get_conversation_chain():
+    llm = OpenAI()
+    conversation_chain = load_qa_chain(llm, chain_type="stuff")
     return conversation_chain
-
-
-def ask_openai(question):
-    response = openai.Completion.create(
-        engine="ada",
-        prompt=f"Q: {question}\nA:",
-        temperature=0,
-        max_tokens=1024,
-        n=1,
-        stop=None,
-        timeout=10,
-    )
-    answer = response.choices[0].text.strip()
-    return answer
 
 
 def main():
     load_dotenv()
-    openai.api_key = os.getenv("OPENAI_API_KEY")
     raw_text = get_pdf_text("INSDG4457-20.pdf")
     text_chunks = get_text_chunks(raw_text)
     vectorstore = get_vectorstore(text_chunks)
-    conversation_chain = get_conversation_chain(vectorstore)
+    conversation_chain = get_conversation_chain()
     while True:
         user_question = input("Ask a question about your documents: ")
         if user_question.lower() == "exit":
             break
-        answer = ask_openai(user_question)
-        print(answer)
-        conversation_chain.add_utterance(user_question)
-        conversation_chain.add_utterance(answer)
+
+        docs = vectorstore.similarity_search(user_question)
+        with get_openai_callback() as cb: ##
+            response = conversation_chain.run(input_documents=docs, question=user_question)
+            print(cb) ##
+
+        print(response) ##
 
 
 if __name__ == "__main__":
