@@ -52,7 +52,6 @@ def get_vectorstore(text_chunks):
     
 
 
-
 def get_conversation_chain(vectorstore):
     llm = ChatOpenAI()
     memory = ConversationBufferMemory(
