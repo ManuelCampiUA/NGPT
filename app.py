@@ -40,15 +40,14 @@ def get_text_chunks(text):
 
 def get_vectorstore(text_chunks):
     persist_directory='db'
-    db = Chroma.from_documents(text_chunks, embeddings, 
-                                persist_directory=persist_directory)
     embeddings = OpenAIEmbeddings()
-    vectorstore = Chroma.from_texts(texts=text_chunks, embeddings=embeddings)  # sostituzione di FAISS con Chroma
+    db = Chroma.from_texts(text_chunks, embeddings, 
+                                persist_directory=persist_directory)
     db.persist()
     db=Chroma(persist_directory=persist_directory, 
     embedding_function=embeddings)
     retriever = db.as_retriever()
-    return vectorstore
+    return db
 
     
 
