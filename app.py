@@ -1,7 +1,8 @@
+import os
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
+from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
@@ -42,7 +43,7 @@ def get_conversation_chain(vectorstore):
 
 def ask_openai(question):
     response = openai.Completion.create(
-        engine="ada2",
+        engine="ada",
         prompt=f"Q: {question}\nA:",
         temperature=0,
         max_tokens=1024,
@@ -56,7 +57,7 @@ def ask_openai(question):
 
 def main():
     load_dotenv()
-    openai.api_key = "YOUR_API_KEY"
+    openai.api_key = os.getenv("OPENAI_API_KEY")
     raw_text = get_pdf_text("INSDG4457-20.pdf")
     text_chunks = get_text_chunks(raw_text)
     vectorstore = get_vectorstore(text_chunks)
