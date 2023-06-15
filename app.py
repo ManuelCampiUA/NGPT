@@ -1,32 +1,44 @@
 from dotenv import load_dotenv
-from PyPDF2 import PdfReader
-from langchain.text_splitter import CharacterTextSplitter
+from pypdf import PdfReader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import FAISS
+from langchain.vectorstores import Chroma
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 
 
-def get_pdf_text(pdf_path):
+def get_pdf_text(pdf_docs):
     text = ""
-    pdf_reader = PdfReader(pdf_path)
-    for page in pdf_reader.pages:
-        text += page.extract_text()
-    return text
+    for pdf in pdf_docs:
+        pdf_reader = PdfReader(pdf)
+        for page in pdf_reader.pages:
+            text += page.extract_text()
+        return text
 
 
 def get_text_chunks(text):
-    text_splitter = CharacterTextSplitter(
-        separator="\n", chunk_size=1000, chunk_overlap=200, length_function=len
+    text_splitter = RecursiveCharacterTextSplitter(
+        separators=[",", ".", "\n", ";"],
+        keep_separator=True,
+        chunk_size=1000,
+        chunk_overlap=200,
+        length_function=len,
     )
     chunks = text_splitter.split_text(text)
     return chunks
 
 
 def get_vectorstore(text_chunks):
+    persist_directory = "db"
     embeddings = OpenAIEmbeddings()
-    vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
+    vectorstore = Chroma.from_texts(
+        texts=text_chunks, embedding=embeddings, persist_directory=persist_directory
+    )
+    vectorstore.persist()
+    vectorstore = Chroma(
+        persist_directory=persist_directory, embedding_function=embeddings
+    )
     return vectorstore
 
 
@@ -41,7 +53,8 @@ def get_conversation_chain(vectorstore):
 
 def main():
     load_dotenv()
-    raw_text = get_pdf_text("INSDG4457-20.pdf")
+    pdfs = "INSDG4457-20.pdf", "INSDD4016-07.pdf"
+    raw_text = get_pdf_text(pdfs)
     text_chunks = get_text_chunks(raw_text)
     vectorstore = get_vectorstore(text_chunks)
     conversation_chain = get_conversation_chain(vectorstore)
