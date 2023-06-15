@@ -34,7 +34,7 @@ def get_text_chunks(text):
     return chunks
 
 
-def get_vectorstore(text_chunks):
+def get_vectorstore(text_chunks): #database vettoriale, crea cartella db e ci mette dentro gli embeddings
     persist_directory='db'
     embeddings = OpenAIEmbeddings()
     db = Chroma.from_texts(text_chunks, embeddings, 
@@ -117,9 +117,6 @@ def main():
                 st.session_state.conversation = get_conversation_chain(
                     vectorstore
                 )  # prende la storia della conversazione e ritorna il prossimo elemento
-                # streamlist tende a ricaricarsi ogni volta che premi un bottone, cosi a caso
-                # st.session_state dice che "ehy, non rinizializzare questa var"
-                # st.session_state.conversation  esiste fuori da questo scope
 
 
 if __name__ == "__main__":
