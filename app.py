@@ -3,8 +3,9 @@ from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
-from langchain.chains.question_answering import load_qa_chain
-from langchain.llms import OpenAI
+from langchain.chat_models import ChatOpenAI
+from langchain.memory import ConversationBufferMemory
+from langchain.chains import ConversationalRetrievalChain
 
 
 def get_pdf_text(pdf_path):
@@ -29,9 +30,12 @@ def get_vectorstore(text_chunks):
     return vectorstore
 
 
-def get_conversation_chain():
-    llm = OpenAI()
-    conversation_chain = load_qa_chain(llm, chain_type="stuff")
+def get_conversation_chain(vectorstore):
+    llm = ChatOpenAI()
+    memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
+    conversation_chain = ConversationalRetrievalChain.from_llm(
+        llm=llm, retriever=vectorstore.as_retriever(), memory=memory
+    )
     return conversation_chain
 
 
@@ -40,13 +44,12 @@ def main():
     raw_text = get_pdf_text("INSDG4457-20.pdf")
     text_chunks = get_text_chunks(raw_text)
     vectorstore = get_vectorstore(text_chunks)
-    conversation_chain = get_conversation_chain()
+    conversation_chain = get_conversation_chain(vectorstore)
     while True:
         user_question = input("Ask a question about your documents: ")
         if user_question.lower() == "exit":
             break
-        docs = vectorstore.similarity_search(user_question)
-        response = conversation_chain.run(input_documents=docs, question=user_question)
+        response = conversation_chain.run(question=user_question)
         print(response)
 
 
