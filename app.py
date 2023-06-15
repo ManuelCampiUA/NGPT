@@ -47,13 +47,9 @@ def main():
         user_question = input("Ask a question about your documents: ")
         if user_question.lower() == "exit":
             break
-
         docs = vectorstore.similarity_search(user_question)
-        with get_openai_callback() as cb: ##
-            response = conversation_chain.run(input_documents=docs, question=user_question)
-            print(cb) ##
-
-        print(response) ##
+        response = conversation_chain.run(input_documents=docs, question=user_question)
+        print(response)
 
 
 if __name__ == "__main__":
