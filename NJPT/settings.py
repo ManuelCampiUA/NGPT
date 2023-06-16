@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*', 'ManuCampPythonAnywhere.eu.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'DjangoPDF.apps.DjangopdfConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'NJPT.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
