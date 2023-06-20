@@ -1,9 +1,12 @@
 {% extends 'DjangoPDF/base.html' %}
 {% block content %}
+<h1>Box di testo inferiore</h1>
   <div class="container">
     <div class="textbox">
-      <h2>Box di testo superiore</h2>
-      <p>Questo è il contenuto del box di testo superiore.</p>
+      <form class="d-flex">
+        <input class="form-control me-sm-2" type="search" placeholder="Your question">
+        <button class="btn btn-info" type="submit">Ask</button>
+      </form>
     </div>
     <div class="textbox">
       <h2>Box di testo inferiore</h2>
