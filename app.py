@@ -10,12 +10,10 @@ from langchain.chains import ConversationalRetrievalChain  # permette di chattar
 from langchain.vectorstores import Chroma
 
 
-
-
 def get_pdf_text(pdf_docs):
     text = ""
     for pdf in pdf_docs:
-        pdf_reader = PdfReader(pdf) 
+        pdf_reader = PdfReader(pdf)
         for page in pdf_reader.pages:
             text += page.extract_text()  # estrae il testo raw dal pdf
         return text
@@ -23,28 +21,25 @@ def get_pdf_text(pdf_docs):
 
 def get_text_chunks(text):
     text_splitter = RecursiveCharacterTextSplitter(  # metodo spezza-testo
-        separators= [",",".","\n",";"],
+        separators=[",", ".", "\n", ";"],
         keep_separator=True,
         chunk_size=1000,  # grandezza chunck
         chunk_overlap=200,  # Spazio di sicurezza, così non spezzi la frase male
-        length_function=len
+        length_function=len,
     )
     chunks = text_splitter.split_text(text)  # ritorna lista di testi spezzati
     return chunks
 
 
-def get_vectorstore(text_chunks): #database vettoriale, crea cartella db e ci mette dentro gli embeddings
-    persist_directory='db'
+def get_vectorstore(
+    text_chunks,
+):  # database vettoriale, crea cartella db e ci mette dentro gli embeddings
+    persist_directory = "db"
     embeddings = OpenAIEmbeddings()
-    db = Chroma.from_texts(text_chunks, embeddings, 
-                                persist_directory=persist_directory)
+    db = Chroma.from_texts(text_chunks, embeddings, persist_directory=persist_directory)
     db.persist()
-    db=Chroma(persist_directory=persist_directory, 
-    embedding_function=embeddings)
-    retriever = db.as_retriever()
+    db = Chroma(persist_directory=persist_directory, embedding_function=embeddings)
     return db
-
-    
 
 
 def get_conversation_chain(vectorstore):
@@ -98,7 +93,9 @@ def main():
     with st.sidebar:
         st.subheader("Your document")
         pdf_docs = st.file_uploader(
-            "Upload your PDFs here and click on 'Process'", accept_multiple_files=True, type=["txt","pdf"] 
+            "Upload your PDFs here and click on 'Process'",
+            accept_multiple_files=True,
+            type=["txt", "pdf"],
         )
         if st.button("Process"):  # quando viene cliccato
             with st.spinner(
