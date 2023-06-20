@@ -1,0 +1,32 @@
+{% extends 'DjangoPDF/base.html' %}
+{% block content %}
+<div>
+    {% csrf_token %}
+    <input type="text" id="question">
+    <br>
+    <p id="response">Risposta</p>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#question').keypress(function (event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (keycode == '13') {
+                let question = $('#question').val();
+                let csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+                $.ajax({
+                    url: '{% url "DjangoPDF:ajax-QeA" %}',
+                    type: 'POST',
+                    headers: { 'X-CSRFToken': csrftoken },
+                    data: {
+                        question: question
+                    },
+                    dataType: 'json',
+                    success: function () {
+                        $('#response').text(data.response);
+                    }
+                });
+            }
+        });
+    })
+</script>
+{%endblock %}
