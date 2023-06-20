@@ -13,6 +13,10 @@ def home(request):
     return render(request, "DjangoPDF/index.html")
 
 
+def test(request):
+    return render(request, "DjangoPDF/test.html")
+
+
 def ajax_QeA(request):
     pdfs = "test/PDFs/INSDG4457-20.pdf", ""
     raw_text = get_pdf_text(pdfs)
