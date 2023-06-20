@@ -4,3 +4,6 @@
 
 # Django
 __pycache__
+
+# IntelliJ
+.idea
