@@ -1,16 +1,28 @@
 {% extends 'DjangoPDF/base.html' %}
 {% block content %}
-<h1>Box di testo inferiore</h1>
-  <div class="container">
-    <div class="textbox">
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Your question">
-        <button class="btn btn-info" type="submit">Ask</button>
-      </form>
+
+   <div class="container">
+    <div class="col-3">
+        <div class="row mt-5">
+            <div class="sidebar">
+                    <h2>Your documents</h2>
+            </div>
+        </div>
+   </div>
+   </div>
+
+    <div>
+        <h1 class="Titolo">Chat with your PDFs</h1>
+            <h5 class="Titolo">Ask me a question about your documents</h5>
+                <div class="col-9 row mt-5">
+                    <div class="col">
+                    <input type="text" class="form-control"  placeholder="Inserisci una domanda">
+                </div>
+                </div>
+        <div class="row mt-3">
+            <div class="col">
+                <input type="text" class="form-control"  readonly>
+            </div>
+        </div>
     </div>
-    <div class="textbox">
-      <h2>Box di testo inferiore</h2>
-      <p>Questo è il contenuto del box di testo inferiore.</p>
-    </div>
-  </div>
 {%endblock %}
