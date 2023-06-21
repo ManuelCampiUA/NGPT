@@ -22,7 +22,6 @@ def ajax_QeA(request):
     raw_text = get_pdf_text(pdfs)
     text_chunks = get_text_chunks(raw_text)
     vectorstore = get_vectorstore(text_chunks)
-    print(vectorstore)  # DEBUGGGGGGGGGGG
     conversation_chain = get_conversation_chain(vectorstore)
     user_question = request.GET.get("question")
     data = {"response": conversation_chain.run(question=user_question)}
