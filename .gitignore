@@ -5,8 +5,11 @@ __pycache__
 .env
 .venv
 
-# IntelliJ
-.idea
-
 # Chromadb
 Chromadb
+
+# Upload
+upload
+
+# IntelliJ
+.idea

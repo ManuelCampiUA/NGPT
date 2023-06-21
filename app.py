@@ -1,4 +1,5 @@
-from flask import Flask, request, render_template
+from flask import Flask, flash, request, render_template
+from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 from pypdf import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -8,17 +9,40 @@ from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 
+UPLOAD_FOLDER = "upload"
+ALLOWED_EXTENSIONS = {"pdf"}
+
 app = Flask(__name__)
+app.secret_key = "a7dde6c0f0b571fd39506b522e0abdb297928b38971ac10e6832db45d093dd2c"
 load_dotenv()
+
+
+def allowed_file(filename):
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
+
 @app.route("/test")
 def test():
     return render_template("test.html")
+
+
+@app.route("/test_upload", methods=["GET", "POST"])
+def test_upload():
+    if request.method == "POST":
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            files = request.files.getlist("file")
+            for file in files:
+                file.save(f"{UPLOAD_FOLDER}/{secure_filename(file.filename)}")
+            return "Fine"
+        else:
+            return "Error"
+    return render_template("test_upload.html")
 
 
 @app.post("/QeA")
