@@ -12,14 +12,13 @@
         integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
         crossorigin="anonymous"></script>
     <!--Javascript-->
-    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/darkly/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/cyborg/bootstrap.css">
     <!--CSS-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-    <nav class="navbar bg-gradient">
-        <div class="container-fluid"></div>
+    <nav class="navbar bg-danger p-1 mb-1">
     </nav>
     {% block content %}{% endblock %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>

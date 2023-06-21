@@ -1,28 +1,28 @@
 {% extends 'base.html' %}
 {% block title %}Index{% endblock %}
 {% block content %}
-<div class="row p-lg-5">
-    <div class="col-3 bg-danger-subtle">
-        <!-- Contenuto della sidebar -->
-        <h4>Menu</h4>
-        <ul>
-            <li>Opzione 1</li>
-            <li>Opzione 2</li>
-            <li>Opzione 3</li>
-            <li>Opzione 1</li>
-            <li>Opzione 2</li>
-            <li>Opzione 3</li>
-        </ul>
-    </div>
-    <div class="col-9 bg-info">
-        <div class="row">
-            <div class="col">
-                <input type="text" class="form-control" id="inputQuestion" placeholder="Inserisci una domanda">
-            </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 bg-gradient pt-5"  style="height:100rem">
+            <!-- Contenuto della sidebar -->
+            <h4>Your documents</h4>
+            <h6>Upload your documents and click process</h6>
+            <ul>
+                <li>Opzione 1</li>
+                <li>Opzione 2</li>
+                <li>Opzione 3</li>
+            </ul>
         </div>
-        <div class="row mt-3">
-            <div class="col">
-                <input type="text" class="form-control" id="outputAnswer" readonly>
+        <div class="col-9" style="height:100rem">
+            <div class="row mt-3">
+                <div class="col">
+                    <input type="text" class="form-control" id="inputQuestion" placeholder="Inserisci una domanda">
+                </div>
+            </div>
+            <div class="row mt-3 ">
+                <div class="col">
+                    <input type="text" class="form-control" id="outputAnswer" readonly>
+                </div>
             </div>
         </div>
     </div>
