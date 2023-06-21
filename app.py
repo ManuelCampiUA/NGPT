@@ -1,4 +1,5 @@
-from flask import Flask, flash, request, render_template
+import os
+from flask import Flask, request, render_template
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 from pypdf import PdfReader
@@ -26,29 +27,22 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/test")
+@app.route("/test", methods=["GET", "POST"])
 def test():
-    return render_template("test.html")
-
-
-@app.route("/test_upload", methods=["GET", "POST"])
-def test_upload():
     if request.method == "POST":
-        file = request.files['file']
+        file = request.files["file"]
         if file and allowed_file(file.filename):
             files = request.files.getlist("file")
             for file in files:
                 file.save(f"{UPLOAD_FOLDER}/{secure_filename(file.filename)}")
-            return "Fine"
         else:
             return "Error"
-    return render_template("test_upload.html")
+    return render_template("test.html")
 
 
 @app.post("/QeA")
 def QeA():
-    pdfs = "test/PDFs/INSDG4457-20.pdf", ""
-    raw_text = get_pdf_text(pdfs)
+    raw_text = get_pdf_text(UPLOAD_FOLDER)
     text_chunks = get_text_chunks(raw_text)
     vectorstore = get_vectorstore(text_chunks)
     conversation_chain = get_conversation_chain(vectorstore)
@@ -59,8 +53,8 @@ def QeA():
 
 def get_pdf_text(pdf_docs):
     text = ""
-    for pdf in pdf_docs:
-        pdf_reader = PdfReader(pdf)
+    for pdf in os.listdir(pdf_docs):
+        pdf_reader = PdfReader(os.path.join(pdf_docs, pdf))
         for page in pdf_reader.pages:
             text += page.extract_text()
         return text
