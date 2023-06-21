@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import JsonResponse
+from flask import Flask, request, render_template
+from dotenv import load_dotenv
 from pypdf import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
@@ -8,28 +8,25 @@ from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 
-
-def home(request):
-    return render(request, "DjangoPDF/index.html")
-
-
-def test(request):
-    return render(request, "DjangoPDF/test.html")
+app = Flask(__name__)
+load_dotenv()
 
 
-def ajax_QeA(request):
-    if (
-        request.headers.get("x-requested-with") == "XMLHttpRequest"
-        and request.method == "POST"
-    ):
-        pdfs = "test/PDFs/INSDG4457-20.pdf", ""
-        raw_text = get_pdf_text(pdfs)
-        text_chunks = get_text_chunks(raw_text)
-        vectorstore = get_vectorstore(text_chunks)
-        conversation_chain = get_conversation_chain(vectorstore)
-        user_question = request.POST["question"]
-        data = {"response": conversation_chain.run(question=user_question)}
-        return JsonResponse(data)
+@app.route("/")
+def main():
+    return render_template("test.html")
+
+
+@app.post("/QeA")
+def QeA():
+    pdfs = "test/PDFs/INSDG4457-20.pdf", ""
+    raw_text = get_pdf_text(pdfs)
+    text_chunks = get_text_chunks(raw_text)
+    vectorstore = get_vectorstore(text_chunks)
+    conversation_chain = get_conversation_chain(vectorstore)
+    user_question = request.form["question"]
+    data = {"response": conversation_chain.run(question=user_question)}
+    return data
 
 
 def get_pdf_text(pdf_docs):
@@ -54,7 +51,7 @@ def get_text_chunks(text):
 
 
 def get_vectorstore(text_chunks):
-    persist_directory = "test/chromaDB"
+    persist_directory = "test/Chromadb"
     embeddings = OpenAIEmbeddings()
     vectorstore = Chroma.from_texts(
         text_chunks, embeddings, persist_directory=persist_directory

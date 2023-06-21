@@ -10,7 +10,6 @@
 
 <body>
     <div>
-        {% csrf_token %}
         <input type="text" id="question">
         <br>
         <p id="response">Risposta</p>
@@ -21,11 +20,9 @@
                 var keycode = (event.keyCode ? event.keyCode : event.which);
                 if (keycode == '13') {
                     let question = $('#question').val();
-                    let csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
                     $.ajax({
-                        url: '{% url "DjangoPDF:ajax-QeA" %}',
+                        url: 'QeA',
                         type: 'POST',
-                        headers: { 'X-CSRFToken': csrftoken },
                         data: {
                             question: question
                         },
