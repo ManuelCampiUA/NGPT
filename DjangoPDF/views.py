@@ -18,14 +18,18 @@ def test(request):
 
 
 def ajax_QeA(request):
-    pdfs = "test/PDFs/INSDG4457-20.pdf", ""
-    raw_text = get_pdf_text(pdfs)
-    text_chunks = get_text_chunks(raw_text)
-    vectorstore = get_vectorstore(text_chunks)
-    conversation_chain = get_conversation_chain(vectorstore)
-    user_question = request.GET.get("question")
-    data = {"response": conversation_chain.run(question=user_question)}
-    return JsonResponse(data)
+    if (
+        request.headers.get("x-requested-with") == "XMLHttpRequest"
+        and request.method == "POST"
+    ):
+        pdfs = "test/PDFs/INSDG4457-20.pdf", ""
+        raw_text = get_pdf_text(pdfs)
+        text_chunks = get_text_chunks(raw_text)
+        vectorstore = get_vectorstore(text_chunks)
+        conversation_chain = get_conversation_chain(vectorstore)
+        user_question = request.POST["question"]
+        data = {"response": conversation_chain.run(question=user_question)}
+        return JsonResponse(data)
 
 
 def get_pdf_text(pdf_docs):
