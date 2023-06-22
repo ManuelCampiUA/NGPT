@@ -30,7 +30,7 @@ def home():
 def test():
     return render_template("test.html")
 
-
+# Controllo eccezioni
 @app.post("/upload")
 def upload():
     files = request.files

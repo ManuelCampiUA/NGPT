@@ -1,33 +1,46 @@
-function QeA(event) {
-    event.preventDefault();
-    let question = document.getElementsByName('question')[0].value;
-    fetch('QeA', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: question })
-    })
-        .then(response => response.json())
-        .then(data => { document.getElementById('response').textContent = data.response })
-} // Da mettere a posto
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('upload').addEventListener('submit', (event) => {
+        event.preventDefault();
+        upload(file_preparation());
+    });
+    document.getElementById('question').addEventListener('submit', (event) => {
+        event.preventDefault();
+        QeA();
+    });
+});
 
-function upload(event) {
-    event.preventDefault();
+// CONTROLLARE ASYNC
+async function QeA() {
+    try {
+        let question = document.getElementsByName('question')[0].value;
+        const response = await fetch('QeA', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ question: question })
+        });
+        const result = await response.json();
+        document.getElementById('response').textContent = result;
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+function file_preparation() {
     const PDFs = document.querySelector('input[type="file"][multiple]');
     const formData = new FormData();
     for (const [i, PDF] of Array.from(PDFs.files).entries()) {
-        formData.append(`file_${i}`, PDF);
+        formData.append('file_${i}', PDF);
     }
-    uploadMultiple(formData);
+    return formData;
 }
 
-async function uploadMultiple(formData) {
+// CONTROLLARE ASYNC
+async function upload(formData) {
     try {
         const response = await fetch("upload", {
             method: "POST",
             body: formData,
         });
-        const result = await response.json();
-        console.log("Success:", result["response"]);
     } catch (error) {
         console.error("Error:", error);
     }
