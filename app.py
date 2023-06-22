@@ -33,13 +33,11 @@ def test():
 
 @app.post("/upload")
 def upload():
-    file = request.files["file"]
-    if file and allowed_file(file.filename):
-        files = request.files.getlist("file")
-        for file in files:
-            file.save(f"{UPLOAD_FOLDER}/{secure_filename(file.filename)}")
-        return "Success", 200
-    return "Error", 500
+    files = request.files
+    for file in files:
+        if allowed_file(files[file].filename):
+            files[file].save(f"{UPLOAD_FOLDER}/{secure_filename(files[file].filename)}")
+    return {"response": "Success"}
 
 
 @app.post("/QeA")
@@ -75,7 +73,7 @@ def get_text_chunks(text):
 
 
 def get_vectorstore(text_chunks):
-    persist_directory = "test/Chromadb"
+    persist_directory = "chromadb"
     embeddings = OpenAIEmbeddings()
     vectorstore = Chroma.from_texts(
         text_chunks, embeddings, persist_directory=persist_directory

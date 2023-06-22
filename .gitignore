@@ -6,7 +6,7 @@ __pycache__
 .venv
 
 # Chromadb
-Chromadb
+chromadb
 
 # Upload
 upload

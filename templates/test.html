@@ -8,21 +8,21 @@
 </head>
 
 <body>
-    <div>
-        <input type="file" id="file" multiple>
-        <input type="button" id="upload" value="Upload">
-    </div>
+    <form id="upload">
+        <input type="file" name="file" multiple>
+        <input type="submit" value="Upload">
+    </form>
     <br>
-    <div>
-        <input type="text" id="question">
-        <br>
-        <p id="response">Risposta</p>
-    </div>
+    <form id="question">
+        <label for="question">Question</label>
+        <input type="text" name="question">
+    </form>
+    <p id="response">Risposta</p>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('question').addEventListener('keypress', QeA);
-            document.getElementById('upload').addEventListener('click', upload);
+            // document.getElementById('question').addEventListener('submit', QeA);
+            document.getElementById('upload').addEventListener('submit', upload);
         });
     </script>
 </body>
