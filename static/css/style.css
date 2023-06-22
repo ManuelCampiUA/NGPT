@@ -1,19 +1,37 @@
+
+body{
+  padding: 5%;
+}
 .grid {
-    display: grid;
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.sidebar {
+  display: grid;
+}
+
+.main_content {
+  display: grid;
+}
+div {
+  padding: 1px;
+}
+
+ div:hover {
+  border: 1px solid yellow;
 }
 
 .titolo {
-    text-align: center;
-    padding-top: 5%;
-
+  text-align: center;
 }
 
 .chatbotarea {
-    resize: vertical;
+  resize: vertical;
 }
 
 .chatbotarea:disabled {
-    background-color: black;
-    color: whitesmoke;
-    resize: vertical;
+  background-color: black;
+  color: whitesmoke;
+  resize: vertical;
 }
