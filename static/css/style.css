@@ -1,6 +1,15 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 body{
-  padding: 5%;
+  padding: 0% 5% 0% 0%;
+  background-color: rgb(10, 10, 0);
+  color: whitesmoke;
+  border-top-width: 0.2rem;
+  border-top-color: coral;
+  border-top-style: solid ;
+  margin-top: 0;
+  font-family: Roboto, Arial, Helvetica, sans-serif ;
 }
 .grid {
   display: grid;
@@ -9,10 +18,12 @@ body{
 
 .sidebar {
   display: grid;
+  background-color: #010e18;
 }
 
 .main_content {
   display: grid;
+  padding: 3% 3% 0% 3%
 }
 div {
   padding: 1px;
@@ -23,15 +34,21 @@ div {
 }
 
 .titolo {
-  text-align: center;
+  padding: 0%;
+  margin: 2px;
 }
+
 
 .chatbotarea {
   resize: vertical;
 }
 
 .chatbotarea:disabled {
-  background-color: black;
+  background-color: rgb(10, 10, 0);
   color: whitesmoke;
   resize: vertical;
+}
+
+.scroller{
+  height: 50rem;
 }
