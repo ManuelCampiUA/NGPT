@@ -14,7 +14,6 @@ UPLOAD_FOLDER = "upload"
 ALLOWED_EXTENSIONS = {"pdf"}
 
 app = Flask(__name__)
-app.secret_key = "a7dde6c0f0b571fd39506b522e0abdb297928b38971ac10e6832db45d093dd2c"
 load_dotenv()
 
 
@@ -27,17 +26,20 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/test", methods=["GET", "POST"])
+@app.route("/test")
 def test():
-    if request.method == "POST":
-        file = request.files["file"]
-        if file and allowed_file(file.filename):
-            files = request.files.getlist("file")
-            for file in files:
-                file.save(f"{UPLOAD_FOLDER}/{secure_filename(file.filename)}")
-        else:
-            return "Error"
     return render_template("test.html")
+
+
+@app.post("/upload")
+def upload():
+    file = request.files["file"]
+    if file and allowed_file(file.filename):
+        files = request.files.getlist("file")
+        for file in files:
+            file.save(f"{UPLOAD_FOLDER}/{secure_filename(file.filename)}")
+        return "Success", 200
+    return "Error", 500
 
 
 @app.post("/QeA")
@@ -46,7 +48,7 @@ def QeA():
     text_chunks = get_text_chunks(raw_text)
     vectorstore = get_vectorstore(text_chunks)
     conversation_chain = get_conversation_chain(vectorstore)
-    user_question = request.form["question"]
+    user_question = request.json["question"]
     data = {"response": conversation_chain.run(question=user_question)}
     return data
 

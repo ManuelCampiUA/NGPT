@@ -1,0 +1,19 @@
+.grid {
+    display: grid;
+}
+
+.titolo {
+    text-align: center;
+    padding-top: 5%;
+
+}
+
+.chatbotarea {
+    resize: vertical;
+}
+
+.chatbotarea:disabled {
+    background-color: black;
+    color: whitesmoke;
+    resize: vertical;
+}

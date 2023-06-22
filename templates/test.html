@@ -5,15 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 </head>
 
 <body>
     <div>
-        <form method=post enctype=multipart/form-data>
-            <input type=file name=file multiple>
-            <input type=submit value=Upload>
-        </form>
+        <input type="file" id="file" multiple>
+        <input type="button" id="upload" value="Upload">
     </div>
     <br>
     <div>
@@ -21,26 +18,12 @@
         <br>
         <p id="response">Risposta</p>
     </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#question').keypress(function (event) {
-                var keycode = (event.keyCode ? event.keyCode : event.which);
-                if (keycode == '13') {
-                    let question = $('#question').val();
-                    $.ajax({
-                        url: 'QeA',
-                        type: 'POST',
-                        data: {
-                            question: question
-                        },
-                        dataType: 'json',
-                        success: function (data) {
-                            $('#response').text(data.response);
-                        }
-                    });
-                }
-            });
-        })
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('question').addEventListener('keypress', QeA);
+            document.getElementById('upload').addEventListener('click', upload);
+        });
     </script>
 </body>
 
