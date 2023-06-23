@@ -40,7 +40,11 @@ def upload():
     for file in files:
         if allowed_file(files[file].filename):
             files[file].save(f"{FILE_FOLDER}/{secure_filename(files[file].filename)}")
-    process_text()
+    raw_text = get_pdf_text(FILE_FOLDER)
+    text_chunks = get_text_chunks(raw_text)
+    vectorstore = get_vectorstore(text_chunks)
+    global conversation_chain
+    conversation_chain = get_conversation_chain(vectorstore)
     return {"response": "Success"}
 
 
@@ -93,14 +97,6 @@ def get_vectorstore(text_chunks):
         persist_directory=persist_directory, embedding_function=embeddings
     )
     return vectorstore
-
-
-def process_text():
-    raw_text = get_pdf_text(FILE_FOLDER)
-    text_chunks = get_text_chunks(raw_text)
-    vectorstore = get_vectorstore(text_chunks)
-    global conversation_chain
-    conversation_chain = get_conversation_chain(vectorstore)
 
 
 def get_conversation_chain(vectorstore):
