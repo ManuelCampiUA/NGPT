@@ -27,6 +27,8 @@ async function upload(formData) {
         });
         const result = await response.json();
         alert(result['response']);
+        if (result['response'] == 'No selected file')
+            throw 'No selected file';
     } catch (error) {
         console.error('Error:', error);
     }
@@ -44,7 +46,7 @@ async function get_file_list() {
 
 async function update_file_list(result) {
     files = await result;
-    if (files)
+    if (files.length === 0)
         return;
     let file_list = document.getElementById('file_list');
     while (file_list.firstChild)

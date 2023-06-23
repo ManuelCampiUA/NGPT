@@ -32,9 +32,10 @@ def test():
     return render_template("test.html", files=files)
 
 
-# Controllo eccezioni
 @app.post("/upload")
 def upload():
+    if "file_0" not in request.files:
+        return {"response": "No selected file"}
     files = request.files
     for file in files:
         if allowed_file(files[file].filename):
