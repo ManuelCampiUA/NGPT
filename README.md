@@ -5,6 +5,6 @@
 - [x] Upload file
 - [x] File list
 - [x] Q&A
-- [ ] Improve Q&A
+- [ ] Limit one question at a time
 
 ## Manu

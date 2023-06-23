@@ -67,6 +67,10 @@ async function QeA() {
             body: JSON.stringify({ question: question })
         });
         const result = await response.json();
+        if (result['response'] === false) {
+            alert("No file uploaded");
+            throw "No file uploaded";
+        }
         document.getElementById('response').textContent = result['response'];
     } catch (error) {
         console.error('Error:', error);
