@@ -10,7 +10,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 
-UPLOAD_FOLDER = "upload"
+FILE_FOLDER = "upload"
 ALLOWED_EXTENSIONS = {"pdf"}
 
 app = Flask(__name__)
@@ -28,7 +28,8 @@ def home():
 
 @app.route("/test")
 def test():
-    return render_template("test.html")
+    files = os.listdir(FILE_FOLDER)
+    return render_template("test.html", files=files)
 
 
 # Controllo eccezioni
@@ -37,13 +38,20 @@ def upload():
     files = request.files
     for file in files:
         if allowed_file(files[file].filename):
-            files[file].save(f"{UPLOAD_FOLDER}/{secure_filename(files[file].filename)}")
+            files[file].save(f"{FILE_FOLDER}/{secure_filename(files[file].filename)}")
     return {"response": "Success"}
+
+
+@app.get("/get_file_list")
+def get_file_list():
+    files = os.listdir(FILE_FOLDER)
+    data = {"response": files}
+    return data
 
 
 @app.post("/QeA")
 def QeA():
-    raw_text = get_pdf_text(UPLOAD_FOLDER)
+    raw_text = get_pdf_text(FILE_FOLDER)
     text_chunks = get_text_chunks(raw_text)
     vectorstore = get_vectorstore(text_chunks)
     conversation_chain = get_conversation_chain(vectorstore)

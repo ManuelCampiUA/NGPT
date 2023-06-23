@@ -8,16 +8,28 @@
 </head>
 
 <body>
+    <h1>Upload</h1>
     <form id="upload">
         <input type="file" name="file" multiple>
         <input type="submit" value="Upload">
     </form>
     <br>
+    <h1>Uploaded file</h1>
+    <ul id="file_list">
+        {% if not files %}
+        <li>Nothing</li>
+        {% endif %}
+        {% for file in files %}
+        <li>{{ file }}</li>
+        {% endfor %}
+    </ul>
+    <br>
+    <h1>Q&A</h1>
     <form id="question">
         <label for="question">Question</label>
         <input type="text" name="question">
     </form>
-    <p id="response">Risposta</p>
+    <p id="response">Response</p>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
