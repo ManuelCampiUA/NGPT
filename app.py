@@ -17,11 +17,12 @@ ALLOWED_EXTENSIONS = {"pdf"}
 
 def before_first_request():
     load_dotenv()
-    global conversation_chain
-    raw_text = get_pdf_text(FILE_FOLDER)
-    text_chunks = get_text_chunks(raw_text)
-    vectorstore = get_vectorstore(text_chunks)
-    conversation_chain = get_conversation_chain(vectorstore)
+    if os.listdir(FILE_FOLDER):
+        global conversation_chain
+        raw_text = get_pdf_text(FILE_FOLDER)
+        text_chunks = get_text_chunks(raw_text)
+        vectorstore = get_vectorstore(text_chunks)
+        conversation_chain = get_conversation_chain(vectorstore)
 
 
 def allowed_file(filename):
