@@ -1,12 +1,17 @@
-document.addEventListener('DOMContentLoaded', function () {
+let pending_request = false;
+
+document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('upload').addEventListener('submit', (event) => {
         event.preventDefault();
-        upload(file_preparation());
-        setTimeout(() => { update_file_list(get_file_list()) }, 1000);
+        if (!pending_request) {
+            upload(file_preparation());
+            setTimeout(() => { update_file_list(get_file_list()) }, 1000);
+        }
     });
     document.getElementById('question').addEventListener('submit', (event) => {
         event.preventDefault();
-        QeA();
+        if (!pending_request)
+            QeA();
     });
 });
 
@@ -21,6 +26,7 @@ function file_preparation() {
 
 async function upload(formData) {
     try {
+        pending_request = true;
         const response = await fetch('upload', {
             method: 'POST',
             body: formData,
@@ -56,10 +62,12 @@ async function update_file_list(result) {
         item.appendChild(document.createTextNode(file));
         file_list.appendChild(item);
     })
+    pending_request = false;
 }
 
 async function QeA() {
     try {
+        pending_request = true;
         let question = document.getElementsByName('question')[0].value;
         const response = await fetch('QeA', {
             method: 'POST',
@@ -72,7 +80,10 @@ async function QeA() {
             throw "No file uploaded";
         }
         document.getElementById('response').textContent = result['response'];
+
     } catch (error) {
         console.error('Error:', error);
+    } finally {
+        pending_request = false;
     }
 }
