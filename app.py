@@ -11,14 +11,17 @@ from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 
 FILE_FOLDER = "upload"
+CHROMADB_FOLDER = "chromadb"
 ALLOWED_EXTENSIONS = {"pdf"}
 
 app = Flask(__name__)
 load_dotenv()
 
 
-def allowed_file(filename):
-    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+# Add Chroma loading on startup
+@app.before_request
+def load_chromadb():
+    pass
 
 
 @app.route("/")
@@ -65,6 +68,10 @@ def QeA():
     return data
 
 
+def allowed_file(filename):
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
 def get_pdf_text(pdf_docs):
     text = ""
     for pdf in os.listdir(pdf_docs):
@@ -87,14 +94,13 @@ def get_text_chunks(text):
 
 
 def get_vectorstore(text_chunks):
-    persist_directory = "chromadb"
     embeddings = OpenAIEmbeddings()
     vectorstore = Chroma.from_texts(
-        text_chunks, embeddings, persist_directory=persist_directory
+        text_chunks, embeddings, persist_directory=CHROMADB_FOLDER
     )
     vectorstore.persist()
     vectorstore = Chroma(
-        persist_directory=persist_directory, embedding_function=embeddings
+        persist_directory=CHROMADB_FOLDER, embedding_function=embeddings
     )
     return vectorstore
 
