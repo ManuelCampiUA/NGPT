@@ -7,8 +7,9 @@
 - [x] Q&A
 - [x] Loading chroma on startup
 - [x] Limit one question at a time
-- [ ] Improve chroma on startup
 - [ ] Loading gif during the upload
+- [ ] Improve chroma on startup
+- [ ] Improve the Project Layout
 
 ## Manu
 
