@@ -14,58 +14,14 @@ FILE_FOLDER = "upload"
 CHROMADB_FOLDER = "chromadb"
 ALLOWED_EXTENSIONS = {"pdf"}
 
-app = Flask(__name__)
-load_dotenv()
 
-
-# Add Chroma loading on startup
-@app.before_request
-def load_chromadb():
-    pass
-
-
-@app.route("/")
-def home():
-    return render_template("index.html")
-
-
-@app.route("/test")
-def test():
-    files = os.listdir(FILE_FOLDER)
-    return render_template("test.html", files=files)
-
-
-@app.post("/upload")
-def upload():
-    if "file_0" not in request.files:
-        return {"response": "No selected file"}
-    files = request.files
-    for file in files:
-        if allowed_file(files[file].filename):
-            files[file].save(f"{FILE_FOLDER}/{secure_filename(files[file].filename)}")
+def before_first_request():
+    load_dotenv()
+    global conversation_chain
     raw_text = get_pdf_text(FILE_FOLDER)
     text_chunks = get_text_chunks(raw_text)
     vectorstore = get_vectorstore(text_chunks)
-    global conversation_chain
     conversation_chain = get_conversation_chain(vectorstore)
-    return {"response": "Success"}
-
-
-@app.get("/get_file_list")
-def get_file_list():
-    files = os.listdir(FILE_FOLDER)
-    data = {"response": files}
-    return data
-
-
-@app.post("/QeA")
-def QeA():
-    if os.listdir(FILE_FOLDER):
-        user_question = request.json["question"]
-        data = {"response": conversation_chain.run(question=user_question)}
-        return data
-    data = {"response": False}
-    return data
 
 
 def allowed_file(filename):
@@ -112,3 +68,51 @@ def get_conversation_chain(vectorstore):
         llm=llm, retriever=vectorstore.as_retriever(), memory=memory
     )
     return conversation_chain
+
+
+before_first_request()
+app = Flask(__name__)
+
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
+@app.route("/test")
+def test():
+    files = os.listdir(FILE_FOLDER)
+    return render_template("test.html", files=files)
+
+
+@app.post("/upload")
+def upload():
+    if "file_0" not in request.files:
+        return {"response": "No selected file"}
+    files = request.files
+    for file in files:
+        if allowed_file(files[file].filename):
+            files[file].save(f"{FILE_FOLDER}/{secure_filename(files[file].filename)}")
+    global conversation_chain
+    raw_text = get_pdf_text(FILE_FOLDER)
+    text_chunks = get_text_chunks(raw_text)
+    vectorstore = get_vectorstore(text_chunks)
+    conversation_chain = get_conversation_chain(vectorstore)
+    return {"response": "Success"}
+
+
+@app.get("/get_file_list")
+def get_file_list():
+    files = os.listdir(FILE_FOLDER)
+    data = {"response": files}
+    return data
+
+
+@app.post("/QeA")
+def QeA():
+    if os.listdir(FILE_FOLDER):
+        user_question = request.json["question"]
+        data = {"response": conversation_chain.run(question=user_question)}
+        return data
+    data = {"response": False}
+    return data
