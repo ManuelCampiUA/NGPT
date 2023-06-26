@@ -10,3 +10,9 @@
 - [ ] Loading gif during the upload
 
 ## Manu
+
+- [x] la pagina carica
+- [x] main content
+- [x] sidebar
+- [ ] rendere upload button decente
+- [ ] rifinire
