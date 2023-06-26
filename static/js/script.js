@@ -1,11 +1,14 @@
 let pending_request = false;
+let file_uploaded = false;
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('upload').addEventListener('submit', (event) => {
+    document.getElementById('upload').addEventListener('submit', async (event) => {
         event.preventDefault();
-        if (!pending_request) {
-            upload(file_preparation());
+        if (!pending_request)
+            await upload(file_preparation());
+        if (file_uploaded) {
             setTimeout(() => { update_file_list(get_file_list()) }, 1000);
+            file_uploaded = false;
         }
     });
     document.getElementById('question').addEventListener('submit', (event) => {
@@ -35,8 +38,11 @@ async function upload(formData) {
         alert(result['response']);
         if (result['response'] == 'No selected file')
             throw 'No selected file';
+        file_uploaded = true;
     } catch (error) {
         console.error('Error:', error);
+    } finally {
+        pending_request = false;
     }
 }
 
@@ -62,7 +68,6 @@ async function update_file_list(result) {
         item.appendChild(document.createTextNode(file));
         file_list.appendChild(item);
     })
-    pending_request = false;
 }
 
 async function QeA() {
