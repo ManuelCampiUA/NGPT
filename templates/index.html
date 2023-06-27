@@ -6,13 +6,12 @@
   <!-- sidebar -->
   <div class="sidebar">
       <h3>Your documents</h3>
-      <div class="box">
-          <form id="upload">
-            <input type="file" id="file" name="file" multiple>
-              <label for="file">Upload your documents here</label>
-            <input type="submit" value="Upload" class="text-light">
-          </form>
-        </div>
+      <div class="drop_zone">
+		<span class="drop_zone_prompt">Drop file here or click to upload</span>
+		<input type="file" name="file" class="drop_zone_input">
+	</div>
+
+	<script src="/js/drag_and_drop.js"></script>
       <h5>>Click "process"</h5>
 
       <ul>
