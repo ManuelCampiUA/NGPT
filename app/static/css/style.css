@@ -23,8 +23,9 @@ body{
 }
 
 .sidebar {
-  background-color: midnightblue;
-  padding-left: 1rem;
+    background-color: midnightblue;
+    padding-left: 1rem;
+
 }
 
 .main_content {
@@ -79,19 +80,18 @@ label:hover{
 
 
 .drop_zone {
-	max-width: 200px;
-	height: 200px;
-	padding: 25px;
+    background-color:rgb(10,10,0);
+    align-content: center;
+	max-width: 15rem;
+	height: 15rem;
 	display: flex;
 	align-items: center;
-	justify-content: center;
 	text-align: center;
-	font-family: "Quicksand", sans-serif;
+	font-family: sans-serif;
 	font-weight: 500;
-	font-size: 20px;
+	font-size: 1.5rem;
 	cursor: pointer;
-	color: #cccccc;
-	border: 4px dashed #009578;
+	border: 2px solid coral;
 	border-radius: 10px;
 }
  /*Drag and drop*/
