@@ -9,7 +9,10 @@
 - [x] Limit one question at a time
 - [ ] Loading gif during the upload
 - [ ] Improve chroma on startup
-- [x] Improve Project Layout
+- [x] Improve project layout
+- [ ] Add process button
+- [ ] Add login system
+- [ ] Improve Q&A UI
 
 ## Manu
 
