@@ -13,3 +13,6 @@ upload
 
 # IntelliJ
 .idea
+
+# Bootstrap
+bootstrap-5.3.0-dist
