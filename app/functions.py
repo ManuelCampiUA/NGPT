@@ -1,5 +1,4 @@
 import os
-from dotenv import load_dotenv
 from pypdf import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
@@ -11,12 +10,6 @@ from langchain.chains import ConversationalRetrievalChain
 FILE_FOLDER = "app/upload"
 CHROMADB_FOLDER = "app/chromadb"
 ALLOWED_EXTENSIONS = {"pdf"}
-
-
-def before_first_request():
-    load_dotenv()
-    if os.listdir(FILE_FOLDER):
-        load_AI()
 
 
 def load_AI():
