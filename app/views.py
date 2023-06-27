@@ -4,21 +4,21 @@ from werkzeug.utils import secure_filename
 from .functions import *
 
 
-views = Blueprint("views", __name__)
+blueprints = Blueprint("views", __name__)
 
 
-@views.route("/")
+@blueprints.route("/")
 def home():
     return render_template("index.html")
 
 
-@views.route("/test")
+@blueprints.route("/test")
 def test():
     files = os.listdir(FILE_FOLDER)
     return render_template("test.html", files=files)
 
 
-@views.post("/upload")
+@blueprints.post("/upload")
 def upload():
     file_uploaded = False
     if "file_0" not in request.files:
@@ -34,14 +34,14 @@ def upload():
     return {"response": "Error"}
 
 
-@views.get("/get_file_list")
+@blueprints.get("/get_file_list")
 def get_file_list():
     files = os.listdir(FILE_FOLDER)
     data = {"response": files}
     return data
 
 
-@views.post("/QeA")
+@blueprints.post("/QeA")
 def QeA():
     if os.listdir(FILE_FOLDER):
         user_question = request.json["question"]
