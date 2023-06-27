@@ -75,7 +75,10 @@ async function update_file_list(result) {
 async function QeA() {
     try {
         pending_request = true;
+        let div = document.getElementById('QeA');
         let question = document.getElementsByName('question')[0].value;
+        let span_question = document.createElement(question);
+        div.appendChild(span_question);
         const response = await fetch('QeA', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -86,8 +89,8 @@ async function QeA() {
             alert("No file uploaded");
             throw "No file uploaded";
         }
-        document.getElementById('response').textContent = result['response'];
-
+        let span_response = document.createElement(result['response']);
+        div.appendChild(span_response);
     } catch (error) {
         console.error('Error:', error);
     } finally {
