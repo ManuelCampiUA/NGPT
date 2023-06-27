@@ -38,6 +38,8 @@ async function upload(formData) {
         alert(result['response']);
         if (result['response'] == 'No selected file')
             throw 'No selected file';
+        if (result['response'] == 'Error')
+            throw 'Error';
         file_uploaded = true;
     } catch (error) {
         console.error('Error:', error);

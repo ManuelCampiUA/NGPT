@@ -1,6 +1,4 @@
 import os
-from flask import Flask, request, render_template
-from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 from pypdf import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -10,19 +8,22 @@ from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 
-FILE_FOLDER = "upload"
-CHROMADB_FOLDER = "chromadb"
+FILE_FOLDER = "app/upload"
+CHROMADB_FOLDER = "app/chromadb"
 ALLOWED_EXTENSIONS = {"pdf"}
 
 
 def before_first_request():
     load_dotenv()
     if os.listdir(FILE_FOLDER):
-        global conversation_chain
-        raw_text = get_pdf_text(FILE_FOLDER)
-        text_chunks = get_text_chunks(raw_text)
-        vectorstore = get_vectorstore(text_chunks)
-        conversation_chain = get_conversation_chain(vectorstore)
+        load_AI()
+
+
+def load_AI():
+    raw_text = get_pdf_text(FILE_FOLDER)
+    text_chunks = get_text_chunks(raw_text)
+    vectorstore = get_vectorstore(text_chunks)
+    set_conversation_chain(vectorstore)
 
 
 def allowed_file(filename):
@@ -62,58 +63,14 @@ def get_vectorstore(text_chunks):
     return vectorstore
 
 
-def get_conversation_chain(vectorstore):
+def set_conversation_chain(vectorstore):
+    global conversation_chain
     llm = ChatOpenAI()
     memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm=llm, retriever=vectorstore.as_retriever(), memory=memory
     )
+
+
+def get_conversation_chain():
     return conversation_chain
-
-
-before_first_request()
-app = Flask(__name__)
-
-
-@app.route("/")
-def home():
-    return render_template("index.html")
-
-
-@app.route("/test")
-def test():
-    files = os.listdir(FILE_FOLDER)
-    return render_template("test.html", files=files)
-
-
-@app.post("/upload")
-def upload():
-    if "file_0" not in request.files:
-        return {"response": "No selected file"}
-    files = request.files
-    for file in files:
-        if allowed_file(files[file].filename):
-            files[file].save(f"{FILE_FOLDER}/{secure_filename(files[file].filename)}")
-    global conversation_chain
-    raw_text = get_pdf_text(FILE_FOLDER)
-    text_chunks = get_text_chunks(raw_text)
-    vectorstore = get_vectorstore(text_chunks)
-    conversation_chain = get_conversation_chain(vectorstore)
-    return {"response": "Success"}
-
-
-@app.get("/get_file_list")
-def get_file_list():
-    files = os.listdir(FILE_FOLDER)
-    data = {"response": files}
-    return data
-
-
-@app.post("/QeA")
-def QeA():
-    if os.listdir(FILE_FOLDER):
-        user_question = request.json["question"]
-        data = {"response": conversation_chain.run(question=user_question)}
-        return data
-    data = {"response": False}
-    return data

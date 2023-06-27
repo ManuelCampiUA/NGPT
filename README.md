@@ -9,7 +9,7 @@
 - [x] Limit one question at a time
 - [ ] Loading gif during the upload
 - [ ] Improve chroma on startup
-- [ ] Improve the Project Layout
+- [x] Improve Project Layout
 
 ## Manu
 
