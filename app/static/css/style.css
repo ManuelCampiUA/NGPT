@@ -6,9 +6,12 @@ body{
   height: 100%;
   padding: 0;
   margin: 0;
-  background-color: rgb(10, 10, 0);
+  background-image: radial-gradient(
+          circle 65rem at 30% -15%,
+          rgba(10,29,85,1), rgba(5,5,5,1)
+  );
   color: whitesmoke;
-  border-top-width: 0.2rem;
+  border-top-width: 0.4rem;
   border-top-color: coral;
   border-top-style: solid ;
  
@@ -23,9 +26,8 @@ body{
 }
 
 .sidebar {
-    background-color: midnightblue;
-    padding-left: 1rem;
-
+    background-color: black;
+    padding-left: 3%;
 }
 
 .main_content {
@@ -40,20 +42,23 @@ div {
   border: 1px solid yellow;
 }
 
-.titolo {
+.titolo
+{
   padding: 0;
-  margin: 2px;
+  margin: 1%;
 }
 
 
-.chatbotarea {
-  outline: none;
-  border: black;
-  resize: none;
+.chatbotarea
+{
+    outline: none;
+    border: black;
+    resize: none;
+    margin-top: 1rem;
 }
 
 .chatbotarea:disabled {
-  background-color: rgb(10, 10, 0);
+  background-color: rgb(0,0,0);
   color: whitesmoke;
   resize: vertical;
 }
@@ -77,14 +82,12 @@ label:hover{
   border: 1px dashed orangered;
 }
 
-
-
 .drop_zone {
-    background-color:rgb(10,10,0);
-    align-content: center;
+    display: flex;
+    background-color:rgb(30,10,10);
 	max-width: 15rem;
 	height: 15rem;
-	display: flex;
+
 	align-items: center;
 	text-align: center;
 	font-family: sans-serif;
@@ -128,7 +131,8 @@ label:hover{
 
 
   /*BREAKPOINTS*/
-@media screen and (max-width: 990px){
+@media screen and (max-width: 990px)
+{
   *{
     padding: 0;
     margin: 0;
@@ -141,24 +145,37 @@ label:hover{
   height: 100%;
   grid-template-columns: 25% 75%;
   grid-template-rows: 1fr 2fr;
-}
+  }
+  .drop_zone{
+      margin-right: 3rem;
+      margin-left: 2rem;
+  }
 }
 
-@media screen and (max-width: 650px){
+@media screen and (max-width: 650px)
+{
   *{
+      color: whitesmoke;
     padding: 0.5%;
     margin: 0.5%;
     text-align: center;
   }
-  .scroller{ height: 0;}
+  .scroller
+  {
+      height: 0;
+  }
   .grid {
-  display: grid;
-  grid-template-columns:100%;
-}
+      display: grid;
+      grid-template-columns:100%;
+  }
+  .main_content{
+      background-color: black;
+  }
+  .drop_zone{
+      max-width: 15rem;
+      height: 7rem;
+      margin-left: 3rem;
+  }
 
-  .sidebar {
-  display: grid;
-  background-color: rgb(10, 10, 0);
- 
-}
+
 }

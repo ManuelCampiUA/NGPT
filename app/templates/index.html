@@ -21,9 +21,9 @@
   <!-- Main content -->
   <div class="main_content">
     <h1 class="titolo">Chat with your PDFs</h1>
-    <h5 class="titolo">Ask me a question about your documents</h5>
-    <textarea class="form-control chatbotarea"></textarea>
-    <textarea class="form-control chatbotarea" disabled></textarea>
+    <h4 class="titolo">Ask me a question about your documents</h4>
+    <textarea class="form-control chatbotarea "></textarea>
+    <textarea class="form-control chatbotarea " disabled></textarea>
   </div>
 
 
@@ -32,14 +32,7 @@
   </div>
 
 </div>
-<script>
-  const textarea = document.getElementById('myTextarea');
 
-  textarea.addEventListener('input', function() {
-    this.style.height = 'auto'; // Ripristina l'altezza predefinita
-    this.style.height = this.scrollHeight + 'px'; // Imposta l'altezza in base al contenuto
-  });
-</script>
 
 
 {%endblock %}
