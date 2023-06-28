@@ -5,11 +5,24 @@
 <div class="grid container">
   <!-- sidebar -->
   <div class="sidebar">
-      <h3>Your documents</h3>
-      <div class="drop_zone">
-		<span class="drop_zone_prompt">Drop file here or click to upload</span>
-		<input type="file" name="file" class="drop_zone_input">
-	</div>
+      <h4>Upload your files here</h4>
+        <div class="drop_section">
+            <div class="col">
+                    <img src="/img/cloud.png" alt="cloud">
+                <span>Drag your files here</span>
+                or
+                <button class="file-selector">Browse Files</button>
+                <input type="file" class="file-selector-input" multiple>
+            </div>
+            <div class="col">
+                <div class="drop-here">Drop Here</div>
+            </div>
+        </div>
+        <div class="list-section">
+            <div class="list-title">Uploaded Files</div>
+            <div class="list"></div>
+        </div>
+
 
       <h5>>Click "process"</h5>
 
