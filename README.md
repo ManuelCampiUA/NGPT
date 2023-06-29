@@ -12,7 +12,7 @@
 - [x] Improve project layout
 - [ ] Add process button
 - [ ] Add login system
-- [ ] Improve Q&A UI
+- [x] Improve Q&A UI
 
 ## Manu
 

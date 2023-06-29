@@ -77,8 +77,10 @@ async function QeA() {
         pending_request = true;
         let div = document.getElementById('QeA');
         let question = document.getElementsByName('question')[0].value;
-        let span_question = document.createElement(question);
+        let span_question = document.createElement('p');
+        span_question.appendChild(document.createTextNode(question));
         div.appendChild(span_question);
+        document.getElementsByName('question')[0].value = '';
         const response = await fetch('QeA', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -89,7 +91,8 @@ async function QeA() {
             alert("No file uploaded");
             throw "No file uploaded";
         }
-        let span_response = document.createElement(result['response']);
+        let span_response = document.createElement('p');
+        span_response.appendChild(document.createTextNode(result['response']));
         div.appendChild(span_response);
     } catch (error) {
         console.error('Error:', error);
