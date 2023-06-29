@@ -7,9 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!pending_request)
             await upload(file_preparation());
         if (file_uploaded) {
-            setTimeout(() => { update_file_list(get_file_list()) }, 1000);
+            setTimeout(() => { loading_file_list(get_file_list()) }, 1000);
             file_uploaded = false;
         }
+    });
+    document.getElementById('process').addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!pending_request)
+            process();
     });
     document.getElementById('question').addEventListener('submit', (event) => {
         event.preventDefault();
@@ -58,7 +63,7 @@ async function get_file_list() {
     }
 }
 
-async function update_file_list(result) {
+async function loading_file_list(result) {
     files = await result;
     if (files.length === 0)
         return;
@@ -70,6 +75,16 @@ async function update_file_list(result) {
         item.appendChild(document.createTextNode(file));
         file_list.appendChild(item);
     })
+}
+
+async function process() {
+    try {
+        const response = await fetch('process');
+        const result = await response.json();
+        alert(result['response']);
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
 async function QeA() {

@@ -7,10 +7,9 @@
 - [x] Q&A
 - [x] Loading chroma on startup
 - [x] Limit one question at a time
-- [ ] Loading gif during the upload
 - [ ] Improve chroma on startup
 - [x] Improve project layout
-- [ ] Add process button
+- [x] Add process button
 - [ ] Add login system
 - [x] Improve Q&A UI
 

@@ -29,15 +29,23 @@ def upload():
             files[file].save(f"{FILE_FOLDER}/{secure_filename(files[file].filename)}")
             file_uploaded = True
     if file_uploaded:
-        load_AI()
-        return {"response": "Success"}
-    return {"response": "Error"}
+        data = {"response": "Success"}
+        return data
+    data = {"response": "Error"}
+    return data
 
 
 @blueprints.get("/get_file_list")
 def get_file_list():
     files = os.listdir(FILE_FOLDER)
     data = {"response": files}
+    return data
+
+
+@blueprints.get("/process")
+def process():
+    load_AI()
+    data = {"response": "Success"}
     return data
 
 
