@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
 async function register() {
     try {
         pending_request = true;
-        const form = new FormData(document.getElementById("register"));
+        const formData = new FormData(document.getElementById("register"));
         const response = await fetch('register', {
             method: 'POST',
-            body: form
+            body: formData
         });
         const result = await response.json();
         alert(result['response']);

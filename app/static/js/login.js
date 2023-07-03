@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
 async function login() {
     try {
         pending_request = true;
-        const form = new FormData(document.getElementById("login"));
+        const formData = new FormData(document.getElementById("login"));
         const response = await fetch('login', {
             method: 'POST',
-            body: form
+            body: formData
         });
         const result = await response.json();
         alert(result['response']);

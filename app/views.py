@@ -108,7 +108,7 @@ def process():
 @blueprints.post("/QeA")
 def QeA():
     if os.listdir(FILE_FOLDER):
-        user_question = request.json["question"]
+        user_question = request.form["question"]
         data = {"response": get_conversation_chain().run(question=user_question)}
         return data
     data = {"response": False}

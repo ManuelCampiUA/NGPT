@@ -37,7 +37,7 @@ async function upload(formData) {
         pending_request = true;
         const response = await fetch('upload', {
             method: 'POST',
-            body: formData,
+            body: formData
         });
         const result = await response.json();
         alert(result['response']);
@@ -67,11 +67,11 @@ async function loading_file_list(result) {
     files = await result;
     if (files.length === 0)
         return;
-    let file_list = document.getElementById('file_list');
+    const file_list = document.getElementById('file_list');
     while (file_list.firstChild)
         file_list.removeChild(file_list.firstChild);
     files.forEach(file => {
-        let item = document.createElement('li');
+        const item = document.createElement('li');
         item.appendChild(document.createTextNode(file));
         file_list.appendChild(item);
     })
@@ -90,25 +90,26 @@ async function process() {
 async function QeA() {
     try {
         pending_request = true;
-        let div = document.getElementById('QeA');
-        let question = document.getElementsByName('question')[0].value;
-        let span_question = document.createElement('p');
-        span_question.appendChild(document.createTextNode(question));
-        div.appendChild(span_question);
-        document.getElementsByName('question')[0].value = '';
+        const div = document.getElementById('QeA');
+        const form = document.getElementById('question');
+        const question = form.elements['question'];
+        const paragraph_question = document.createElement('p');
+        paragraph_question.appendChild(document.createTextNode(question.value));
+        div.appendChild(paragraph_question);
+        const formData = new FormData(form);
+        form.reset();
         const response = await fetch('QeA', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ question: question })
+            body: formData
         });
         const result = await response.json();
         if (result['response'] === false) {
             alert("No file uploaded");
             throw "No file uploaded";
         }
-        let span_response = document.createElement('p');
-        span_response.appendChild(document.createTextNode(result['response']));
-        div.appendChild(span_response);
+        const paragraph_response = document.createElement('p');
+        paragraph_response.appendChild(document.createTextNode(result['response']));
+        div.appendChild(paragraph_response);
     } catch (error) {
         console.error('Error:', error);
     } finally {
