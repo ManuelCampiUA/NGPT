@@ -3,8 +3,11 @@
 {% block content %}
 
 <div class="grid container">
-  <!-- sidebar -->
-  <div class="sidebar"></div>
+
+  <div class="sidebar"> <!--Logo-->
+    <img  class="logo"src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></h1>
+
+  </div>
 
   <!-- Main content -->
   <div class="main_content">
@@ -16,9 +19,9 @@
   </div>
 
 
-  <div class="sidebar">
-       <h4>Upload your files here </h4>
-        <div class="drop_section">
+  <div class="sidebar"> <!--drag ur files-->
+
+        <div class="drop_section ">
             <div class="col">
                     <img src="{{ url_for('static', filename='img/cloud.png') }}" alt="cloud">
                 <span>Drag your files here</span>
@@ -45,7 +48,5 @@
   </div>
 
 </div>
-
-
 
 {%endblock %}

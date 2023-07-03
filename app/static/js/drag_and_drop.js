@@ -64,7 +64,7 @@ dropArea.ondrop = (e) => {
 
 // check the file type
 function typeValidation(type){
-    var splitType = type.split('/')[0]
+    let splitType = type.split('/')[0]
     if(type == 'application/pdf' || splitType == 'image' || splitType == 'video'){
         return true
     }
@@ -73,11 +73,11 @@ function typeValidation(type){
 // upload file function
 function uploadFile(file){
     listSection.style.display = 'block'
-    var li = document.createElement('li')
+    let li = document.createElement('li')
     li.classList.add('in-prog')
     li.innerHTML = `
         <div class="col">
-            <img src="icons/${iconSelector(file.type)}" alt="">
+            <img src="static/img/${iconSelector(file.type)}" alt="">
         </div>
         <div class="col">
             <div class="file-name">
@@ -95,15 +95,15 @@ function uploadFile(file){
         </div>
     `
     listContainer.prepend(li)
-    var http = new XMLHttpRequest()
-    var data = new FormData()
+    let http = new XMLHttpRequest()
+    let data = new FormData()
     data.append('file', file)
     http.onload = () => {
         li.classList.add('complete')
         li.classList.remove('in-prog')
     }
     http.upload.onprogress = (e) => {
-        var percent_complete = (e.loaded / e.total)*100
+        let percent_complete = (e.loaded / e.total)*100
         li.querySelectorAll('span')[0].innerHTML = Math.round(percent_complete) + '%'
         li.querySelectorAll('span')[1].style.width = percent_complete + '%'
     }
@@ -113,7 +113,7 @@ function uploadFile(file){
 }
 // find icon for file
 function iconSelector(type){
-    var splitType = (type.split('/')[0] == 'application') ? type.split('/')[1] : type.split('/')[0];
+    let splitType = (type.split('/')[0] == 'application') ? type.split('/')[1] : type.split('/')[0];
     return splitType + '.png'
 }
 
