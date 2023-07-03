@@ -5,16 +5,6 @@ const fileSelector = document.querySelector('.file-selector')
 const fileSelectorInput = document.querySelector('.file-selector-input')
 
 
-let icon= document.getElementById("toggle_dark");
-icon.onclick= function (){
-    document.body.classList.toggle("dark_theme")
-    if(document.body.classList.contains("dark_theme")){
-        icon.src="static/img/moon.png"
-    }else{
-        icon.src="static/img/sun.png"
-    }
-}
-
 
 // upload files with browse button
 fileSelector.onclick = () => fileSelectorInput.click()
@@ -94,6 +84,7 @@ function uploadFile(file){
             <svg xmlns="http://www.w3.org/2000/svg" class="tick" height="20" width="20"><path d="m8.229 14.438-3.896-3.917 1.438-1.438 2.458 2.459 6-6L15.667 7Z"/></svg>
         </div>
     `
+
     listContainer.prepend(li)
     let http = new XMLHttpRequest()
     let data = new FormData()
@@ -107,6 +98,10 @@ function uploadFile(file){
         li.querySelectorAll('span')[0].innerHTML = Math.round(percent_complete) + '%'
         li.querySelectorAll('span')[1].style.width = percent_complete + '%'
     }
+    
+    /*aprire la connessione.*/
+    http.open('POST', 'upload');
+    /*inviare una richiesta XMLHttpRequest*/
     http.send(data)
     li.querySelector('.cross').onclick = () => http.abort()
     http.onabort = () => li.remove()
@@ -117,11 +112,3 @@ function iconSelector(type){
     return splitType + '.png'
 }
 
-
-//textarea
-const textarea = document.getElementById('myTextarea');
-
-textarea.addEventListener('input', function() {
-    this.style.height = 'auto'; // Ripristina l'altezza predefinita
-    this.style.height = this.scrollHeight + 'px'; // Imposta l'altezza in base al contenuto
- });
