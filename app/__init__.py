@@ -1,13 +1,12 @@
 import os
 from flask import Flask
 from dotenv import load_dotenv
-from . import views, functions
+from . import views
 
 
 def create_app():
-    app = Flask(__name__)
-    app.register_blueprint(views.blueprints)
     load_dotenv()
-    if os.listdir(functions.FILE_FOLDER):
-        functions.load_AI()
+    app = Flask(__name__)
+    app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+    app.register_blueprint(views.blueprints)
     return app

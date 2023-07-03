@@ -1,6 +1,9 @@
 import os
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session
+from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
+from psycopg2.errors import UniqueViolation
+from .database import *
 from .functions import *
 
 
@@ -12,8 +15,61 @@ def home():
     return render_template("index.html")
 
 
+@blueprints.route("/register", methods=("GET", "POST"))
+def register():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if not username:
+            data = {"response": "Username is required"}
+            return data
+        elif not password:
+            data = {"response": "Password is required"}
+            return data
+        conn = get_db_connection()
+        cur = conn.cursor()
+        try:
+            cur.execute(
+                'INSERT INTO "user" (username, password) VALUES (%s, %s);',
+                (username, generate_password_hash(password)),
+            )
+            conn.commit()
+        except UniqueViolation:
+            data = {"response": f"User {username} is already registered"}
+            return data
+        data = {"response": "Success"}
+        return data
+    return render_template("register.html")
+
+
+@blueprints.route("/login", methods=("GET", "POST"))
+def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        conn = get_db_connection()
+        cur = conn.cursor()
+        cur.execute('SELECT * FROM "user" WHERE username = %s;', (username,))
+        user = cur.fetchone()
+        cur.close()
+        conn.close()
+        if user is None:
+            data = {"response": "Incorrect username"}
+            return data
+        if not check_password_hash(user[2], password):
+            data = {"response": "Incorrect password"}
+            return data
+        session.clear()
+        session["user_id"] = user[0]
+        data = {"response": "Success"}
+        return data
+    return render_template("login.html")
+
+
 @blueprints.route("/test")
 def test():
+    if os.listdir(FILE_FOLDER):
+        load_AI()
     files = os.listdir(FILE_FOLDER)
     return render_template("test.html", files=files)
 
