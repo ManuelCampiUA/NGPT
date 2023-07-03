@@ -1,24 +1,24 @@
-let pending_request = false;
-let file_uploaded = false;
+let pendingRequest = false;
+let fileUploaded = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('upload').addEventListener('submit', async (event) => {
         event.preventDefault();
-        if (!pending_request)
+        if (!pendingRequest)
             await upload(file_preparation());
-        if (file_uploaded) {
+        if (fileUploaded) {
             setTimeout(() => { loading_file_list(get_file_list()) }, 1000);
-            file_uploaded = false;
+            fileUploaded = false;
         }
     });
     document.getElementById('process').addEventListener('submit', (event) => {
         event.preventDefault();
-        if (!pending_request)
+        if (!pendingRequest)
             process();
     });
     document.getElementById('question').addEventListener('submit', (event) => {
         event.preventDefault();
-        if (!pending_request)
+        if (!pendingRequest)
             QeA();
     });
 });
@@ -34,7 +34,7 @@ function file_preparation() {
 
 async function upload(formData) {
     try {
-        pending_request = true;
+        pendingRequest = true;
         const response = await fetch('upload', {
             method: 'POST',
             body: formData
@@ -45,11 +45,11 @@ async function upload(formData) {
             throw 'No selected file';
         if (result['response'] == 'Error')
             throw 'Error';
-        file_uploaded = true;
+        fileUploaded = true;
     } catch (error) {
         console.error('Error:', error);
     } finally {
-        pending_request = false;
+        pendingRequest = false;
     }
 }
 
@@ -89,13 +89,13 @@ async function process() {
 
 async function QeA() {
     try {
-        pending_request = true;
+        pendingRequest = true;
         const div = document.getElementById('QeA');
         const form = document.getElementById('question');
         const question = form.elements['question'];
-        const paragraph_question = document.createElement('p');
-        paragraph_question.appendChild(document.createTextNode(question.value));
-        div.appendChild(paragraph_question);
+        const paragraphQuestion = document.createElement('p');
+        paragraphQuestion.appendChild(document.createTextNode(question.value));
+        div.appendChild(paragraphQuestion);
         const formData = new FormData(form);
         form.reset();
         const response = await fetch('QeA', {
@@ -107,12 +107,12 @@ async function QeA() {
             alert("No file uploaded");
             throw "No file uploaded";
         }
-        const paragraph_response = document.createElement('p');
-        paragraph_response.appendChild(document.createTextNode(result['response']));
-        div.appendChild(paragraph_response);
+        const paragraphResponse = document.createElement('p');
+        paragraphResponse.appendChild(document.createTextNode(result['response']));
+        div.appendChild(paragraphResponse);
     } catch (error) {
         console.error('Error:', error);
     } finally {
-        pending_request = false;
+        pendingRequest = false;
     }
 }

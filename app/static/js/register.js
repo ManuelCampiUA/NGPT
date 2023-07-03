@@ -1,16 +1,16 @@
-let pending_request = false;
+let pendingRequest = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('register').addEventListener('submit', (event) => {
         event.preventDefault();
-        if (!pending_request)
+        if (!pendingRequest)
             register();
     });
 });
 
 async function register() {
     try {
-        pending_request = true;
+        pendingRequest = true;
         const formData = new FormData(document.getElementById("register"));
         const response = await fetch('register', {
             method: 'POST',
@@ -23,6 +23,6 @@ async function register() {
     } catch (error) {
         console.error('Error:', error);
     } finally {
-        pending_request = false;
+        pendingRequest = false;
     }
 }
