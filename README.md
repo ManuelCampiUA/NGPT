@@ -12,6 +12,8 @@
 - [x] Add process button
 - [x] Add login system
 - [x] Improve Q&A UI
+- [ ] Improve session cookies
+- [ ] Add login constraints
 
 ## Manu
 
@@ -19,6 +21,6 @@
 - [x] main content
 - [x] sidebar
 - [X] rendere upload button decente
-- [] fare light mode domodesk
-- [] nel breakpoint cellphone mettere upload sotto il main content
-- [] rifinire
+- [ ] fare light mode domodesk
+- [ ] nel breakpoint cellphone mettere upload sotto il main content
+- [ ] rifinire
