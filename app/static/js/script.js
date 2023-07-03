@@ -90,14 +90,8 @@ async function process() {
 async function QeA() {
     try {
         pendingRequest = true;
-        const div = document.getElementById('QeA');
         const form = document.getElementById('question');
-        const question = form.elements['question'];
-        const paragraphQuestion = document.createElement('p');
-        paragraphQuestion.appendChild(document.createTextNode(question.value));
-        div.appendChild(paragraphQuestion);
         const formData = new FormData(form);
-        form.reset();
         const response = await fetch('QeA', {
             method: 'POST',
             body: formData
@@ -107,6 +101,12 @@ async function QeA() {
             alert("No file uploaded");
             throw "No file uploaded";
         }
+        const div = document.getElementById('QeA');
+        const question = form.elements['question'];
+        const paragraphQuestion = document.createElement('p');
+        paragraphQuestion.appendChild(document.createTextNode(question.value));
+        div.appendChild(paragraphQuestion);
+        form.reset();
         const paragraphResponse = document.createElement('p');
         paragraphResponse.appendChild(document.createTextNode(result['response']));
         div.appendChild(paragraphResponse);
