@@ -4,6 +4,18 @@ const listContainer = document.querySelector('.list')
 const fileSelector = document.querySelector('.file-selector')
 const fileSelectorInput = document.querySelector('.file-selector-input')
 
+
+let icon= document.getElementById("toggle_dark");
+icon.onclick= function (){
+    document.body.classList.toggle("dark_theme")
+    if(document.body.classList.contains("dark_theme")){
+        icon.src="static/img/moon.png"
+    }else{
+        icon.src="static/img/sun.png"
+    }
+}
+
+
 // upload files with browse button
 fileSelector.onclick = () => fileSelectorInput.click()
 fileSelectorInput.onchange = () => {
@@ -95,7 +107,6 @@ function uploadFile(file){
         li.querySelectorAll('span')[0].innerHTML = Math.round(percent_complete) + '%'
         li.querySelectorAll('span')[1].style.width = percent_complete + '%'
     }
-    http.open('POST', 'sender.php', true)
     http.send(data)
     li.querySelector('.cross').onclick = () => http.abort()
     http.onabort = () => li.remove()

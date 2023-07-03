@@ -1,16 +1,25 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-
+:root{
+    --primary-color:linear-gradient(113deg, rgb(253, 249, 122) 24.4%, rgb(247, 163, 205) 53.7%, #8765b9);
+    --secondary-color:black;
+    --third-color:white;
+}
+.dark_theme{
+    --primary-color:radial-gradient(
+          circle 65rem at 30% -15%,
+          rgba(10,29,85,1), rgba(5,5,5,1)) ;
+    --secondary-color:white;
+    --third-color:black;
+}
 body{
   font-family: Roboto, Arial, Helvetica, sans-serif ;
   height: 100%;
   padding: 0;
   margin: 0;
-  background-image: radial-gradient(
-          circle 65rem at 30% -15%,
-          rgba(10,29,85,1), rgba(5,5,5,1)
-  );
-  color: white;
+
+    background: var(--primary-color);
+  color: var(--secondary-color);
   border-top-width: 0.4rem;
   border-top-color: coral;
   border-top-style: solid ;
@@ -26,7 +35,7 @@ body{
 }
 
 .sidebar {
-    background-color: black;
+    background-color: var(--third-color);
 }
 
 .main_content {
@@ -54,16 +63,16 @@ div {
     border: black;
     resize: none;
     margin-top: 1rem;
+    border-radius: 10px;
 }
 
 .chatbotarea:disabled {
-  background-color: rgb(0,0,0);
-  color: white;
+  color: black;
   resize: vertical;
 }
 
 .scroller{
-  height: 50rem;
+  height:15rem;
 }
 
 
@@ -76,7 +85,7 @@ input{
 .drop_section{
     position: relative;
     display: flex;
-    background-color:rgb(0,0,0);
+    background-color:var(--third-color);
 	max-width: 15rem;
 	height: 15rem;
 	align-items: center;
@@ -92,7 +101,7 @@ input{
 .drop_section div.col:last-child{
     font-size: 3rem;
     font-weight: 700;
-    color: white;
+    color: var(--secondary-color);
     position: absolute;
     top: 0;
     bottom: 0;
@@ -125,7 +134,7 @@ input{
 .drop_section button{
     display: block;
     margin: auto;
-    color: white;
+    color: var(--secondary-color);
 }
 
 
@@ -145,7 +154,6 @@ input{
   }
   .grid {
   display: grid;
-  height: 100%;
   grid-template-columns: 25% 75%;
   grid-template-rows: 1fr 2fr;
   }
@@ -166,9 +174,6 @@ input{
   .grid {
       display: grid;
       grid-template-columns:100%;
-  }
-  .main_content{
-      background-color: black;
   }
   .drop_zone{
       max-width: 15rem;

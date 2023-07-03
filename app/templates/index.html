@@ -4,11 +4,23 @@
 
 <div class="grid container">
   <!-- sidebar -->
+  <div class="sidebar"></div>
+
+  <!-- Main content -->
+  <div class="main_content">
+    <h1 class="titolo">Chat with your PDFs
+        <img id="toggle_dark" class="sunicon" src="{{ url_for('static', filename='img/sun.png') }}" alt="sun"></h1>
+    <h4 class="titolo">Ask me a question about your documents</h4>
+    <textarea class="form-control chatbotarea "></textarea>
+    <textarea class="form-control chatbotarea " disabled></textarea>
+  </div>
+
+
   <div class="sidebar">
-      <h4>Upload your files here</h4>
+       <h4>Upload your files here </h4>
         <div class="drop_section">
             <div class="col">
-                    <img src="/img/cloud.png" alt="cloud">
+                    <img src="{{ url_for('static', filename='img/cloud.png') }}" alt="cloud">
                 <span>Drag your files here</span>
                 or
                 <button class="file-selector">Browse Files</button>
@@ -29,18 +41,6 @@
       <ul>
         <li>Placeholder</li>
       </ul>
-  </div>
-
-  <!-- Main content -->
-  <div class="main_content">
-    <h1 class="titolo">Chat with your PDFs</h1>
-    <h4 class="titolo">Ask me a question about your documents</h4>
-    <textarea class="form-control chatbotarea "></textarea>
-    <textarea class="form-control chatbotarea " disabled></textarea>
-  </div>
-
-
-  <div class="sidebar">
     <div class= "scroller"></div>
   </div>
 

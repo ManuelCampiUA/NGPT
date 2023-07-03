@@ -1,0 +1,306 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body{
+  font-family: Roboto, Arial, Helvetica, sans-serif ;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-image: radial-gradient(
+          circle 65rem at 30% -15%,
+          rgba(10,29,85,1), rgba(5,5,5,1)
+  );
+  color: white;
+  border-top-width: 0.4rem;
+  border-top-color: coral;
+  border-top-style: solid ;
+ 
+}
+
+
+.grid {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 1fr 2fr;
+}
+
+.sidebar {
+    background-color: black;
+}
+
+.main_content {
+  display: grid;
+  padding: 3% 3% 0 3%
+}
+div {
+  padding: 1px;
+}
+
+ div:hover {
+  border: 1px solid yellow;
+}
+
+.titolo
+{
+  padding: 0;
+  margin: 1%;
+}
+
+
+.chatbotarea
+{
+    outline: none;
+    border: black;
+    resize: none;
+    margin-top: 1rem;
+    border-radius: 10px;
+}
+
+.chatbotarea:disabled {
+  background-color: rgb(0,0,0);
+  color: white;
+  resize: vertical;
+}
+
+.scroller{
+  height: 50rem;
+}
+
+
+input{
+  display: none;
+}
+
+
+ /*Drag and drop*/
+.drop_section{
+    position: relative;
+    display: flex;
+    background-color:rgb(0,0,0);
+	max-width: 15rem;
+	height: 15rem;
+	align-items: center;
+	text-align: center;
+	font-family: sans-serif;
+	font-weight: 500;
+	font-size: 1.5rem;
+	cursor: pointer;
+	border: 2px solid coral;
+	border-radius: 10px;
+}
+/*mostra il DROP HERE durante drag-n-drop*/
+.drop_section div.col:last-child{
+    font-size: 3rem;
+    font-weight: 700;
+    color: black;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 11rem;
+    height: 4rem;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.6);
+    transition-duration: 0.2s;
+}
+/*nasconde il testo dietro il drag-n-drop*/
+.drag-over-effect div.col:first-child{
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1);
+}
+/*mostra il drag-n-drop*/
+.drag-over-effect div.col:last-child{
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+/*scritta drag & dtop ur files here OR*/
+.drop_section span,
+.drop_section button{
+    display: block;
+    margin: auto;
+    color: white;
+}
+
+
+
+
+
+
+  /*BREAKPOINTS*/
+@media screen and (max-width: 990px)
+{
+  *{
+    padding: 0;
+    margin: 0;
+  }
+  .main_content{
+    padding-left: 5%;
+  }
+  .grid {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: 1fr 2fr;
+  }
+}
+
+@media screen and (max-width: 650px)
+{
+  *{
+      color: white;
+    padding: 0.5%;
+    margin: 0.5%;
+    text-align: center;
+  }
+  .scroller
+  {
+      height: 0;
+  }
+  .grid {
+      display: grid;
+      grid-template-columns:100%;
+  }
+  .main_content{
+      background-color: black;
+  }
+  .drop_zone{
+      max-width: 15rem;
+      height: 7rem;
+      margin-left: 3rem;
+  }
+
+
+}
+
+
+
+/*experimental*/
+
+
+
+.drop_section button{
+    color: white;
+    background-color: coral;
+    border: none;
+    outline: none;
+    padding: 7px 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.drop_section input{
+    display: none;
+}
+
+.list-section{
+    display: none;
+    text-align: left;
+    margin: 0px 35px;
+    padding-bottom: 20px;
+}
+.list-section .list-title{
+    font-size: 0.95rem;
+    color: #707EA0;
+}
+.list-section li{
+    display: flex;
+    margin: 15px 0px;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    border-radius: 8px;
+    transition-duration: 0.2s;
+}
+.list-section li:hover{
+    box-shadow: #E3EAF9 0px 0px 4px 0px, #E3EAF9 0px 12px 16px 0px;
+}
+.list-section li .col{
+    flex: .1;
+}
+.list-section li .col:nth-child(1){
+    flex: .15;
+    text-align: center;
+}
+.list-section li .col:nth-child(2){
+    flex: .75;
+    text-align: left;
+    font-size: 0.9rem;
+    color: #3e4046;
+    padding: 8px 10px;
+}
+.list-section li .col:nth-child(2) div.name{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 250px;
+    display: inline-block;
+}
+.list-section li .col .file-name span{
+    color: #707EA0;
+    float: right;
+}
+.list-section li .file-progress{
+    width: 100%;
+    height: 5px;
+    margin-top: 8px;
+    border-radius: 8px;
+    background-color: #dee6fd;
+}
+.list-section li .file-progress span{
+    display: block;
+    width: 0%;
+    height: 100%;
+    border-radius: 8px;
+    background-image: linear-gradient(120deg, #6b99fd, #9385ff);
+    transition-duration: 0.4s;
+}
+.list-section li .col .file-size{
+    font-size: 0.75rem;
+    margin-top: 3px;
+    color: #707EA0;
+}
+.list-section li .col svg.cross,
+.list-section li .col svg.tick{
+    fill: #8694d2;
+    background-color: #dee6fd;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+.list-section li .col svg.tick{
+    fill: #50a156;
+    background-color: transparent;
+}
+.list-section li.complete span,
+.list-section li.complete .file-progress,
+.list-section li.complete svg.cross{
+    display: none;
+}
+.list-section li.in-prog .file-size,
+.list-section li.in-prog svg.tick{
+    display: none;
+}
+
+body.dark-mode {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-image: radial-gradient(circle 65rem at 30% -15%, rgba(10, 29, 85, 1), rgba(5, 5, 5, 1));
+    color: white;
+    border-top-width: 0.4rem;
+    border-top-color: coral;
+    border-top-style: solid;
+}

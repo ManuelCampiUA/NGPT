@@ -18,5 +18,7 @@
 - [x] la pagina carica
 - [x] main content
 - [x] sidebar
-- [ ] rendere upload button decente
-- [ ] rifinire
+- [X] rendere upload button decente
+- [] fare light mode domodesk
+- [] nel breakpoint cellphone mettere upload sotto il main content
+- [] rifinire
