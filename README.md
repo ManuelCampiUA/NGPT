@@ -10,7 +10,7 @@
 - [ ] Improve chroma on startup
 - [x] Improve project layout
 - [x] Add process button
-- [ ] Add login system
+- [x] Add login system
 - [x] Improve Q&A UI
 
 ## Manu
