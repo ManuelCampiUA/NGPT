@@ -91,6 +91,7 @@ async function QeA() {
     try {
         pendingRequest = true;
         const form = document.getElementById('question');
+        const question = form.elements['question'].value;
         const formData = new FormData(form);
         const response = await fetch('QeA', {
             method: 'POST',
@@ -102,12 +103,11 @@ async function QeA() {
             throw "No file uploaded";
         }
         const div = document.getElementById('QeA');
-        const question = form.elements['question'];
         const paragraphQuestion = document.createElement('p');
-        paragraphQuestion.appendChild(document.createTextNode(question.value));
+        const paragraphResponse = document.createElement('p');
+        paragraphQuestion.appendChild(document.createTextNode(question));
         div.appendChild(paragraphQuestion);
         form.reset();
-        const paragraphResponse = document.createElement('p');
         paragraphResponse.appendChild(document.createTextNode(result['response']));
         div.appendChild(paragraphResponse);
     } catch (error) {
