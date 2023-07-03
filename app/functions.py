@@ -13,10 +13,11 @@ ALLOWED_EXTENSIONS = {"pdf"}
 
 
 def load_AI():
-    raw_text = get_pdf_text(FILE_FOLDER)
-    text_chunks = get_text_chunks(raw_text)
-    vectorstore = get_vectorstore(text_chunks)
-    set_conversation_chain(vectorstore)
+    pass
+    # raw_text = get_pdf_text(FILE_FOLDER)
+    # text_chunks = get_text_chunks(raw_text)
+    # vectorstore = get_vectorstore(text_chunks)
+    # set_conversation_chain(vectorstore)
 
 
 def allowed_file(filename):

@@ -54,7 +54,13 @@ def process():
 def QeA():
     if os.listdir(FILE_FOLDER):
         user_question = request.form["question"]
-        data = {"response": get_conversation_chain().run(question=user_question)}
+        # Test
+        from time import sleep
+
+        sleep(2)
+        data = {
+            "response": "Pariatur dolore aliqua in ad ullamco dolore consectetur sint dolore excepteur consequat in aliqua fugiat. Ipsum pariatur amet occaecat quis. Labore duis occaecat tempor ad et officia ullamco. Occaecat aute voluptate tempor cillum incididunt. Aliquip qui voluptate do laborum consectetur anim officia qui enim minim."
+        }  # get_conversation_chain().run(question=user_question)}
         return data
     data = {"response": False}
     return data
