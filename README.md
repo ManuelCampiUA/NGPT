@@ -14,7 +14,6 @@
 - [x] Improve Q&A UI
 - [x] Improve session cookies
 - [x] Add login constraints
-- [ ] Add blocks to parameterless API calls
 
 ## Manu
 
