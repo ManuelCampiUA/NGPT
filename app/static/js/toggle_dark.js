@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8f11b88 (Format JS code)
 let icon = document.getElementById("toggle_dark");
 icon.onclick = function () {
     document.body.classList.toggle("dark_theme")
