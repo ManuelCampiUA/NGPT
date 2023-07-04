@@ -17,6 +17,8 @@ def load_logged_in_user():
         cur = conn.cursor()
         cur.execute('SELECT * FROM "user" WHERE id = %s', (user_id,))
         g.user = cur.fetchone()
+        cur.close()
+        conn.close()
 
 
 def login_required(view):
@@ -51,6 +53,9 @@ def register():
         except UniqueViolation:
             data = {"response": f"User {username} is already registered"}
             return data
+        finally:
+            cur.close()
+            conn.close()
         data = {"response": "Success"}
         return data
     return render_template("register.html")
@@ -65,6 +70,8 @@ def login():
         cur = conn.cursor()
         cur.execute('SELECT * FROM "user" WHERE username = %s;', (username,))
         user = cur.fetchone()
+        cur.close()
+        conn.close()
         if user is None:
             data = {"response": "Incorrect username"}
             return data
