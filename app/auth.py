@@ -15,7 +15,7 @@ def load_logged_in_user():
     else:
         conn = get_db_connection()
         cur = conn.cursor()
-        cur.execute('SELECT * FROM "user" WHERE id = %s', (user_id,))
+        cur.execute('SELECT id, username FROM "user" WHERE id = %s', (user_id,))
         g.user = cur.fetchone()
         cur.close()
         conn.close()

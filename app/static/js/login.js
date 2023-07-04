@@ -19,7 +19,7 @@ async function login() {
         const result = await response.json();
         alert(result['response']);
         if (result['response'] === 'Success')
-            window.location.assign("test");
+            window.location.assign("../");
     } catch (error) {
         console.error('Error:', error);
     } finally {

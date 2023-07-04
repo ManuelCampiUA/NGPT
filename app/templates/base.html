@@ -24,9 +24,9 @@
         </a>
         <div class="navbar-links">
             <ul>
-                <li><a>UTENTE</a></li>
+                <li><a>{{ g.user[1] }}</a></li>
                 <span class="bar"></span>
-                <li><a href="#">LOGOUT</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
             </ul>
         </div>
     </nav>
@@ -35,6 +35,7 @@
     <script src="{{ url_for('static', filename='js/drag_and_drop.js') }}"></script>
     <script src="{{ url_for('static', filename='js/toggle_dark.js') }}"></script>
     <script src="{{ url_for('static', filename='js/textarea.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
 
