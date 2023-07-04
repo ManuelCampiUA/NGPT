@@ -26,4 +26,4 @@
 - [ ] nel breakpoint cellphone mettere upload sotto il main content
 - [ ] rifinire
 - [ ] migliorare il look del Q&A
-- [ ] impostare la domanda a destra e la risposta a sinistra
+- [x] impostare la domanda a destra e la risposta a sinistra
