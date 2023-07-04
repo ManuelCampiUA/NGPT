@@ -2,26 +2,12 @@
 {% block title %}Index{% endblock %}
 {% block content %}
 
-<div class="grid container">
+<div class="grid">
 
-  <div class="sidebar"> <!--Logo-->
-    <img class="logo"src="{{ url_for('static', filename='img/logo.png') }}" alt="logo">
-  </div>
-
-  <!-- Main content -->
-  <div class="main_content">
-    <h1 class="titolo">Chat with your PDFs
-        <img id="toggle_dark" class="sunicon" src="{{ url_for('static', filename='img/sun.png') }}" alt="sun"></h1>
-    <h4 class="titolo">Ask me a question about your documents</h4>
-    <textarea class="form-control chatbotarea "></textarea>
-    <textarea class="form-control chatbotarea " disabled></textarea>
-  </div>
-
-
-  <div class="sidebar"> <!--drag ur files-->
+    <div class="sidebar"> <!--Logo-->
         <div class="drop_section ">
-            <div class="col">
-                    <img src="{{ url_for('static', filename='img/cloud.png') }}" alt="cloud">
+            <div class=drop_section_content>
+                <img src="{{ url_for('static', filename='img/cloud.png') }}" alt="cloud">
                 <span>Drag your files here</span>
                 or
                 <button class="file-selector">Browse Files</button>
@@ -35,14 +21,29 @@
             <div class="list-title">Uploaded Files</div>
             <div class="list"></div>
         </div>
+    </div>
 
-      <h5>>Click "process"</h5>
+    <!-- Main content -->
+    <div class="main_content">
+        <h1 class="titolo">Chat with your PDFs
+            <img id="toggle_dark" class="sunicon" src="{{ url_for('static', filename='img/sun.png') }}" alt="sun">
+        </h1>
+        <h4 class="titolo">Ask me a question about your documents</h4>
+        <textarea class="form-control chatbotarea "></textarea>
+        <textarea class="form-control chatbotarea " disabled></textarea>
+    </div>
 
-      <ul>
-        <li>Placeholder</li>
-      </ul>
-    <div class= "scroller"></div>
-  </div>
+
+    <div class="sidebar"> <!--drag ur files-->
+
+
+        <form id="process">
+            <input type="submit" value="Process">
+        </form>
+        <ul>
+            <li>Placeholder</li>
+        </ul>
+    </div>
 </div>
 
 {%endblock %}

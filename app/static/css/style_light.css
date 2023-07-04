@@ -1,64 +1,73 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-:root{
-    --primary-color:linear-gradient(113deg, rgb(253, 249, 122) 24.4%, rgb(247, 163, 205) 53.7%, #8765b9);
-    --secondary-color:black;
-    --third-color:white;
-}
-.dark_theme{
-    --primary-color:radial-gradient(
-          circle 65rem at 30% -15%,
-          rgba(10,29,85,1), rgba(5,5,5,1)) ;
-    --secondary-color:white;
-    --third-color:black;
-}
-body{
-  font-family: Roboto, Arial, Helvetica, sans-serif ;
-  height: 100%;
-  padding: 0;
-  margin: 0;
 
-    background: var(--primary-color);
-  color: var(--secondary-color);
-  border-top-width: 0.4rem;
-  border-top-color: coral;
-  border-top-style: solid ;
- 
+:root {
+    --primary-color: linear-gradient(113deg, rgb(253, 249, 122) 24.4%, rgb(247, 163, 205) 53.7%, #8765b9);
+    --secondary-color: black;
+    --third-color: white;
 }
+
+.dark_theme {
+    --primary-color: radial-gradient(circle 65rem at 30% -15%,
+            rgba(10, 29, 85, 1), rgba(5, 5, 5, 1));
+    --secondary-color: white;
+    --third-color: black;
+}
+
+body {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+
+}
+
+body::-webkit-scrollbar {
+    width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+    background: black;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: plum;
+}
+
 
 
 .grid {
-  display: grid;
-  height: 100%;
-  grid-template-columns: 20% 80%;
-  grid-template-rows: 1fr 2fr;
+    display: grid;
+    height: 100%;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 1fr 2fr;
 }
 
 .sidebar {
-    background-color: var(--third-color);
+    border-right: coral solid 2px;
+
 }
 
 .main_content {
-  display: grid;
-  padding: 3% 3% 0 3%
+    display: grid;
+    padding: 3% 3% 0 3%
 }
+
 div {
-  padding: 1px;
+    padding: 1px;
 }
 
- div:hover {
-  border: 1px solid yellow;
+div:hover {
+    border: 1px solid yellow;
 }
 
-.titolo
-{
-  padding: 0;
-  margin: 1%;
+.titolo {
+    padding: 0;
+    margin: 1%;
 }
 
 
-.chatbotarea
-{
+.chatbotarea {
     outline: none;
     border: black;
     resize: none;
@@ -67,44 +76,40 @@ div {
 }
 
 .chatbotarea:disabled {
-  color: black;
-  resize: vertical;
+    color: black;
+    resize: vertical;
 }
 
-.scroller{
-  height:20rem;
+.scroller {
+    height: 20rem;
 }
 
-.logo{
-  height: 7rem;
-  width: auto;
-  overflow:hidden;
-}
-
-input{
-  display: none;
+.logo {
+    height: 4rem;
+    width: auto;
+    overflow: hidden;
 }
 
 
- /*Drag and drop*/
-.drop_section{
-  position: relative;
-  display: flex;
-  background-color:var(--third-color);
-	max-width: 15rem;
-	height: 15rem;
-	align-items: center;
-	text-align: center;
-	font-family: sans-serif;
-	font-weight: 500;
-	font-size: 1.5rem;
-	cursor: pointer;
-	border: 2px solid coral;
-	border-radius: 10px;
-  margin: 0 12%;
+/*Drag and drop*/
+.drop_section {
+    position: relative;
+    display: flex;
+    background-color: var(--third-color);
+    max-width: 15rem;
+    height: 15rem;
+    align-items: center;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 0 12%;
 }
+
 /*mostra il DROP HERE durante drag-n-drop*/
-.drop_section div.col:last-child{
+.drop_section div.col:last-child {
     font-size: 3rem;
     font-weight: 700;
     color: var(--secondary-color);
@@ -122,179 +127,294 @@ input{
     transform: scale(0.6);
     transition-duration: 0.2s;
 }
+
 /*nasconde il testo dietro il drag-n-drop*/
-.drag-over-effect div.col:first-child{
+.drag-over-effect div.col:first-child {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transform: scale(1);
 }
+
 /*mostra il drag-n-drop*/
-.drag-over-effect div.col:last-child{
+.drag-over-effect div.col:last-child {
     opacity: 1;
     visibility: visible;
     transform: scale(1);
 }
+
+.drop_section_content {
+    margin: 10%;
+}
+
 /*scritta drag & dtop ur files here OR*/
 .drop_section span,
-.drop_section button{
+.drop_section button {
     display: block;
     margin: auto;
     color: var(--secondary-color);
+    text-align: center;
 }
+
 /*bottone arancione*/
-.drop_section button{
-  color: white;
-  background-color: coral;
-  border: none;
-  outline: none;
-  padding: 0.5rem 1.5rem;
-  border-radius: 10px;
-  margin-top: 1.2rem;
-  cursor: pointer;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+.drop_section button {
+    color: white;
+    background-color: coral;
+    border: none;
+    outline: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 10px;
+    margin-top: 1.2rem;
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 
 /*file uploadati barrette caricamento*/
 
 
-.drop_section input{
-  display: none;
+.drop_section input {
+    display: none;
 }
 
-.list-section{
-  display: none;
-  text-align: left;
-  margin: 0px 2rem;
-  padding-bottom: 20px;
-}
-.list-section .list-title{
-  font-size: 1rem;
-  color: var(--secondary-color);
-  ;
-}
-.list-section li{
-  display: flex;
-  margin: 1rem 0;
-  padding: .5rem 0;
-  border-radius: 10px;
-  transition-duration: 0.2s;
+.list-section {
+    display: none;
+    text-align: left;
+    margin: 0px 2rem;
+    padding-bottom: 20px;
 }
 
-.list-section li .col{
-  flex: .1;
+.list-section .list-title {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    ;
 }
-.list-section li .col:nth-child(1){
-  flex: .15;
-  text-align: center;
+
+.list-section li {
+    display: flex;
+    margin: 1rem 0;
+    padding: .5rem 0;
+    border-radius: 10px;
+    transition-duration: 0.2s;
 }
-.list-section li .col:nth-child(2){
-  flex: .75;
-  text-align: left;
-  font-size: 0.9rem;
-  color: var(--secondary-color);
-  padding: 8px 10px;
+
+.list-section li .col {
+    flex: .1;
 }
-.list-section li .col:nth-child(2) div.name{
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 250px;
-  display: inline-block;
+
+.list-section li .col:nth-child(1) {
+    flex: .15;
+    text-align: center;
 }
-.list-section li .col .file-name span{
-  color: #707EA0;
-  float: right;
+
+.list-section li .col:nth-child(2) {
+    flex: .75;
+    text-align: left;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    padding: 8px 10px;
 }
-.list-section li .file-progress{
-  width: 100%;
-  height: 5px;
-  margin-top: 8px;
-  border-radius: 8px;
-  background-color: #dee6fd;
+
+.list-section li .col:nth-child(2) div.name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 250px;
+    display: inline-block;
 }
-.list-section li .file-progress span{
-  display: block;
-  width: 0%;
-  height: 100%;
-  border-radius: 8px;
-  background-image: linear-gradient(120deg, #6b99fd, #9385ff);
-  transition-duration: 0.4s;
+
+.list-section li .col .file-name span {
+    color: #707EA0;
+    float: right;
 }
-.list-section li .col .file-size{
-  font-size: 0.75rem;
-  margin-top: 3px;
-  color: #707EA0;
+
+.list-section li .file-progress {
+    width: 100%;
+    height: 5px;
+    margin-top: 8px;
+    border-radius: 8px;
+    background-color: #dee6fd;
 }
+
+.list-section li .file-progress span {
+    display: block;
+    width: 0%;
+    height: 100%;
+    border-radius: 8px;
+    background-image: linear-gradient(120deg, #6b99fd, #9385ff);
+    transition-duration: 0.4s;
+}
+
+.list-section li .col .file-size {
+    font-size: 0.75rem;
+    margin-top: 3px;
+    color: #707EA0;
+}
+
 .list-section li .col svg.cross,
-.list-section li .col svg.tick{
-  fill: #8694d2;
-  background-color: #dee6fd;
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
+.list-section li .col svg.tick {
+    fill: #8694d2;
+    background-color: #dee6fd;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
 }
-.list-section li .col svg.tick{
-  fill: #50a156;
-  background-color: transparent;
+
+.list-section li .col svg.tick {
+    fill: #50a156;
+    background-color: transparent;
 }
+
 .list-section li.complete span,
 .list-section li.complete .file-progress,
-.list-section li.complete svg.cross{
-  display: none;
+.list-section li.complete svg.cross {
+    display: none;
 }
+
 .list-section li.in-prog .file-size,
-.list-section li.in-prog svg.tick{
-  display: none;
+.list-section li.in-prog svg.tick {
+    display: none;
 }
 
+/*NAVBAR*/
 
-  /*BREAKPOINTS*/
-@media screen and (max-width: 990px)
-{
-  *{
-    padding: 0;
+.navbar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--third-color);
+    color: var(--secondary-color);
+    border-bottom: coral solid 4px;
+}
+
+.brand-title {
+    font-size: 1.5rem;
+    margin: .5rem;
+}
+
+.navbar-links {
+    height: 100%;
+}
+
+.navbar-links ul {
+    display: flex;
     margin: 0;
-  }
-  .main_content{
-    padding-left: 5%;
-  }
-  .grid {
-  display: grid;
-  grid-template-columns: 25% 75%;
-  grid-template-rows: 1fr 2fr;
-  }
-  .scroller
-  {
-      height: 20rem;
-  }
+    padding: 0;
 }
 
-@media screen and (max-width: 650px)
-{
-  *{
-      color: white;
-    padding: 0.5%;
-    margin: 0.5%;
-    text-align: center;
-  }
-  .scroller
-  {
-      height: 0;
-  }
-  .grid {
-      display: grid;
-      grid-template-columns:100%;
-  }
-  .drop_zone{
-      max-width: 15rem;
-      height: 7rem;
-      margin-left: 3rem;
-  }
+.navbar-links li {
+    list-style: none;
+}
+
+.navbar-links li a {
+    display: block;
+    text-decoration: none;
+    color: var(--secondary-color);
+    padding: 1rem;
+}
+
+.navbar-links li:hover {
+    background-color: var(--third-color);
+}
+
+.toggle-button {
+    position: absolute;
+    top: .75rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+}
+
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+@media (max-width: 800px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .toggle-button {
+        display: flex;
+    }
+
+    .navbar-links {
+        display: none;
+        width: 100%;
+    }
+
+    .navbar-links ul {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .navbar-links ul li {
+        text-align: center;
+    }
+
+    .navbar-links ul li a {
+        padding: .5rem 1rem;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+}
+
+/*BREAKPOINTS*/
+@media screen and (max-width: 990px) {
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .main_content {
+        padding-left: 5%;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 25% 75%;
+        grid-template-rows: 1fr 2fr;
+    }
+
+    .scroller {
+        height: 20rem;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    * {
+        color: white;
+        padding: 0.5%;
+        margin: 0.5%;
+        text-align: center;
+    }
+
+    .scroller {
+        height: 0;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 100%;
+    }
+
+    .drop_zone {
+        max-width: 15rem;
+        height: 7rem;
+        margin-left: 3rem;
+    }
 
 
 }
-

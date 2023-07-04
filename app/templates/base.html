@@ -8,18 +8,29 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible">
-    <!--bootstrap-->
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
-        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
-        crossorigin="anonymous"></script>
-    <!--  <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/cyborg/bootstrap.css">-->
-    <!--Javascript-->
-    <!--CSS-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_light.css')  }}">
+
 </head>
 
 <body>
+    <nav class="navbar">
+        <div class="brand-title">
+            <img class="logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="logo">
+        </div>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+
+        </a>
+        <div class="navbar-links">
+            <ul>
+                <li><a>Utente</a></li>
+                <span class="bar"></span>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
     {% block content %}{% endblock %}
     <script src="{{ url_for('static', filename='js/drag_and_drop.js') }}"></script>
     <script src="{{ url_for('static', filename='js/toggle_dark.js') }}"></script>
