@@ -278,6 +278,26 @@ div:hover {
     display: none;
 }
 
+ /*BOTTONE PROCESS*/
+
+#process input[type="submit"] {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    margin: 0 35%;
+
+}
+
+
 /*NAVBAR*/
 
 .navbar {
@@ -418,3 +438,4 @@ div:hover {
 
 
 }
+

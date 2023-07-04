@@ -4,7 +4,7 @@
 
 <div class="grid">
 
-    <div class="sidebar"> <!--Logo-->
+    <div class="sidebar">
         <div class="drop_section ">
             <div class=drop_section_content>
                 <img src="{{ url_for('static', filename='img/cloud.png') }}" alt="cloud">
@@ -21,6 +21,9 @@
             <div class="list-title">Uploaded Files</div>
             <div class="list"></div>
         </div>
+        <form id="process">
+            <input type="submit" value="Process">
+        </form>
     </div>
 
     <!-- Main content -->
@@ -35,11 +38,6 @@
 
 
     <div class="sidebar"> <!--drag ur files-->
-
-
-        <form id="process">
-            <input type="submit" value="Process">
-        </form>
         <ul>
             <li>Placeholder</li>
         </ul>
