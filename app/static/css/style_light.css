@@ -19,6 +19,7 @@ body {
     margin: 0;
     background: var(--primary-color);
     color: var(--secondary-color);
+    height: 100vh;
 
 }
 
@@ -278,7 +279,7 @@ div:hover {
     display: none;
 }
 
- /*BOTTONE PROCESS*/
+/*BOTTONE PROCESS*/
 
 #process input[type="submit"] {
     padding: 6px 12px;
@@ -357,6 +358,23 @@ div:hover {
     width: 100%;
     background-color: white;
     border-radius: 10px;
+}
+
+/*ChatbotArea*/
+#QeA p{
+    border-radius: 10px;
+    padding: 1rem;
+    font-size: 18px;
+}
+#QeA p:nth-child(2n+1) {
+    background-color: rgb(253, 249, 122);
+    text-align: right;
+    color: black;
+}
+
+#QeA p:nth-child(2n) {
+    background-color: #8765b9;
+    color: white;
 }
 
 @media (max-width: 800px) {
@@ -439,4 +457,3 @@ div:hover {
 
 
 }
-
