@@ -12,14 +12,6 @@ CHROMADB_FOLDER = "app/chromadb"
 ALLOWED_EXTENSIONS = {"pdf"}
 
 
-def load_AI():
-    pass
-    # raw_text = get_pdf_text(FILE_FOLDER)
-    # text_chunks = get_text_chunks(raw_text)
-    # vectorstore = get_vectorstore(text_chunks)
-    # set_conversation_chain(vectorstore)
-
-
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -68,3 +60,11 @@ def set_conversation_chain(vectorstore):
 
 def get_conversation_chain():
     return conversation_chain
+
+
+def load_AI():
+    pass
+    # raw_text = get_pdf_text(FILE_FOLDER)
+    # text_chunks = get_text_chunks(raw_text)
+    # vectorstore = get_vectorstore(text_chunks)
+    # set_conversation_chain(vectorstore)

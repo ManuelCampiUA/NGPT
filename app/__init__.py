@@ -1,6 +1,6 @@
 import os
-from flask import Flask
 from dotenv import load_dotenv
+from flask import Flask
 from .main import main
 from .auth import auth
 

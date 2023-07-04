@@ -1,4 +1,5 @@
 from flask import Blueprint, g, render_template, request, session, redirect, url_for
+from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from psycopg2.errors import UniqueViolation
 from .database import get_db_connection
@@ -16,6 +17,16 @@ def load_logged_in_user():
         cur = conn.cursor()
         cur.execute('SELECT * FROM "user" WHERE id = %s', (user_id,))
         g.user = cur.fetchone()
+
+
+def login_required(view):
+    @wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for("auth.login"))
+        return view(**kwargs)
+
+    return wrapped_view
 
 
 @auth.route("/register", methods=("GET", "POST"))
@@ -70,4 +81,4 @@ def login():
 @auth.route("/logout")
 def logout():
     session.clear()
-    return redirect(url_for("login"))
+    return redirect(url_for("auth.login"))

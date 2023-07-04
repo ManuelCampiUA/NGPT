@@ -1,7 +1,9 @@
 import os
 from flask import Blueprint, render_template, request
 from werkzeug.utils import secure_filename
+from .auth import login_required
 from .functions import FILE_FOLDER, load_AI, allowed_file, get_conversation_chain
+
 
 main = Blueprint("main", __name__)
 
@@ -12,6 +14,7 @@ def home():
 
 
 @main.route("/test")
+@login_required
 def test():
     if os.listdir(FILE_FOLDER):
         load_AI()
@@ -20,6 +23,7 @@ def test():
 
 
 @main.post("/upload")
+@login_required
 def upload():
     file_uploaded = False
     if "file_0" not in request.files:
@@ -37,6 +41,7 @@ def upload():
 
 
 @main.get("/get_file_list")
+@login_required
 def get_file_list():
     files = os.listdir(FILE_FOLDER)
     data = {"response": files}
@@ -44,6 +49,7 @@ def get_file_list():
 
 
 @main.get("/process")
+@login_required
 def process():
     load_AI()
     data = {"response": "Success"}
@@ -51,6 +57,7 @@ def process():
 
 
 @main.post("/QeA")
+@login_required
 def QeA():
     if os.listdir(FILE_FOLDER):
         user_question = request.form["question"]

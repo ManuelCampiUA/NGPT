@@ -13,7 +13,8 @@
 - [x] Add login system
 - [x] Improve Q&A UI
 - [ ] Improve session cookies
-- [ ] Add login constraints
+- [x] Add login constraints
+- [ ] Add blocks to parameterless API calls
 
 ## Manu
 
