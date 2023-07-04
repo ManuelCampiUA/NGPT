@@ -317,6 +317,7 @@ div:hover {
 
 .navbar-links {
     height: 100%;
+    font-weight: bold;
 }
 
 .navbar-links ul {
