@@ -12,7 +12,7 @@
 - [x] Add process button
 - [x] Add login system
 - [x] Improve Q&A UI
-- [ ] Improve session cookies
+- [x] Improve session cookies
 - [x] Add login constraints
 - [ ] Add blocks to parameterless API calls
 

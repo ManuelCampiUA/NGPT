@@ -8,7 +8,12 @@ from .auth import auth
 def create_app():
     load_dotenv()
     app = Flask(__name__)
-    app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+    app.config.update(
+        SECRET_KEY=os.environ.get("SECRET_KEY"),
+        SESSION_COOKIE_SECURE=True,
+        SESSION_COOKIE_HTTPONLY=True,
+        SESSION_COOKIE_SAMESITE="Lax",
+    )
     app.register_blueprint(main)
     app.register_blueprint(auth)
     return app
