@@ -14,6 +14,7 @@
 - [x] Improve Q&A UI
 - [x] Improve session cookies
 - [x] Add login constraints
+- [ ] Improve error handling
 
 ## Manu
 
@@ -24,3 +25,5 @@
 - [ ] fare light mode domodesk
 - [ ] nel breakpoint cellphone mettere upload sotto il main content
 - [ ] rifinire
+- [ ] migliorare il look del Q&A
+- [ ] impostare la domanda a destra e la risposta a sinistra

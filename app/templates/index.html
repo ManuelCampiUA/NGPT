@@ -32,8 +32,10 @@
             <img id="toggle_dark" class="sunicon" src="{{ url_for('static', filename='img/sun.png') }}" alt="sun">
         </h1>
         <h4 class="titolo">Ask me a question about your documents</h4>
-        <textarea class="form-control chatbotarea "></textarea>
-        <textarea class="form-control chatbotarea " disabled></textarea>
+        <div id="QeA"></div>
+        <form id="question">
+            <input type="text" name="question">
+        </form>
     </div>
 
 
@@ -43,5 +45,9 @@
         </ul>
     </div>
 </div>
+
+<!-- Test -->
+<form id="upload"></form>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 {%endblock %}
