@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+:root {
+    --primary-color: linear-gradient(113deg, rgb(253, 249, 122) 24.4%, rgb(247, 163, 205) 53.7%, #8765b9);
+    --secondary-color: black;
+    --third-color: white;
+    --botchat: #8765b9;
+    --humanchat: rgb(253, 249, 122);
+}
+
+.dark_theme {
+    --primary-color: radial-gradient(circle 65rem at 30% -15%,
+            rgba(10, 29, 85, 1), rgba(5, 5, 5, 1));
+    --secondary-color: white;
+    --third-color: black;
+    --botchat: rgb(5, 5, 5, 1);
+    --humanchat: whitesmoke;
+}
+
+/*NAVBAR*/
+
+.navbar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--third-color);
+    color: var(--secondary-color);
+    border-bottom: coral solid 4px;
+}
+
+.brand-title {
+    font-size: 1.5rem;
+    margin: .5rem;
+}
+
+.navbar-links {
+    height: 100%;
+    font-weight: bold;
+}
+
+.navbar-links ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li {
+    list-style: none;
+}
+
+.navbar-links li a {
+    display: block;
+    text-decoration: none;
+    color: var(--secondary-color);
+    padding: 1rem;
+}
+
+.navbar-links li:hover {
+    background-color: var(--third-color);
+}
+
+.toggle-button {
+    position: absolute;
+    top: .75rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+}
+
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+.logo {
+    height: 4rem;
+    width: auto;
+    overflow: hidden;
+}
