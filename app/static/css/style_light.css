@@ -4,6 +4,8 @@
     --primary-color: linear-gradient(113deg, rgb(253, 249, 122) 24.4%, rgb(247, 163, 205) 53.7%, #8765b9);
     --secondary-color: black;
     --third-color: white;
+    --botchat:#8765b9;
+    --humanchat:rgb(253, 249, 122);
 }
 
 .dark_theme {
@@ -11,6 +13,8 @@
             rgba(10, 29, 85, 1), rgba(5, 5, 5, 1));
     --secondary-color: white;
     --third-color: black;
+    --botchat:rgb(5, 5, 5, 1);
+    --humanchat:rgb(250, 150, 0);
 }
 
 body {
@@ -21,18 +25,6 @@ body {
     color: var(--secondary-color);
     height: 100vh;
 
-}
-
-body::-webkit-scrollbar {
-    width: 0.25rem;
-}
-
-body::-webkit-scrollbar-track {
-    background: black;
-}
-
-body::-webkit-scrollbar-thumb {
-    background: plum;
 }
 
 
@@ -367,13 +359,13 @@ div:hover {
     font-size: 18px;
 }
 #QeA p:nth-child(2n+1) {
-    background-color: rgb(253, 249, 122);
+    background-color: var(--humanchat);
     text-align: right;
     color: black;
 }
 
 #QeA p:nth-child(2n) {
-    background-color: #8765b9;
+    background-color: var(--botchat);
     color: white;
 }
 
@@ -454,6 +446,4 @@ div:hover {
         height: 7rem;
         margin-left: 3rem;
     }
-
-
 }
