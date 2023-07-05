@@ -1,4 +1,5 @@
 let pendingQeARequest = false;
+let firstQuestion = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('question').addEventListener('submit', (event) => {
@@ -13,24 +14,30 @@ async function QeA() {
         pendingQeARequest = true;
         const form = document.getElementById('question');
         const question = form.elements['question'].value;
-        const formData = new FormData(form);
-        const response = await fetch('QeA', {
-            method: 'POST',
-            body: formData
-        });
-        const result = await response.json();
-        if (result['response'] === false) {
-            alert("No file uploaded");
-            throw "No file uploaded";
+        if (question) {
+            const formData = new FormData(form);
+            const response = await fetch('QeA', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            if (result['response'] === false) {
+                alert("No file uploaded");
+                throw "No file uploaded";
+            }
+            const div = document.getElementById('QeA');
+            const paragraphQuestion = document.createElement('p');
+            const paragraphResponse = document.createElement('p');
+            paragraphQuestion.appendChild(document.createTextNode(question));
+            if (!firstQuestion) {
+                div.style.display = "block";
+                firstQuestion = true;
+            }
+            div.appendChild(paragraphQuestion);
+            form.reset();
+            paragraphResponse.appendChild(document.createTextNode(result['response']));
+            div.appendChild(paragraphResponse);
         }
-        const div = document.getElementById('QeA');
-        const paragraphQuestion = document.createElement('p');
-        const paragraphResponse = document.createElement('p');
-        paragraphQuestion.appendChild(document.createTextNode(question));
-        div.appendChild(paragraphQuestion);
-        form.reset();
-        paragraphResponse.appendChild(document.createTextNode(result['response']));
-        div.appendChild(paragraphResponse);
     } catch (error) {
         console.error('Error:', error);
     } finally {

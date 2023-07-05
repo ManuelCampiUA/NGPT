@@ -4,8 +4,8 @@
     --primary-color: linear-gradient(113deg, rgb(253, 249, 122) 24.4%, rgb(247, 163, 205) 53.7%, #8765b9);
     --secondary-color: black;
     --third-color: white;
-    --botchat:#8765b9;
-    --humanchat:rgb(253, 249, 122);
+    --botchat: #8765b9;
+    --humanchat: rgb(253, 249, 122);
 }
 
 .dark_theme {
@@ -13,8 +13,8 @@
             rgba(10, 29, 85, 1), rgba(5, 5, 5, 1));
     --secondary-color: white;
     --third-color: black;
-    --botchat:rgb(5, 5, 5, 1);
-    --humanchat:whitesmoke;
+    --botchat: rgb(5, 5, 5, 1);
+    --humanchat: whitesmoke;
 }
 
 body {
@@ -353,11 +353,16 @@ div:hover {
 }
 
 /*ChatbotArea*/
-#QeA p{
+#QeA {
+    display: none;
+}
+
+#QeA p {
     border-radius: 10px;
     padding: 1rem;
     font-size: 18px;
 }
+
 #QeA p:nth-child(2n+1) {
     background-color: var(--humanchat);
     text-align: right;
@@ -410,12 +415,15 @@ div:hover {
     font-size: 18px;
     padding: 1rem;
 }
+
 #question input:hover {
     outline: none;
 }
+
 #question input:focus {
     outline: none;
 }
+
 /*BREAKPOINTS*/
 @media screen and (max-width: 990px) {
     * {
