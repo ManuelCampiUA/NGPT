@@ -22,8 +22,8 @@
 - [x] main content
 - [x] sidebar
 - [X] rendere upload button decente
-- [ ] fare light mode domodesk
-- [ ] nel breakpoint cellphone mettere upload sotto il main content
-- [ ] rifinire
-- [ ] migliorare il look del Q&A
+- [x] fare light mode domodesk
+- [x] migliorare il look del Q&A
 - [x] impostare la domanda a destra e la risposta a sinistra
+- [x] fare la question input box bene
+- [ ] fare login
