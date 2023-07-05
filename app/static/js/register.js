@@ -17,9 +17,11 @@ async function register() {
             body: formData
         });
         const result = await response.json();
-        alert(result['response']);
-        if (result['response'] === 'Success')
+        if (result['response'] === 'Success') {
             window.location.assign("login");
+            return;
+        }
+        alert(result['response']);
     } catch (error) {
         console.error('Error:', error);
     } finally {
