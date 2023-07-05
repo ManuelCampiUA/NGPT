@@ -1,25 +1,15 @@
-let pendingRequest = false;
+let pendingUploadRequest = false;
 let fileUploaded = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('upload').addEventListener('submit', async (event) => {
         event.preventDefault();
-        if (!pendingRequest)
+        if (!pendingUploadRequest)
             await upload(file_preparation());
         if (fileUploaded) {
             setTimeout(() => { loading_file_list(get_file_list()) }, 1000);
             fileUploaded = false;
         }
-    });
-    document.getElementById('process').addEventListener('submit', (event) => {
-        event.preventDefault();
-        if (!pendingRequest)
-            process();
-    });
-    document.getElementById('question').addEventListener('submit', (event) => {
-        event.preventDefault();
-        if (!pendingRequest)
-            QeA();
     });
 });
 
@@ -34,7 +24,7 @@ function file_preparation() {
 
 async function upload(formData) {
     try {
-        pendingRequest = true;
+        pendingUploadRequest = true;
         const response = await fetch('upload', {
             method: 'POST',
             body: formData
@@ -49,7 +39,7 @@ async function upload(formData) {
     } catch (error) {
         console.error('Error:', error);
     } finally {
-        pendingRequest = false;
+        pendingUploadRequest = false;
     }
 }
 
@@ -75,44 +65,4 @@ async function loading_file_list(result) {
         item.appendChild(document.createTextNode(file));
         file_list.appendChild(item);
     })
-}
-
-async function process() {
-    try {
-        const response = await fetch('process');
-        const result = await response.json();
-        alert(result['response']);
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-async function QeA() {
-    try {
-        pendingRequest = true;
-        const form = document.getElementById('question');
-        const question = form.elements['question'].value;
-        const formData = new FormData(form);
-        const response = await fetch('QeA', {
-            method: 'POST',
-            body: formData
-        });
-        const result = await response.json();
-        if (result['response'] === false) {
-            alert("No file uploaded");
-            throw "No file uploaded";
-        }
-        const div = document.getElementById('QeA');
-        const paragraphQuestion = document.createElement('p');
-        const paragraphResponse = document.createElement('p');
-        paragraphQuestion.appendChild(document.createTextNode(question));
-        div.appendChild(paragraphQuestion);
-        form.reset();
-        paragraphResponse.appendChild(document.createTextNode(result['response']));
-        div.appendChild(paragraphResponse);
-    } catch (error) {
-        console.error('Error:', error);
-    } finally {
-        pendingRequest = false;
-    }
 }
