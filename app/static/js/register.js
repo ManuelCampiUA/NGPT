@@ -16,6 +16,8 @@ async function register() {
             method: 'POST',
             body: formData
         });
+        if (!response.ok)
+            throw new Error("Network response was not OK");
         const result = await response.json();
         if (result['response'] === 'Success') {
             window.location.assign('login');
@@ -23,7 +25,7 @@ async function register() {
         }
         alert(result['response']);
     } catch (error) {
-        console.error('Error:', error);
+        console.error("There has been a problem with your fetch operation:", error);
     } finally {
         pendingRequest = false;
     }

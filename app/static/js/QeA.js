@@ -20,10 +20,12 @@ async function QeA() {
                 method: 'POST',
                 body: formData
             });
+            if (!response.ok)
+                throw new Error("Network response was not OK");
             const result = await response.json();
             if (result['response'] === false) {
                 alert("No file uploaded");
-                throw "No file uploaded";
+                throw new Error("No file uploaded");
             }
             const div = document.getElementById('QeA');
             const paragraphQuestion = document.createElement('p');
@@ -39,7 +41,7 @@ async function QeA() {
             div.appendChild(paragraphResponse);
         }
     } catch (error) {
-        console.error('Error:', error);
+        console.error("There has been a problem with your fetch operation:", error);
     } finally {
         pendingQeARequest = false;
     }

@@ -29,15 +29,17 @@ async function upload(formData) {
             method: 'POST',
             body: formData
         });
+        if (!response.ok)
+            throw new Error("Network response was not OK");
         const result = await response.json();
         alert(result['response']);
         if (result['response'] == 'No selected file')
-            throw 'No selected file';
+            throw new Error('No selected file');
         if (result['response'] == 'Error')
-            throw 'Error';
+            throw new Error('Error loading files');
         fileUploaded = true;
     } catch (error) {
-        console.error('Error:', error);
+        console.error("There has been a problem with your fetch operation:", error);
     } finally {
         pendingUploadRequest = false;
     }
@@ -46,10 +48,12 @@ async function upload(formData) {
 async function get_file_list() {
     try {
         const response = await fetch('get_file_list');
+        if (!response.ok)
+            throw new Error("Network response was not OK");
         const result = await response.json();
         return result['response'];
     } catch (error) {
-        console.error('Error:', error);
+        console.error("There has been a problem with your fetch operation:", error);
     }
 }
 
