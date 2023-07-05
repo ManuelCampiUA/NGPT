@@ -11,14 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
 async function login() {
     try {
         pendingRequest = true;
-        const formData = new FormData(document.getElementById("login"));
+        const formData = new FormData(document.getElementById('login'));
         const response = await fetch('login', {
             method: 'POST',
             body: formData
         });
         const result = await response.json();
         if (result['response'] === 'Success') {
-            window.location.assign("../");
+            window.location.assign('../');
             return;
         }
         alert(result['response']);

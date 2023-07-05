@@ -11,14 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
 async function register() {
     try {
         pendingRequest = true;
-        const formData = new FormData(document.getElementById("register"));
+        const formData = new FormData(document.getElementById('register'));
         const response = await fetch('register', {
             method: 'POST',
             body: formData
         });
         const result = await response.json();
         if (result['response'] === 'Success') {
-            window.location.assign("login");
+            window.location.assign('login');
             return;
         }
         alert(result['response']);
