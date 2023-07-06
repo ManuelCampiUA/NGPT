@@ -17,11 +17,7 @@
         <div class="brand-title">
             <img class="logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="logo">
         </div>
-        <a href="#" class="toggle-button">
-            <span class="bar"></span>
-            <span class="bar"></span>
-
-        </a>
+        {% if g.user %}
         <div class="navbar-links">
             <ul>
                 <li><a>{{ g.user[1] }}</a></li>
@@ -29,6 +25,7 @@
                 <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
             </ul>
         </div>
+        {% endif %}
     </nav>
     {% block content %}{% endblock %}
 </body>
