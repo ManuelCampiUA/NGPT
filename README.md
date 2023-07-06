@@ -3,18 +3,14 @@
 ## Fillo
 
 - [x] Upload file
-- [x] File list
+- [ ] File list
 - [x] Q&A
-- [x] Loading chroma on startup
-- [x] Limit one question at a time
-- [ ] Improve chroma on startup
-- [x] Improve project layout
-- [x] Add process button
-- [x] Add login system
-- [x] Improve Q&A UI
-- [x] Improve session cookies
-- [x] Add login constraints
-- [ ] Improve error handling
+- [ ] Chromadb
+- [x] Neon database
+- [x] Login
+- [x] Register
+- [ ] Error handling in JavaScript
+- [ ] Error handling in Flask
 
 ## Manu
 
