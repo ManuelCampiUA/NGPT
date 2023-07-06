@@ -41,7 +41,7 @@ async function QeA() {
             div.appendChild(paragraphResponse);
         }
     } catch (error) {
-        console.error("There has been a problem with your fetch operation:", error);
+        console.error("There has been a problem with your Q&A operation:", error);
     } finally {
         pendingQeARequest = false;
     }

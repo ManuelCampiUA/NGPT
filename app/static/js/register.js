@@ -25,7 +25,7 @@ async function register() {
         }
         alert(result['response']);
     } catch (error) {
-        console.error("There has been a problem with your fetch operation:", error);
+        console.error("There has been a problem with your register operation:", error);
     } finally {
         pendingRequest = false;
     }

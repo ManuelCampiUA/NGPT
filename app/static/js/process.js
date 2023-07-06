@@ -17,7 +17,7 @@ async function process() {
         const result = await response.json();
         alert(result['response']);
     } catch (error) {
-        console.error("There has been a problem with your fetch operation:", error);
+        console.error("There has been a problem with your process operation:", error);
     } finally {
         pendingProcessRequest = false;
     }
