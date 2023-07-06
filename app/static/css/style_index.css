@@ -1,5 +1,3 @@
-
-
 body {
     font-family: Roboto, Arial, Helvetica, sans-serif;
     padding: 0;
@@ -7,9 +5,7 @@ body {
     background: var(--primary-color);
     color: var(--secondary-color);
     height: 100vh;
-
 }
-
 
 .grid {
     display: grid;
@@ -41,7 +37,6 @@ div:hover {
     margin: 1%;
 }
 
-
 .chatbotarea {
     outline: none;
     border: black;
@@ -58,8 +53,6 @@ div:hover {
 .scroller {
     height: 20rem;
 }
-
-
 
 /*Drag and drop*/
 .drop_section {
@@ -78,7 +71,7 @@ div:hover {
     margin: 0 12%;
 }
 
-/*mostra il DROP HERE durante drag-n-drop*/
+/*Mostra il DROP HERE durante drag and drop*/
 .drop_section div.col:last-child {
     font-size: 3rem;
     font-weight: 700;
@@ -98,7 +91,7 @@ div:hover {
     transition-duration: 0.2s;
 }
 
-/*nasconde il testo dietro il drag-n-drop*/
+/*Nasconde il testo dietro il drag and drop*/
 .drag-over-effect div.col:first-child {
     opacity: 0;
     visibility: hidden;
@@ -106,7 +99,7 @@ div:hover {
     transform: scale(1);
 }
 
-/*mostra il drag-n-drop*/
+/*Mostra il drag and drop*/
 .drag-over-effect div.col:last-child {
     opacity: 1;
     visibility: visible;
@@ -117,7 +110,7 @@ div:hover {
     margin: 10%;
 }
 
-/*scritta drag & dtop ur files here OR*/
+/*Scritta drag your files here or*/
 .drop_section span,
 .drop_section button {
     display: block;
@@ -126,7 +119,7 @@ div:hover {
     text-align: center;
 }
 
-/*bottone arancione*/
+/*Bottone arancione*/
 .drop_section button {
     color: white;
     background-color: coral;
@@ -139,10 +132,7 @@ div:hover {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
-
-/*file uploadati barrette caricamento*/
-
-
+/*Upload barrette caricamento*/
 .drop_section input {
     display: none;
 }
@@ -248,8 +238,7 @@ div:hover {
     display: none;
 }
 
-/*BOTTONE PROCESS*/
-
+/*Bottone process*/
 #process input[type="submit"] {
     padding: 6px 12px;
     font-size: 14px;
@@ -322,7 +311,6 @@ div:hover {
     }
 }
 
-
 #question input {
     width: 97.5%;
     border-radius: 10px;
@@ -339,7 +327,7 @@ div:hover {
     outline: none;
 }
 
-/*BREAKPOINTS*/
+/*Breakpoints*/
 @media screen and (max-width: 990px) {
     * {
         padding: 0;

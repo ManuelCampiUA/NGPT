@@ -1,13 +1,16 @@
 let pendingUploadRequest = false;
 let fileUploaded = false;
+const form = document.getElementById('upload');
+const fileList = document.getElementById('file_list');
+const item = document.createElement('li');
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('upload').addEventListener('submit', async (event) => {
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
         if (!pendingUploadRequest)
             await upload(filePreparation());
         if (fileUploaded) {
-            setTimeout(() => { loadingFileList(getFileList()) }, 1000);
+            loadingFileList(await getFileList());
             fileUploaded = false;
         }
     });
@@ -16,9 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
 function filePreparation() {
     const PDFs = document.querySelector('input[type="file"][multiple]');
     const formData = new FormData();
-    for (const [i, PDF] of Array.from(PDFs.files).entries()) {
+    for (const [i, PDF] of Array.from(PDFs.files).entries())
         formData.append(`file_${i}`, PDF);
-    }
     return formData;
 }
 
@@ -47,7 +49,7 @@ async function upload(formData) {
 
 async function getFileList() {
     try {
-        const response = await fetch('getFileList');
+        const response = await fetch('get_file_list');
         if (!response.ok)
             throw new Error("Network response was not OK");
         const result = await response.json();
@@ -57,15 +59,12 @@ async function getFileList() {
     }
 }
 
-async function loadingFileList(result) {
-    files = await result;
+function loadingFileList(files) {
     if (files.length === 0)
         return;
-    const fileList = document.getElementById('fileList');
     while (fileList.firstChild)
         fileList.removeChild(fileList.firstChild);
     files.forEach(file => {
-        const item = document.createElement('li');
         item.appendChild(document.createTextNode(file));
         fileList.appendChild(item);
     })

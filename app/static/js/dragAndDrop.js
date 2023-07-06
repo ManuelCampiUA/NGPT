@@ -1,111 +1,96 @@
+let pendingUploadRequest = false;
+let fileUploaded = false;
 const dropArea = document.querySelector('.drop_section')
 const listSection = document.querySelector('.list-section')
 const listContainer = document.querySelector('.list')
 const fileSelector = document.querySelector('.file-selector')
 const fileSelectorInput = document.querySelector('.file-selector-input')
 
-// Upload files with browse button
-fileSelector.onclick = () => fileSelectorInput.click()
-fileSelectorInput.onchange = () => {
-    [...fileSelectorInput.files].forEach((file) => {
-        if (typeValidation(file.type)) {
-            uploadFile(file)
-        }
+// Upload files functions
+function filesPreparation(PDFs) {
+    const formData = new FormData();
+    for (const [i, PDF] of Array.from(PDFs).entries())
+        formData.append(`file_${i}`, PDF);
+    return formData;
+}
+
+async function upload(formData) {
+    try {
+        pendingUploadRequest = true;
+        const response = await fetch('upload', {
+            method: 'POST',
+            body: formData
+        });
+        if (!response.ok)
+            throw new Error("Network response was not OK");
+        const result = await response.json();
+        alert(result['response']);
+        if (result['response'] == 'No selected file')
+            throw new Error('No selected file');
+        if (result['response'] == 'Error')
+            throw new Error('Error loading files');
+        fileUploaded = true;
+    } catch (error) {
+        console.error("There has been a problem with your upload operation:", error);
+    } finally {
+        pendingUploadRequest = false;
+    }
+}
+
+async function getFileList() {
+    try {
+        const response = await fetch('get_file_list');
+        if (!response.ok)
+            throw new Error("Network response was not OK");
+        const result = await response.json();
+        return result['response'];
+    } catch (error) {
+        console.error("There has been a problem with your getFileList operation:", error);
+    }
+}
+
+function loadingFileList(files) {
+    if (files.length === 0)
+        return;
+    const fileList = document.getElementById('file_list');
+    while (fileList.firstChild)
+        fileList.removeChild(fileList.firstChild);
+    files.forEach(file => {
+        const item = document.createElement('li');
+        item.appendChild(document.createTextNode(file));
+        fileList.appendChild(item);
     })
 }
 
-// When file is over the drag area
-dropArea.ondragover = (e) => {
-    e.preventDefault();
-    [...e.dataTransfer.items].forEach((item) => {
-        if (typeValidation(item.type)) {
-            dropArea.classList.add('drag-over-effect')
-        }
-    })
-}
-
-// When file leave the drag area
-dropArea.ondragleave = () => {
-    dropArea.classList.remove('drag-over-effect')
-}
-
-// When file drop on the drag area
-dropArea.ondrop = (e) => {
-    e.preventDefault();
-    dropArea.classList.remove('drag-over-effect')
-    if (e.dataTransfer.items) {
-        [...e.dataTransfer.items].forEach((item) => {
-            if (item.kind === 'file') {
-                const file = item.getAsFile();
-                if (typeValidation(file.type)) {
-                    uploadFile(file)
-                }
-            }
-        })
-    } else {
-        [...e.dataTransfer.files].forEach((file) => {
-            if (typeValidation(file.type)) {
-                uploadFile(file)
-            }
-        })
+async function uploadFile(files) {
+    if (!pendingUploadRequest)
+        await upload(filesPreparation(files));
+    if (fileUploaded) {
+        loadingFileList(await getFileList());
+        fileUploaded = false;
     }
 }
 
-// check the file type
-function typeValidation(type) {
-    let splitType = type.split('/')[0]
-    if (type == 'application/pdf') {
-        return true
-    }
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // Upload files with browse button
+    fileSelector.onclick = () => fileSelectorInput.click();
+    fileSelectorInput.onchange = () => uploadFile(fileSelectorInput.files);
 
-// upload file function
-function uploadFile(file) {
-    listSection.style.display = 'block'
-    let li = document.createElement('li')
-    li.classList.add('in-prog')
-    li.innerHTML = `
-        <div class="col">
-            <img src="static/img/${iconSelector(file.type)}" alt="">
-        </div>
-        <div class="col">
-            <div class="file-name">
-                <div class="name">${file.name}</div>
-                <span>0%</span>
-            </div>
-            <div class="file-progress">
-                <span></span>
-            </div>
-            <div class="file-size">${(file.size / (1024 * 1024)).toFixed(2)} MB</div>
-        </div>
-        <div class="col">
-            <svg xmlns="http://www.w3.org/2000/svg" class="cross" height="20" width="20"><path d="m5.979 14.917-.854-.896 4-4.021-4-4.062.854-.896 4.042 4.062 4-4.062.854.896-4 4.062 4 4.021-.854.896-4-4.063Z"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" class="tick" height="20" width="20"><path d="m8.229 14.438-3.896-3.917 1.438-1.438 2.458 2.459 6-6L15.667 7Z"/></svg>
-        </div>
-    `
-    listContainer.prepend(li)
-    let http = new XMLHttpRequest()
-    let data = new FormData()
-    data.append('file', file)
-    http.onload = () => {
-        li.classList.add('complete')
-        li.classList.remove('in-prog')
+    // When file is over the drag area
+    dropArea.ondragover = (event) => {
+        event.preventDefault();
+        dropArea.classList.add('drag-over-effect');
     }
-    http.upload.onprogress = (e) => {
-        let percent_complete = (e.loaded / e.total) * 100
-        li.querySelectorAll('span')[0].innerHTML = Math.round(percent_complete) + '%'
-        li.querySelectorAll('span')[1].style.width = percent_complete + '%'
-    }
-    /*aprire la connessione.*/
-    http.open('POST', 'upload');
-    /*inviare una richiesta XMLHttpRequest*/
-    http.send(data)
-    li.querySelector('.cross').onclick = () => http.abort()
-    http.onabort = () => li.remove()
-}
 
-// File icon selector
-function iconSelector(type) {
-    let splitType = (type.split('/')[0] == 'application') ? type.split('/')[1] : type.split('/')[0];
-    return splitType + '.png'
-}
+    // When file leave the drag area
+    dropArea.ondragleave = () => {
+        dropArea.classList.remove('drag-over-effect');
+    }
+
+    // When file drop on the drag area
+    dropArea.ondrop = (event) => {
+        event.preventDefault();
+        dropArea.classList.remove('drag-over-effect');
+        uploadFile(event.dataTransfer.files);
+    }
+});

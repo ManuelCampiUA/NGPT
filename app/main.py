@@ -11,7 +11,10 @@ main = Blueprint("main", __name__)
 @main.route("/")
 @login_required
 def home():
-    return render_template("index.html")
+    if os.listdir(FILE_FOLDER):
+        load_AI()
+    files = os.listdir(FILE_FOLDER)
+    return render_template("index.html", files=files)
 
 
 @main.route("/test")
@@ -53,6 +56,10 @@ def get_file_list():
 @login_required
 def process():
     load_AI()
+    # Test
+    from time import sleep
+
+    sleep(2)
     data = {"response": "Success"}
     return data
 

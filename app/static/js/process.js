@@ -1,7 +1,8 @@
 let pendingProcessRequest = false;
+const processForm = document.getElementById('process');
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('process').addEventListener('submit', (event) => {
+    processForm.addEventListener('submit', (event) => {
         event.preventDefault();
         if (!pendingProcessRequest)
             process();

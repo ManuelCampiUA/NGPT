@@ -4,14 +4,14 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_index.css')  }}">
 {% endblock %}
 {% block content %}
-<div class="grid">
 
+<div class="grid">
     <div class="sidebar">
         <div class="drop_section ">
             <div class=drop_section_content>
                 <img src="{{ url_for('static', filename='img/cloud.png') }}" alt="cloud">
                 <span>Drag your files here</span>
-                or
+                <span>or</span>
                 <button class="file-selector">Browse Files</button>
                 <input type="file" class="file-selector-input" multiple>
             </div>
@@ -40,15 +40,21 @@
         </form>
     </div>
 
-
-    <div class="sidebar"> <!--drag ur files-->
-        <ul>
-            <li>Placeholder</li>
+    <div class="sidebar">
+        <ul id="file_list">
+            {% if not files %}
+            <li>Nothing</li>
+            {% endif %}
+            {% for file in files %}
+            <li>{{ file }}</li>
+            {% endfor %}
         </ul>
     </div>
 </div>
+
 <script src="{{ url_for('static', filename='js/dragAndDrop.js') }}"></script>
-<script src="{{ url_for('static', filename='js/toggleDark.js') }}"></script>
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
 <script src="{{ url_for('static', filename='js/process.js') }}"></script>
 <script src="{{ url_for('static', filename='js/QeA.js') }}"></script>
+
 {%endblock %}

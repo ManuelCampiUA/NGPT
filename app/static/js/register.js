@@ -1,7 +1,8 @@
 let pendingRequest = false;
+const registerForm = document.getElementById('register');
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('register').addEventListener('submit', (event) => {
+    registerForm.addEventListener('submit', (event) => {
         event.preventDefault();
         if (!pendingRequest)
             register();
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function register() {
     try {
         pendingRequest = true;
-        const formData = new FormData(document.getElementById('register'));
+        const formData = new FormData(registerForm);
         const response = await fetch('register', {
             method: 'POST',
             body: formData
