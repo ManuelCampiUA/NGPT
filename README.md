@@ -26,5 +26,5 @@
 - [x] fare css diversi per pagina
 - [x] fare login
 - [x] fare register
-- [ ] fix font login
+- [ ] fixare il font nella navbar del login e del register
 - [ ] rendere process button decente

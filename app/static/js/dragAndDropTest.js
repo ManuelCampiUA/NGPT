@@ -69,18 +69,21 @@ async function uploadFiles(files) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('drop', (event) => {
+        event.preventDefault();
+    });
     DropZone.addEventListener('drop', (event) => {
         event.preventDefault();
         uploadFiles(event.dataTransfer.files);
     });
     window.addEventListener('dragover', (event) => {
+        event.preventDefault();
         dropDefault.style.display = "none";
         dropHidden.style.display = "block";
-        event.preventDefault();
     });
     window.addEventListener('dragleave', (event) => {
+        event.preventDefault();
         dropDefault.style.display = "block";
         dropHidden.style.display = "none";
-        event.preventDefault();
     });
 });
