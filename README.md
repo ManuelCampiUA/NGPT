@@ -28,4 +28,4 @@
 - [x] fare la question input box bene
 - [x] fare css diversi per pagina
 - [x] fare login
-- [ ] fare register
+- [x] fare register
