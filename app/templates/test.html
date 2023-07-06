@@ -11,6 +11,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
+    <style>
+        #drop_zone {
+            border: 5px solid black;
+        }
+
+        #drop_hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -20,11 +29,16 @@
         </nav>
         <div class="row">
             <div class="col-lg-4">
-                <h3>Upload</h3>
-                <form id="upload">
-                    <input type="file" name="file" multiple>
-                    <input type="submit" class="btn btn-outline-secondary" value="Upload">
-                </form>
+                <div id="drop_zone">
+                    <div id="drop_default">
+                        <span><b>Drag</b> your files here</span>
+                        <span>or</span>
+                        <input type="file" name="file" multiple>
+                    </div>
+                    <div id="drop_hidden">
+                        <span><b>DROP HERE</b></span>
+                    </div>
+                </div>
                 <br>
                 <form id="process">
                     <input type="submit" class="btn btn-outline-danger" value="Process">
@@ -48,7 +62,7 @@
                 </form>
             </div>
         </div>
-        <script src="{{ url_for('static', filename='js/upload_test.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/dragAndDropTest.js') }}"></script>
         <script src="{{ url_for('static', filename='js/process.js') }}"></script>
         <script src="{{ url_for('static', filename='js/QeA.js') }}"></script>
 </body>

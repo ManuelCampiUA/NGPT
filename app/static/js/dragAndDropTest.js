@@ -1,26 +1,15 @@
 let pendingUploadRequest = false;
 let fileUploaded = false;
-const form = document.getElementById('upload');
+const DropZone = document.getElementById('drop_zone');
+const dropDefault = document.getElementById('drop_default');
+const dropHidden = document.getElementById('drop_hidden');
 const fileList = document.getElementById('file_list');
-const item = document.createElement('li');
+const itemFileList = document.createElement('li');
 
-document.addEventListener('DOMContentLoaded', () => {
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        if (!pendingUploadRequest)
-            await upload(filePreparation());
-        if (fileUploaded) {
-            loadingFileList(await getFileList());
-            fileUploaded = false;
-        }
-    });
-});
-
-function filePreparation() {
-    const PDFs = document.querySelector('input[type="file"][multiple]');
+function filesPreparation(files) {
     const formData = new FormData();
-    for (const [i, PDF] of Array.from(PDFs.files).entries())
-        formData.append(`file_${i}`, PDF);
+    for (const [i, file] of Array.from(files).entries())
+        formData.append(`file_${i}`, file);
     return formData;
 }
 
@@ -65,7 +54,33 @@ function loadingFileList(files) {
     while (fileList.firstChild)
         fileList.removeChild(fileList.firstChild);
     files.forEach(file => {
-        item.appendChild(document.createTextNode(file));
-        fileList.appendChild(item);
+        itemFileList.appendChild(document.createTextNode(file));
+        fileList.appendChild(itemFileList);
     })
 }
+
+async function uploadFiles(files) {
+    if (!pendingUploadRequest)
+        await upload(filesPreparation(files));
+    if (fileUploaded) {
+        loadingFileList(await getFileList());
+        fileUploaded = false;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    DropZone.addEventListener('drop', (event) => {
+        event.preventDefault();
+        uploadFiles(event.dataTransfer.files);
+    });
+    window.addEventListener('dragover', (event) => {
+        dropDefault.style.display = "none";
+        dropHidden.style.display = "block";
+        event.preventDefault();
+    });
+    window.addEventListener('dragleave', (event) => {
+        dropDefault.style.display = "block";
+        dropHidden.style.display = "none";
+        event.preventDefault();
+    });
+});
