@@ -26,5 +26,6 @@
 - [x] migliorare il look del Q&A
 - [x] impostare la domanda a destra e la risposta a sinistra
 - [x] fare la question input box bene
-- [ ] fare css diversi per pagina
-- [ ] fare login
+- [x] fare css diversi per pagina
+- [x] fare login
+- [ ] fare register

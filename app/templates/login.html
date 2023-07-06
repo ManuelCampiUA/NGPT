@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
 {% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_login.css')}}">
+{% endblock %}
 {% block content %}
-
-<head>
-    <title>Login</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_login.css')  }}">
-</head>
-
-<body>
+<div class="mask">
     <div class="wrapper">
         <form id="login">
             <h1>Login</h1>
@@ -19,12 +14,9 @@
             <div class="input_box">
                 <input type="password" name="password" placeholder="Password" required>
             </div>
-            <button type="submit">Sign in</button>
+            <button type="submit" class="btn">Sign in</button>
         </form>
     </div>
-
-    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
-</body>
-
-</html>
-{%endblock %}
+</div>
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock %}
