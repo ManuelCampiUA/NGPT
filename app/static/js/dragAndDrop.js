@@ -4,9 +4,7 @@ const listContainer = document.querySelector('.list')
 const fileSelector = document.querySelector('.file-selector')
 const fileSelectorInput = document.querySelector('.file-selector-input')
 
-
-
-// upload files with browse button
+// Upload files with browse button
 fileSelector.onclick = () => fileSelectorInput.click()
 fileSelectorInput.onchange = () => {
     [...fileSelectorInput.files].forEach((file) => {
@@ -16,7 +14,7 @@ fileSelectorInput.onchange = () => {
     })
 }
 
-// when file is over the drag area
+// When file is over the drag area
 dropArea.ondragover = (e) => {
     e.preventDefault();
     [...e.dataTransfer.items].forEach((item) => {
@@ -25,11 +23,13 @@ dropArea.ondragover = (e) => {
         }
     })
 }
-// when file leave the drag area
+
+// When file leave the drag area
 dropArea.ondragleave = () => {
     dropArea.classList.remove('drag-over-effect')
 }
-// when file drop on the drag area
+
+// When file drop on the drag area
 dropArea.ondrop = (e) => {
     e.preventDefault();
     dropArea.classList.remove('drag-over-effect')
@@ -51,11 +51,10 @@ dropArea.ondrop = (e) => {
     }
 }
 
-
 // check the file type
 function typeValidation(type) {
     let splitType = type.split('/')[0]
-    if (type == 'application/pdf' || splitType == 'image' || splitType == 'video') {
+    if (type == 'application/pdf') {
         return true
     }
 }
@@ -84,7 +83,6 @@ function uploadFile(file) {
             <svg xmlns="http://www.w3.org/2000/svg" class="tick" height="20" width="20"><path d="m8.229 14.438-3.896-3.917 1.438-1.438 2.458 2.459 6-6L15.667 7Z"/></svg>
         </div>
     `
-
     listContainer.prepend(li)
     let http = new XMLHttpRequest()
     let data = new FormData()
@@ -98,7 +96,6 @@ function uploadFile(file) {
         li.querySelectorAll('span')[0].innerHTML = Math.round(percent_complete) + '%'
         li.querySelectorAll('span')[1].style.width = percent_complete + '%'
     }
-
     /*aprire la connessione.*/
     http.open('POST', 'upload');
     /*inviare una richiesta XMLHttpRequest*/
@@ -106,9 +103,9 @@ function uploadFile(file) {
     li.querySelector('.cross').onclick = () => http.abort()
     http.onabort = () => li.remove()
 }
-// find icon for file
+
+// File icon selector
 function iconSelector(type) {
     let splitType = (type.split('/')[0] == 'application') ? type.split('/')[1] : type.split('/')[0];
     return splitType + '.png'
 }
-
