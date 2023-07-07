@@ -72,25 +72,26 @@ async function uploadFile(files) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Upload files with browse button
-    fileSelector.onclick = () => fileSelectorInput.click();
-    fileSelectorInput.onchange = () => uploadFile(fileSelectorInput.files);
-
-    // When file is over the drag area
-    dropArea.ondragover = (event) => {
+    window.addEventListener('drop', (event) => {
         event.preventDefault();
-        dropArea.classList.add('drag-over-effect');
-    }
-
-    // When file leave the drag area
-    dropArea.ondragleave = () => {
         dropArea.classList.remove('drag-over-effect');
-    }
-
-    // When file drop on the drag area
-    dropArea.ondrop = (event) => {
+    });
+    dropArea.addEventListener('drop', (event) => {
         event.preventDefault();
         dropArea.classList.remove('drag-over-effect');
         uploadFile(event.dataTransfer.files);
-    }
+    });
+    window.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        dropArea.classList.add('drag-over-effect');
+    });
+    window.addEventListener('dragleave', () => {
+        dropArea.classList.remove('drag-over-effect');
+    });
+    fileSelector.addEventListener('click', () => {
+        fileSelectorInput.click();
+    });
+    fileSelectorInput.addEventListener('change', (event) => {
+        uploadFile(fileSelectorInput.files);
+    });
 });

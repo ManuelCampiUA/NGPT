@@ -1,6 +1,6 @@
 let pendingUploadRequest = false;
 let fileUploaded = false;
-const DropZone = document.getElementById('drop_zone');
+const dropZone = document.getElementById('drop_zone');
 const dropDefault = document.getElementById('drop_default');
 const dropHidden = document.getElementById('drop_hidden');
 const fileList = document.getElementById('file_list');
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('drop', (event) => {
         event.preventDefault();
     });
-    DropZone.addEventListener('drop', (event) => {
+    dropZone.addEventListener('drop', (event) => {
         event.preventDefault();
         uploadFiles(event.dataTransfer.files);
         dropDefault.style.display = "block";
@@ -84,8 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dropDefault.style.display = "none";
         dropHidden.style.display = "block";
     });
-    window.addEventListener('dragleave', (event) => {
-        event.preventDefault();
+    window.addEventListener('dragleave', () => {
         dropDefault.style.display = "block";
         dropHidden.style.display = "none";
     });

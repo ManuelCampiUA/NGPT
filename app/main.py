@@ -17,15 +17,6 @@ def home():
     return render_template("index.html", files=files)
 
 
-@main.route("/test")
-@login_required
-def test():
-    if os.listdir(FILE_FOLDER):
-        load_AI()
-    files = os.listdir(FILE_FOLDER)
-    return render_template("test.html", files=files)
-
-
 @main.post("/upload")
 @login_required
 def upload():

@@ -11,7 +11,6 @@
 - [x] Register
 - [ ] Error handling in JavaScript
 - [ ] Error handling in Flask
-- [ ] Drag and Drop
 
 ## Manu
 
@@ -28,3 +27,6 @@
 - [x] fare register
 - [ ] fixare il font nella navbar del login e del register
 - [ ] rendere process button decente
+- [ ] rendere transizione drag decente
+- [ ] controllare i breakpoint
+- [ ] immagini pdf,moon e sun in formato .svg
