@@ -4,7 +4,6 @@ const DropZone = document.getElementById('drop_zone');
 const dropDefault = document.getElementById('drop_default');
 const dropHidden = document.getElementById('drop_hidden');
 const fileList = document.getElementById('file_list');
-const itemFileList = document.createElement('li');
 
 function filesPreparation(files) {
     const formData = new FormData();
@@ -53,7 +52,9 @@ function loadingFileList(files) {
         return;
     while (fileList.firstChild)
         fileList.removeChild(fileList.firstChild);
+    let itemFileList;
     files.forEach(file => {
+        itemFileList = document.createElement('li');
         itemFileList.appendChild(document.createTextNode(file));
         fileList.appendChild(itemFileList);
     })
@@ -75,6 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
     DropZone.addEventListener('drop', (event) => {
         event.preventDefault();
         uploadFiles(event.dataTransfer.files);
+        dropDefault.style.display = "block";
+        dropHidden.style.display = "none";
     });
     window.addEventListener('dragover', (event) => {
         event.preventDefault();
