@@ -18,7 +18,6 @@
 }
 
 /*NAVBAR*/
-
 .navbar {
     display: flex;
     position: relative;
@@ -37,6 +36,7 @@
 .navbar-links {
     height: 100%;
     font-weight: bold;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 
 .navbar-links ul {
