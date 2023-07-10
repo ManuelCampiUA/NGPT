@@ -1,5 +1,4 @@
 import os
-from dotenv import load_dotenv
 from flask import Flask
 from .database import database
 from .auth import auth
@@ -7,7 +6,6 @@ from .main import main
 
 
 def create_app():
-    load_dotenv()
     app = Flask(__name__)
     app.config.update(
         SECRET_KEY=os.environ.get("SECRET_KEY"),
