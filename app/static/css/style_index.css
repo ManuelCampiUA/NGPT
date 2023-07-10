@@ -2,7 +2,6 @@ body {
     font-family: Roboto, Arial, Helvetica, sans-serif;
     padding: 0;
     margin: 0;
-    background: var(--primary-color);
     color: var(--secondary-color);
     height: 100vh;
 }
@@ -12,6 +11,8 @@ body {
     height: 100%;
     grid-template-columns: 20% 80%;
     grid-template-rows: 1fr 2fr;
+    background: var(--primary-color);
+
 }
 
 .sidebar {
@@ -119,7 +120,7 @@ div:hover {
     text-align: center;
 }
 
-/*Bottone arancione*/
+/*Bottone browse files*/
 .drop_section button {
     color: white;
     background-color: coral;
@@ -129,7 +130,6 @@ div:hover {
     border-radius: 10px;
     margin-top: 1.2rem;
     cursor: pointer;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 /*Upload barrette caricamento*/
@@ -139,19 +139,18 @@ div:hover {
 
 /*Bottone process*/
 #process input[type="submit"] {
-    padding: 6px 12px;
+    padding: 0.5rem 1rem;
     font-size: 14px;
     font-weight: 400;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    color: #333;
-    background-color: #fff;
-    border-color: #ccc;
-    margin: 0 35%;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: coral;
+    margin: 5% 36%;
 
 }
 
@@ -176,6 +175,7 @@ div:hover {
     background-color: var(--botchat);
     color: white;
 }
+
 
 @media (max-width: 800px) {
     .navbar {
@@ -265,9 +265,4 @@ div:hover {
         grid-template-columns: 100%;
     }
 
-    .drop_zone {
-        max-width: 15rem;
-        height: 7rem;
-        margin-left: 3rem;
-    }
 }
