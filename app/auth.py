@@ -1,24 +1,9 @@
 from flask import Blueprint, g, render_template, request, session, redirect, url_for
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
-from psycopg2.errors import UniqueViolation
-from .database import get_db_connection
+from .database import get_db
 
 auth = Blueprint("auth", __name__)
-
-
-@auth.before_app_request
-def load_logged_in_user():
-    user_id = session.get("user_id")
-    if user_id is None:
-        g.user = None
-    else:
-        conn = get_db_connection()
-        cur = conn.cursor()
-        cur.execute('SELECT id, username FROM "user" WHERE id = %s', (user_id,))
-        g.user = cur.fetchone()
-        cur.close()
-        conn.close()
 
 
 def login_required(view):
@@ -31,32 +16,39 @@ def login_required(view):
     return wrapped_view
 
 
+@auth.before_app_request
+def load_logged_in_user():
+    user_id = session.get("user_id")
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = (
+            get_db().execute("SELECT * FROM user WHERE id = ?", (user_id,)).fetchone()
+        )
+
+
 @auth.route("/register", methods=("GET", "POST"))
 @login_required
 def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+        db = get_db()
         if not username:
             data = {"response": "Username is required"}
             return data
         elif not password:
             data = {"response": "Password is required"}
             return data
-        conn = get_db_connection()
-        cur = conn.cursor()
         try:
-            cur.execute(
-                'INSERT INTO "user" (username, password) VALUES (%s, %s);',
+            db.execute(
+                "INSERT INTO user (username, password) VALUES (?, ?);",
                 (username, generate_password_hash(password)),
             )
-            conn.commit()
-        except UniqueViolation:
+            db.commit()
+        except db.IntegrityError:
             data = {"response": f"User {username} is already registered"}
             return data
-        finally:
-            cur.close()
-            conn.close()
         data = {"response": "Success"}
         return data
     return render_template("register.html")
@@ -67,12 +59,10 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        conn = get_db_connection()
-        cur = conn.cursor()
-        cur.execute('SELECT * FROM "user" WHERE username = %s;', (username,))
-        user = cur.fetchone()
-        cur.close()
-        conn.close()
+        db = get_db()
+        user = db.execute(
+            "SELECT * FROM user WHERE username = ?;", (username,)
+        ).fetchone()
         if user is None:
             data = {"response": "Incorrect username"}
             return data

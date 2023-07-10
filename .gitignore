@@ -5,6 +5,9 @@ __pycache__
 .env
 .venv
 
+# SQLite
+database.sqlite
+
 # Chromadb
 chromadb
 

@@ -1,31 +1,36 @@
-import os
-import psycopg2
-from dotenv import load_dotenv
+import sqlite3
+from flask import Blueprint, g
+from werkzeug.security import generate_password_hash
+
+DATABASE = "database.sqlite"
+database = Blueprint("database", __name__)
 
 
-def get_db_connection():
-    load_dotenv()
-    conn = psycopg2.connect(
-        host=os.environ.get("DB_HOST"),
-        port=os.environ.get("DB_PORT"),
-        database=os.environ.get("DB_NAME"),
-        user=os.environ.get("DB_USER"),
-        password=os.environ.get("DB_PASSWORD"),
-    )
-    return conn
+def get_db():
+    db = getattr(g, "_database", None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
+
+
+@database.teardown_app_request
+def close_connection(exception):
+    db = getattr(g, "_database", None)
+    if db is not None:
+        db.close()
 
 
 def init_db():
-    sql = """DROP TABLE IF EXISTS \"user\";
-    CREATE TABLE \"user\" (
-        id serial PRIMARY KEY,
+    db = sqlite3.connect(DATABASE)
+    sql = f"""DROP TABLE IF EXISTS user;
+    CREATE TABLE user (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE NOT NULL,
         password TEXT NOT NULL
-    );"""
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute(sql)
-    conn.commit()
-    cur.close()
-    conn.close()
-    print("Database initialized successfully")
+    );
+    INSERT INTO user (username, password)
+    VALUES('admin', '{generate_password_hash("password")}');"""
+    db.cursor().executescript(sql)
+    db.commit()
+    db.close()
+    print("Database initialized")

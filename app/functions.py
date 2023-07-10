@@ -7,8 +7,8 @@ from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 
-FILE_FOLDER = "app/upload"
-CHROMADB_FOLDER = "app/chromadb"
+FILE_FOLDER = "upload"
+CHROMADB_FOLDER = "chromadb"
 ALLOWED_EXTENSIONS = {"pdf"}
 
 

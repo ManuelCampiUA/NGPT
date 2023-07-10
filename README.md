@@ -6,11 +6,12 @@
 - [ ] File list
 - [x] Q&A
 - [ ] Chromadb
-- [x] Neon database
+- [x] SQLite
 - [x] Login
 - [x] Register
 - [ ] Error handling in JavaScript
 - [ ] Error handling in Flask
+- [ ] String parsing in login/register pages
 
 ## Manu
 

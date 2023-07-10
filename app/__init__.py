@@ -1,8 +1,9 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask
-from .main import main
+from .database import database
 from .auth import auth
+from .main import main
 
 
 def create_app():
@@ -14,6 +15,7 @@ def create_app():
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE="Lax",
     )
-    app.register_blueprint(main)
+    app.register_blueprint(database)
     app.register_blueprint(auth)
+    app.register_blueprint(main)
     return app
