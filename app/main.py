@@ -1,9 +1,8 @@
-import os
 from flask import Blueprint, render_template, request
+from os import listdir
 from werkzeug.utils import secure_filename
 from .auth import login_required
 from .functions import FILE_FOLDER, load_AI, allowed_file, get_conversation_chain
-
 
 main = Blueprint("main", __name__)
 
@@ -11,9 +10,9 @@ main = Blueprint("main", __name__)
 @main.route("/")
 @login_required
 def home():
-    if os.listdir(FILE_FOLDER):
+    if listdir(FILE_FOLDER):
         load_AI()
-    files = os.listdir(FILE_FOLDER)
+    files = listdir(FILE_FOLDER)
     return render_template("index.html", files=files)
 
 
@@ -38,7 +37,7 @@ def upload():
 @main.get("/get_file_list")
 @login_required
 def get_file_list():
-    files = os.listdir(FILE_FOLDER)
+    files = listdir(FILE_FOLDER)
     data = {"response": files}
     return data
 
@@ -58,7 +57,7 @@ def process():
 @main.post("/QeA")
 @login_required
 def QeA():
-    if os.listdir(FILE_FOLDER):
+    if listdir(FILE_FOLDER):
         user_question = request.form["question"]
         # Test
         from time import sleep

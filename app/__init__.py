@@ -1,5 +1,5 @@
-import os
 from flask import Flask
+from os import environ
 from .database import database
 from .auth import auth
 from .main import main
@@ -8,7 +8,7 @@ from .main import main
 def create_app():
     app = Flask(__name__)
     app.config.update(
-        SECRET_KEY=os.environ.get("SECRET_KEY"),
+        SECRET_KEY=environ.get("SECRET_KEY"),
         SESSION_COOKIE_SECURE=True,
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE="Lax",

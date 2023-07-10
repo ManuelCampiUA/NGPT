@@ -1,4 +1,4 @@
-import os
+from os import path, listdir
 from pypdf import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
@@ -18,8 +18,8 @@ def allowed_file(filename):
 
 def get_pdf_text(pdf_docs):
     text = ""
-    for pdf in os.listdir(pdf_docs):
-        pdf_reader = PdfReader(os.path.join(pdf_docs, pdf))
+    for pdf in listdir(pdf_docs):
+        pdf_reader = PdfReader(path.join(pdf_docs, pdf))
         for page in pdf_reader.pages:
             text += page.extract_text()
         return text
