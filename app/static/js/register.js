@@ -1,5 +1,7 @@
 let pendingRequest = false;
 const registerForm = document.getElementById('register');
+const registerUsername = registerForm.elements['username'];
+const registerPassword = registerForm.elements['password'];
 
 document.addEventListener('DOMContentLoaded', () => {
     registerForm.addEventListener('submit', (event) => {
@@ -12,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 async function register() {
     try {
         pendingRequest = true;
+        registerUsername.value = registerUsername.value.trim();
+        registerPassword.value = registerPassword.value.trim();
         const formData = new FormData(registerForm);
         const response = await fetch('register', {
             method: 'POST',

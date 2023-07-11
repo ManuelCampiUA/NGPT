@@ -1,6 +1,7 @@
 let pendingQeARequest = false;
 let firstQuestion = false;
 const QeAForm = document.getElementById('question');
+const QeAQuestion = QeAForm.elements['question'];
 const QeADiv = document.getElementById('QeA');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,7 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 async function QeA() {
     try {
         pendingQeARequest = true;
-        const question = QeAForm.elements['question'].value;
+        const question = QeAQuestion.value.trim();
+        QeAQuestion.value = question;
         if (question) {
             const formData = new FormData(QeAForm);
             const response = await fetch('QeA', {

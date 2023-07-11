@@ -1,5 +1,7 @@
 let pendingRequest = false;
 const loginForm = document.getElementById('login');
+const loginUsername = loginForm.elements['username'];
+const loginPassword = loginForm.elements['password'];
 
 document.addEventListener('DOMContentLoaded', () => {
     loginForm.addEventListener('submit', (event) => {
@@ -12,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 async function login() {
     try {
         pendingRequest = true;
+        loginUsername.value = loginUsername.value.trim();
+        loginPassword.value = loginPassword.value.trim();
         const formData = new FormData(loginForm);
         const response = await fetch('login', {
             method: 'POST',

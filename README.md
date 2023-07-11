@@ -2,16 +2,15 @@
 
 ## Fillo
 
-- [x] Upload file
-- [x] File list
-- [x] Q&A
 - [ ] Chromadb
 - [x] SQLite
-- [x] Login
-- [x] Register
+- [x] Authentication
+- [x] Upload file
+- [x] Process file
+- [x] File list
+- [x] Q&A
 - [ ] Error handling in JavaScript
 - [ ] Error handling in Flask
-- [ ] String parsing in login/register pages
 
 ## Manu
 
