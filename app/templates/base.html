@@ -17,6 +17,9 @@
         <div class="brand-title">
             <a href="{{ url_for('main.home') }}"><img class="logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
         </div>
+        <div>
+            <img id="toggle_dark" class="sunicon" src="{{ url_for('static', filename='img/sun.svg') }}" alt="sun" style="align-items: end;">
+        </div>
         {% if g.user %}
         <div class="navbar-links">
             <ul>

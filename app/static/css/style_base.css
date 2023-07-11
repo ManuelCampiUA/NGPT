@@ -16,6 +16,11 @@
     --botchat: rgb(5, 5, 5, 1);
     --humanchat: whitesmoke;
 }
+#toggle_dark{
+    width: 2rem;
+    height: 2rem;
+}
+
 
 /*NAVBAR*/
 .navbar {

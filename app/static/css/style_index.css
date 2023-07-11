@@ -69,7 +69,7 @@ div:hover {
     font-size: 1.5rem;
     cursor: pointer;
     border-radius: 10px;
-    margin: 0 12%;
+    margin: 5% 12% 0% 12%;
 }
 
 /*Mostra il DROP HERE durante drag and drop*/
@@ -89,7 +89,7 @@ div:hover {
     opacity: 0;
     visibility: hidden;
     transform: scale(0.6);
-    transition-duration: 0.2s;
+    transition-duration: 0.3s;
 }
 
 /*Nasconde il testo dietro il drag and drop*/
@@ -152,6 +152,21 @@ div:hover {
     background-color: coral;
     margin: 5% 36%;
 
+}
+
+#file_list {
+    align-content: center;
+    padding-left: 60px;
+}
+
+#file_list li {
+    list-style-image: url(/static/img/pdf.svg);
+    font-size: 20px;
+}
+
+::marker {
+    list-style-image: url(/static/img/pdf.svg);
+    font-size: 5rem;
 }
 
 /*ChatbotArea*/
