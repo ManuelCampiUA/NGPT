@@ -151,7 +151,6 @@ div:hover {
     color: white;
     background-color: coral;
     margin: 5% 36%;
-
 }
 
 #file_list {
@@ -261,14 +260,32 @@ div:hover {
     .scroller {
         height: 20rem;
     }
+
+    #process input[type="submit"] {
+
+        margin: 5% 34%;
+    }
 }
 
 @media screen and (max-width: 650px) {
+
     * {
-        color: white;
-        padding: 0.5%;
-        margin: 0.5%;
+        padding: 0;
+        margin: 0;
         text-align: center;
+    }
+
+    body {
+        background: var(--mobile)
+    }
+
+    .sidebar {
+        background: var(--mobile);
+        border-right: none;
+    }
+
+    .main_content {
+        background: var(--mobile)
     }
 
     .scroller {
@@ -278,6 +295,18 @@ div:hover {
     .grid {
         display: grid;
         grid-template-columns: 100%;
+    }
+
+    #process input[type="submit"] {
+        margin: 2% 25%;
+    }
+
+    .drop_section {
+        margin: 0 25%;
+    }
+
+    #question input {
+        width: fit-content;
     }
 
 }
