@@ -68,10 +68,6 @@ async function uploadFile(files) {
     if (fileUploaded) {
         loadingFileList(await getFileList());
         fileUploaded = false;
-
-        const file = files[0]; //parte calcolo peso
-        const fileSize = getFileSize(file);
-        fileSizeLabel.textContent = `${fileSize} MB`;
     }
 }
 

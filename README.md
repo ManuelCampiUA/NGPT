@@ -27,7 +27,6 @@
 - [x] fare register
 - [x] fixare il font nella navbar del login e del register
 - [x] rendere process button decente
-- [x] rendere transizione drag decente
+- [ ] rendere transizione drag decente
 - [x] controllare i breakpoint
-- [x] immagini pdf,moon e sun in formato .svg
-- [ ] peso file PDF
+- [ ] immagini pdf,moon e sun in formato .svg
