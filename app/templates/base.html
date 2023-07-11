@@ -15,14 +15,14 @@
 <body>
     <nav class="navbar">
         <div class="brand-title">
-            <img class="logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="logo">
+            <a href="{{ url_for('main.home') }}"><img class="logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
         </div>
         {% if g.user %}
         <div class="navbar-links">
             <ul>
                 <li><a>{{ g.user[1] }}</a></li>
                 <span class="bar"></span>
-                <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a>
             </ul>
         </div>
         {% endif %}

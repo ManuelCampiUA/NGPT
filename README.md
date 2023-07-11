@@ -3,7 +3,7 @@
 ## Fillo
 
 - [x] Upload file
-- [ ] File list
+- [x] File list
 - [x] Q&A
 - [ ] Chromadb
 - [x] SQLite
@@ -26,8 +26,8 @@
 - [x] fare css diversi per pagina
 - [x] fare login
 - [x] fare register
-- [ ] fixare il font nella navbar del login e del register
-- [ ] rendere process button decente
+- [x] fixare il font nella navbar del login e del register
+- [x] rendere process button decente
 - [ ] rendere transizione drag decente
-- [ ] controllare i breakpoint
+- [x] controllare i breakpoint
 - [ ] immagini pdf,moon e sun in formato .svg
