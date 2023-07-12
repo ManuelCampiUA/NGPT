@@ -3,7 +3,9 @@ from os import environ, listdir
 from .database import database
 from .auth import auth
 from .main import main
-from .functions import FILE_FOLDER, load_AI
+from .functions import load_AI
+
+FILE_FOLDER = "upload"
 
 
 def create_app():

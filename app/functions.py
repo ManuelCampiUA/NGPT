@@ -1,4 +1,3 @@
-from os import path, listdir
 from pypdf import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
@@ -7,7 +6,6 @@ from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 
-FILE_FOLDER = "upload"
 CHROMADB_FOLDER = "chromadb"
 ALLOWED_EXTENSIONS = {"pdf"}
 
@@ -18,8 +16,8 @@ def allowed_file(filename):
 
 def get_pdf_text(pdf_docs):
     text = ""
-    for pdf in listdir(pdf_docs):
-        pdf_reader = PdfReader(path.join(pdf_docs, pdf))
+    for pdf in pdf_docs:
+        pdf_reader = PdfReader(pdf)
         for page in pdf_reader.pages:
             text += page.extract_text()
         return text
@@ -37,12 +35,13 @@ def get_text_chunks(text):
     return chunks
 
 
-def get_vectorstore(text_chunks):
+def get_vectorstore(text_chunks=None):
     embeddings = OpenAIEmbeddings()
-    vectorstore = Chroma.from_texts(
-        text_chunks, embeddings, persist_directory=CHROMADB_FOLDER
-    )
-    vectorstore.persist()
+    if text_chunks:
+        vectorstore = Chroma.from_texts(
+            text_chunks, embeddings, persist_directory=CHROMADB_FOLDER
+        )
+        vectorstore.persist()
     vectorstore = Chroma(
         persist_directory=CHROMADB_FOLDER, embedding_function=embeddings
     )
@@ -62,9 +61,13 @@ def get_conversation_chain():
     return conversation_chain
 
 
+def upload_AI(file_uploaded):
+    raw_text = get_pdf_text(file_uploaded)
+    text_chunks = get_text_chunks(raw_text)
+    vectorstore = get_vectorstore(text_chunks)
+    set_conversation_chain(vectorstore)
+
+
 def load_AI():
-    pass
-    # raw_text = get_pdf_text(FILE_FOLDER)
-    # text_chunks = get_text_chunks(raw_text)
-    # vectorstore = get_vectorstore(text_chunks)
-    # set_conversation_chain(vectorstore)
+    vectorstore = get_vectorstore()
+    set_conversation_chain(vectorstore)
