@@ -30,3 +30,11 @@
 - [x] rendere transizione drag decente
 - [x] controllare i breakpoint
 - [x] immagini pdf,moon e sun in formato .svg
+- [ ] fare in register il not signed login fatto bene
+- [ ] posizionare un pò più sotto i marker PDF
+- [x] fare in modo che i documenti non scalino
+- [ ] fare il margin corallo
+- [ ] fixare lunghezza caselle e nella dark il colore della casella QEA
+- [ ] togliere la spunta da transizione di drag and drop
+
+
