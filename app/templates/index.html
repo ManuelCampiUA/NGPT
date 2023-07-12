@@ -7,7 +7,7 @@
 
 <div class="grid">
     <div class="sidebar">
-        <div class="drop_section ">
+        <div class="drop_section">
             <div class=drop_section_content>
                 <img src="{{ url_for('static', filename='img/cloud.png') }}" alt="cloud">
                 <span>Drag your files here</span>
@@ -19,6 +19,16 @@
                 <div class="drop-here">Drop Here</div>
             </div>
         </div>
+        <div class="sidebar">
+            <ul id="file_list">
+                {% for file, size in file_list.items() %}
+                <li>
+                    <p>{{ file }}</p>
+                    <p>{{ size }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 
     <div class="main_content">
@@ -28,20 +38,6 @@
         <form id="question">
             <input type="text" name="question">
         </form>
-    </div>
-
-    <div class="sidebar">
-        <ul id="file_list">
-            {% for file, size in file_list.items() %}
-            <li>
-                <p>{{ file }}</p>
-                <p>{{ size }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="main_content">
-        <h1>test</h1>
     </div>
 </div>
 
