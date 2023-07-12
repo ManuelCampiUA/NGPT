@@ -21,7 +21,6 @@
         </div>
     </div>
 
-    <!-- Main content -->
     <div class="main_content">
         <h1 class="titolo">Chat with your PDFs</h1>
         <h4 class="titolo">Ask me a question about your documents</h4>
@@ -33,8 +32,11 @@
 
     <div class="sidebar">
         <ul id="file_list">
-            {% for file in files %}
-            <li>{{ file }}</li>
+            {% for file, size in file_list.items() %}
+            <li>
+                <p>{{ file }}</p>
+                <p>{{ size }}</p>
+            </li>
             {% endfor %}
         </ul>
     </div>

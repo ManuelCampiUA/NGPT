@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-from os import listdir
+from os import listdir, path
 from werkzeug.utils import secure_filename
 from .auth import login_required
 from .functions import FILE_FOLDER, load_AI, allowed_file, get_conversation_chain
@@ -10,8 +10,11 @@ main = Blueprint("main", __name__)
 @main.route("/")
 @login_required
 def home():
-    files = listdir(FILE_FOLDER)
-    return render_template("index.html", files=files)
+    file_list = {}
+    for file in listdir(FILE_FOLDER):
+        size = round(path.getsize(path.join(FILE_FOLDER, file)) / 1000000, 3)
+        file_list[file] = str(size) + " MB"
+    return render_template("index.html", file_list=file_list)
 
 
 @main.post("/upload")
@@ -33,11 +36,14 @@ def upload():
     return data
 
 
-@main.get("/get_file_list")
+@main.get("/file_list")
 @login_required
-def get_file_list():
-    files = listdir(FILE_FOLDER)
-    data = {"response": files}
+def file_list():
+    file_list = {}
+    for file in listdir(FILE_FOLDER):
+        size = round(path.getsize(path.join(FILE_FOLDER, file)) / 1000000, 3)
+        file_list[file] = str(size) + " MB"
+    data = {"response": file_list}
     return data
 
 

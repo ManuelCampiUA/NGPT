@@ -1,12 +1,10 @@
 let pendingUploadRequest = false;
 let fileUploaded = false;
-const dropArea = document.querySelector('.drop_section')
-const listSection = document.querySelector('.list-section')
-const listContainer = document.querySelector('.list')
-const fileSelector = document.querySelector('.file-selector')
-const fileSelectorInput = document.querySelector('.file-selector-input')
+const ulFileList = document.getElementById('file_list');
+const dropArea = document.querySelector('.drop_section');
+const fileSelector = document.querySelector('.file-selector');
+const fileSelectorInput = document.querySelector('.file-selector-input');
 
-// Upload files functions
 function filesPreparation(PDFs) {
     const formData = new FormData();
     for (const [i, PDF] of Array.from(PDFs).entries())
@@ -39,7 +37,7 @@ async function upload(formData) {
 
 async function getFileList() {
     try {
-        const response = await fetch('get_file_list');
+        const response = await fetch('file_list');
         if (!response.ok)
             throw new Error("Network response was not OK");
         const result = await response.json();
@@ -49,17 +47,19 @@ async function getFileList() {
     }
 }
 
-function loadingFileList(files) {
-    if (files.length === 0)
-        return;
-    const fileList = document.getElementById('file_list');
-    while (fileList.firstChild)
-        fileList.removeChild(fileList.firstChild);
-    files.forEach(file => {
-        const item = document.createElement('li');
-        item.appendChild(document.createTextNode(file));
-        fileList.appendChild(item);
-    })
+function loadingFileList(fileList) {
+    while (ulFileList.firstChild)
+        ulFileList.removeChild(ulFileList.firstChild);
+    Object.keys(fileList).forEach(file => {
+        const liItem = document.createElement('li');
+        const spanFile = document.createElement('p');
+        const spanSize = document.createElement('p');
+        spanFile.appendChild(document.createTextNode(file));
+        spanSize.appendChild(document.createTextNode(fileList[file]));
+        liItem.appendChild(spanFile);
+        liItem.appendChild(spanSize);
+        ulFileList.appendChild(liItem);
+    });
 }
 
 async function uploadFile(files) {
