@@ -13,7 +13,7 @@ body {
 
 .sidebar {
     border-right: coral solid 2px;
-
+    padding-top: 0.6rem;
 }
 
 .main_content {
@@ -114,6 +114,11 @@ div:hover {
 
 #file_list li {
     list-style-image: url(/static/img/pdf.png);
+}
+
+#file_list li p {
+    margin: 8px 0px;
+    overflow: hidden;
 }
 
 ::marker {

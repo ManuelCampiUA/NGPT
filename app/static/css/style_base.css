@@ -48,6 +48,9 @@ body {
 .brand-title {
     font-size: 1.5rem;
     margin: .5rem;
+    flex-grow: 1;
+    /*questo sopra mette a destra il toggle dark pigliandosi tutto lo spazio disponibile*/
+
 }
 
 .navbar-links {
