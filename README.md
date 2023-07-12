@@ -2,7 +2,7 @@
 
 ## Fillo
 
-- [ ] Chromadb
+- [x] Chromadb
 - [x] SQLite
 - [x] Authentication
 - [x] Upload file
@@ -29,4 +29,4 @@
 - [x] rendere process button decente
 - [ ] rendere transizione drag decente
 - [x] controllare i breakpoint
-- [ ] immagini pdf,moon e sun in formato .svg
+- [x] immagini pdf,moon e sun in formato .svg
