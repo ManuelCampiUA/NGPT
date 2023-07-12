@@ -20,6 +20,14 @@
 
 }
 
+body {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    color: var(--secondary-color);
+    height: 100vh;
+}
+
 #toggle_dark {
     width: 2rem;
     height: 2rem;
@@ -45,7 +53,6 @@
 .navbar-links {
     height: 100%;
     font-weight: bold;
-    font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 
 .navbar-links ul {
@@ -69,23 +76,6 @@
     background-color: var(--third-color);
 }
 
-.toggle-button {
-    position: absolute;
-    top: .75rem;
-    right: 1rem;
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-}
-
-.toggle-button .bar {
-    height: 3px;
-    width: 100%;
-    background-color: white;
-    border-radius: 10px;
-}
 
 .logo {
     height: 4rem;
