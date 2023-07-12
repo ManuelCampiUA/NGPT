@@ -30,6 +30,12 @@
                 <li><a href="{{ url_for('auth.logout') }}">Logout</a>
             </ul>
         </div>
+        {% else %}
+        <div class="navbar-links">
+            <ul>
+                <li><a href="{{ url_for('auth.login') }}">Login</a>
+            </ul>
+        </div>
         {% endif %}
     </nav>
     {% block content %}{% endblock %}
