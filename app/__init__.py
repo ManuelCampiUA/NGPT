@@ -1,8 +1,9 @@
 from flask import Flask
-from os import environ
+from os import environ, listdir
 from .database import database
 from .auth import auth
 from .main import main
+from .functions import FILE_FOLDER, load_AI
 
 
 def create_app():
@@ -16,4 +17,6 @@ def create_app():
     app.register_blueprint(database)
     app.register_blueprint(auth)
     app.register_blueprint(main)
+    if listdir(FILE_FOLDER):
+        load_AI()
     return app

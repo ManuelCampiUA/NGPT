@@ -10,8 +10,6 @@ main = Blueprint("main", __name__)
 @main.route("/")
 @login_required
 def home():
-    if listdir(FILE_FOLDER):
-        load_AI()
     files = listdir(FILE_FOLDER)
     return render_template("index.html", files=files)
 
@@ -28,6 +26,7 @@ def upload():
             files[file].save(f"{FILE_FOLDER}/{secure_filename(files[file].filename)}")
             file_uploaded = True
     if file_uploaded:
+        load_AI()
         data = {"response": "Success"}
         return data
     data = {"response": "Error"}
@@ -39,18 +38,6 @@ def upload():
 def get_file_list():
     files = listdir(FILE_FOLDER)
     data = {"response": files}
-    return data
-
-
-@main.get("/process")
-@login_required
-def process():
-    load_AI()
-    # Test
-    from time import sleep
-
-    sleep(2)
-    data = {"response": "Success"}
     return data
 
 

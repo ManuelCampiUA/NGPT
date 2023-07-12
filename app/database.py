@@ -3,6 +3,7 @@ from sqlite3 import connect
 from werkzeug.security import generate_password_hash
 
 DATABASE = "database.sqlite"
+
 database = Blueprint("database", __name__)
 
 
