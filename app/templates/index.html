@@ -36,9 +36,6 @@
 
     <div class="sidebar">
         <ul id="file_list">
-            {% if not files %}
-            <li>Nothing</li>
-            {% endif %}
             {% for file in files %}
             <li>{{ file }}</li>
             {% endfor %}
