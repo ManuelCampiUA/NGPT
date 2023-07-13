@@ -34,4 +34,4 @@
 - [x] posizionare un pò più sotto i marker PDF
 - [x] fare in modo che i documenti non scalino
 - [x] fixare lunghezza caselle e nella dark il colore della casella QEA
-- [ ] togliere la spunta da transizione di drag and drop
+- [x] transizione drag and drop

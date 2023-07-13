@@ -6,7 +6,6 @@
     --third-color: white;
     --botchat: #8765b9;
     --humanchat: rgb(253, 249, 122);
-    --mobile: rgb(253, 249, 122);
 }
 
 .dark_theme {
@@ -16,8 +15,6 @@
     --third-color: black;
     --botchat: rgb(5, 5, 5, 1);
     --humanchat: coral;
-    --mobile: rgba(10, 29, 85);
-
 }
 
 div:hover {
@@ -88,6 +85,12 @@ body {
 
 .logo {
     height: 4rem;
-    width: auto;
     overflow: hidden;
+}
+
+
+@media screen and (max-width: 700px) {
+    .brand-title {
+        display: none;
+    }
 }

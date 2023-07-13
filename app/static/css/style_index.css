@@ -4,13 +4,11 @@ body {
 
 .grid {
     display: grid;
-    height: 100%;
     grid-template-columns: 20% 80%;
     grid-template-rows: 1fr 2fr;
     background: var(--primary-color);
 
 }
-
 
 .main_content {
     padding: 3% 3% 0 3%;
@@ -130,10 +128,6 @@ body {
 
 }
 
-::marker {
-    list-style-image: url(/static/img/pdf.png);
-}
-
 /*ChatbotArea*/
 #QeA {
     display: none;
@@ -192,21 +186,16 @@ body {
         text-align: center;
     }
 
-    body {
-        background: var(--mobile)
+    .drop_section_content {
+        margin: 0;
     }
 
     .sidebar {
-        background: var(--mobile);
         border-right: none;
     }
 
     .main_content {
-        background: var(--mobile)
-    }
-
-    .scroller {
-        height: 0;
+        padding: 0;
     }
 
     .grid {
@@ -215,11 +204,27 @@ body {
     }
 
     .drop_section {
-        margin: 0 30%;
+        margin: 10% 30% 0 30%;
     }
 
     #question input {
-        width: 70%;
+        width: 91%;
+    }
+
+    #QeA {
+        width: 95%;
+    }
+
+    #file_list {
+        padding: 5vh 0 0 0;
+    }
+
+    #file_list li {
+        list-style: none;
+    }
+
+    #file_list :last-child {
+        padding: 0;
     }
 
 }
