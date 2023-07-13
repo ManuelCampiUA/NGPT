@@ -16,7 +16,8 @@ body {
 }
 
 .main_content {
-    padding: 3% 3% 0 3%
+    padding: 3% 3% 0 3%;
+
 }
 
 div:hover {
@@ -133,6 +134,7 @@ div:hover {
     border-radius: 10px;
     padding: 1rem;
     font-size: 18px;
+    width: 97%;
 }
 
 #QeA p:nth-child(2n+1) {
@@ -146,16 +148,8 @@ div:hover {
     color: white;
 }
 
-#question input:hover {
-    outline: none;
-}
-
-#question input:focus {
-    outline: none;
-}
-
 #question input {
-    width: 97.5%;
+    width: 97%;
     border-radius: 10px;
     border-style: none;
     font-size: 18px;
