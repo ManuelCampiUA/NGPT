@@ -17,12 +17,6 @@ body {
 
 }
 
-div:hover {
-    /*togliere alla fine, debug*/
-    border: 2px solid yellow;
-}
-
-
 /*casella drag your files here*/
 .drop_section {
     position: relative;
@@ -32,8 +26,7 @@ div:hover {
     height: 15rem;
     align-items: center;
     text-align: center;
-    font-family: sans-serif;
-    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5rem;
     cursor: pointer;
     border-radius: 10px;
@@ -57,14 +50,30 @@ div:hover {
     opacity: 0;
     visibility: hidden;
     transform: scale(0.6);
-    transition-duration: 0.3s;
+    transition: 0.2s;
 }
 
-/*Nasconde il testo dietro il drag and drop*/
+/*Fa sparire "drop ur files here" appena prima che arrivi "DROP HERE"*/
+.drop_section div.drop_section_content span {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s;
+}
+
+/*Nasconde "drop ur files here" quando trascini un PDF*/
 .drag-over-effect div.drop_section_content span {
     opacity: 0;
     visibility: hidden;
-    transform: scale(1);
+}
+
+/*Scritta drag your files here or, la transizione gestisce il ritorno della scritta dietro e del bottone*/
+.drop_section span,
+.drop_section button {
+    display: block;
+    margin: auto;
+    color: var(--secondary-color);
+    text-align: center;
+    transition: 1s;
 }
 
 /*Mostra il drag and drop*/
@@ -74,18 +83,17 @@ div:hover {
     transform: scale(1);
 }
 
+/*Nasconde il bottone durante il drag-over*/
+.drag-over-effect .file-selector {
+    opacity: 0;
+    visibility: hidden;
+}
+
 .drop_section_content {
     margin: 10%;
 }
 
-/*Scritta drag your files here or*/
-.drop_section span,
-.drop_section button {
-    display: block;
-    margin: auto;
-    color: var(--secondary-color);
-    text-align: center;
-}
+
 
 /*Bottone browse files*/
 .drop_section button {
@@ -112,11 +120,11 @@ div:hover {
 
 #file_list li {
     list-style-image: url(/static/img/pdf.png);
-    padding-bottom: 5vh;
+    padding-bottom: 2vh;
 }
 
 #file_list li p {
-    margin: 0px;
+    margin: 0;
     overflow: hidden;
     transform: translateY(-100%);
 
@@ -124,7 +132,6 @@ div:hover {
 
 ::marker {
     list-style-image: url(/static/img/pdf.png);
-    transform: translateY(-100%);
 }
 
 /*ChatbotArea*/

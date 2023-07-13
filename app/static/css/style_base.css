@@ -11,14 +11,20 @@
 
 .dark_theme {
     --primary-color: radial-gradient(circle 65rem at 30% -15%,
-            rgba(10, 29, 85, 1), rgba(5, 5, 5, 1));
+            rgba(10, 29, 85), rgba(5, 5, 5, 1));
     --secondary-color: white;
     --third-color: black;
     --botchat: rgb(5, 5, 5, 1);
-    --humanchat: whitesmoke;
-    --mobile: rgba(10, 29, 85, 1);
+    --humanchat: coral;
+    --mobile: rgba(10, 29, 85);
 
 }
+
+div:hover {
+    /*togliere alla fine, debug*/
+    border: 2px solid yellow;
+}
+
 
 body {
     font-family: Roboto, Arial, Helvetica, sans-serif;
