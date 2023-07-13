@@ -32,12 +32,13 @@
         {% else %}
         <div class="navbar-links">
             <ul>
-                <li><a href="{{ url_for('auth.login') }}">Login</a>
+                <li><a class=login href="{{ url_for('auth.login') }}">Login</a>
             </ul>
         </div>
         {% endif %}
     </nav>
     {% block content %}{% endblock %}
 </body>
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
 
 </html>
