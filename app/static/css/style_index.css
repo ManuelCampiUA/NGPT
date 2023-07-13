@@ -11,9 +11,6 @@ body {
 
 }
 
-.sidebar {
-    padding-top: 0.6rem;
-}
 
 .main_content {
     padding: 3% 3% 0 3%;
@@ -110,19 +107,24 @@ div:hover {
 #file_list {
     align-content: center;
     padding-left: 60px;
+    padding-top: 6vh;
 }
 
 #file_list li {
     list-style-image: url(/static/img/pdf.png);
+    padding-bottom: 5vh;
 }
 
 #file_list li p {
-    margin: 8px 0px;
+    margin: 0px;
     overflow: hidden;
+    transform: translateY(-100%);
+
 }
 
 ::marker {
     list-style-image: url(/static/img/pdf.png);
+    transform: translateY(-100%);
 }
 
 /*ChatbotArea*/
