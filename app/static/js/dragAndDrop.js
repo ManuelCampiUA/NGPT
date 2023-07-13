@@ -5,7 +5,7 @@ const dropArea = document.querySelector('.drop_section');
 const fileSelector = document.querySelector('.file-selector');
 const fileSelectorInput = document.querySelector('.file-selector-input');
 
-function filesPreparation(PDFs) {
+function filePreparation(PDFs) {
     const formData = new FormData();
     for (const [i, PDF] of Array.from(PDFs).entries())
         formData.append(`file_${i}`, PDF);
@@ -62,9 +62,9 @@ function loadingFileList(fileList) {
     });
 }
 
-async function uploadFile(files) {
+async function uploadFile(file) {
     if (!pendingUploadRequest)
-        await upload(filesPreparation(files));
+        await upload(filePreparation(file));
     if (fileUploaded) {
         loadingFileList(await getFileList());
         fileUploaded = false;
