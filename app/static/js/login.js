@@ -3,14 +3,6 @@ const loginForm = document.getElementById('login');
 const loginUsername = loginForm.elements['username'];
 const loginPassword = loginForm.elements['password'];
 
-document.addEventListener('DOMContentLoaded', () => {
-    loginForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        if (!pendingRequest)
-            login();
-    });
-});
-
 async function login() {
     try {
         pendingRequest = true;
@@ -36,3 +28,11 @@ async function login() {
         pendingRequest = false;
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    loginForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!pendingRequest)
+            login();
+    });
+});

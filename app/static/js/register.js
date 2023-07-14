@@ -3,14 +3,6 @@ const registerForm = document.getElementById('register');
 const registerUsername = registerForm.elements['username'];
 const registerPassword = registerForm.elements['password'];
 
-document.addEventListener('DOMContentLoaded', () => {
-    registerForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        if (!pendingRequest)
-            register();
-    });
-});
-
 async function register() {
     try {
         pendingRequest = true;
@@ -36,3 +28,11 @@ async function register() {
         pendingRequest = false;
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    registerForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!pendingRequest)
+            register();
+    });
+});

@@ -4,14 +4,6 @@ const QeAForm = document.getElementById('question');
 const QeAQuestion = QeAForm.elements['question'];
 const QeADiv = document.getElementById('QeA');
 
-document.addEventListener('DOMContentLoaded', () => {
-    QeAForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        if (!pendingQeARequest)
-            QeA();
-    });
-});
-
 async function QeA() {
     try {
         pendingQeARequest = true;
@@ -50,3 +42,11 @@ async function QeA() {
         pendingQeARequest = false;
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    QeAForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!pendingQeARequest)
+            QeA();
+    });
+});
