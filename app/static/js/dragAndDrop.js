@@ -5,9 +5,9 @@ const dropArea = document.querySelector('.drop_section');
 const fileSelector = document.querySelector('.file-selector');
 const fileSelectorInput = document.querySelector('.file-selector-input');
 
-function filePreparation(PDFs) {
+function filePreparation(file) {
     const formData = new FormData();
-    for (const [i, PDF] of Array.from(PDFs).entries())
+    for (const [i, PDF] of Array.from(file).entries())
         formData.append(`file_${i}`, PDF);
     return formData;
 }
@@ -19,18 +19,19 @@ async function upload(formData) {
             method: 'POST',
             body: formData
         });
-        if (!response.ok)
-            throw new Error("Network response was not OK");
-        const result = await response.json();
-        alert(result['response']);
-        if (result['response'] == 'No selected file')
-            throw new Error('No selected file');
-        if (result['response'] == 'Error')
-            throw new Error('Error loading files');
+        if (response.status === 400) {
+            const result = await response.json();
+            throw new Error(result['response']);
+        }
+        if (!response.ok) {
+            throw new Error("Error");
+        }
         fileUploaded = true;
     } catch (error) {
         console.error("There has been a problem with your upload operation:", error);
-    } finally {
+        alert(error.message);
+    }
+    finally {
         pendingUploadRequest = false;
     }
 }
@@ -39,27 +40,38 @@ async function getFileList() {
     try {
         const response = await fetch('file_list');
         if (!response.ok)
-            throw new Error("Network response was not OK");
+            throw new Error("Error");
         const result = await response.json();
         return result['response'];
     } catch (error) {
         console.error("There has been a problem with your getFileList operation:", error);
+        alert(error.message);
+        return null;
     }
 }
 
 function loadingFileList(fileList) {
-    while (ulFileList.firstChild)
-        ulFileList.removeChild(ulFileList.firstChild);
-    Object.keys(fileList).forEach(file => {
-        const liItem = document.createElement('li');
-        const spanFile = document.createElement('p');
-        const spanSize = document.createElement('p');
-        spanFile.appendChild(document.createTextNode(file));
-        spanSize.appendChild(document.createTextNode(fileList[file]));
-        liItem.appendChild(spanFile);
-        liItem.appendChild(spanSize);
-        ulFileList.appendChild(liItem);
-    });
+    try {
+        if (fileList) {
+            while (ulFileList.firstChild)
+                ulFileList.removeChild(ulFileList.firstChild);
+            Object.keys(fileList).forEach(file => {
+                const liItem = document.createElement('li');
+                const spanFile = document.createElement('p');
+                const spanSize = document.createElement('p');
+                spanFile.appendChild(document.createTextNode(file));
+                spanSize.appendChild(document.createTextNode(fileList[file]));
+                liItem.appendChild(spanFile);
+                liItem.appendChild(spanSize);
+                ulFileList.appendChild(liItem);
+            });
+            alert("Success");
+        }
+    }
+    catch (error) {
+        console.error("There has been a problem with your loadingFileList operation:", error);
+        alert("Error");
+    }
 }
 
 async function uploadFile(file) {

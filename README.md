@@ -9,8 +9,8 @@
 - [x] Process file
 - [x] File list
 - [x] Q&A
-- [ ] Error handling in JavaScript
-- [ ] Error handling in Flask
+- [x] Error handling
+- [ ] Theme coockie
 
 ## Manu
 

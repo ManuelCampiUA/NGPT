@@ -24,7 +24,7 @@ def home():
 def upload():
     file_uploaded = []
     if "file_0" not in request.files:
-        return {"response": "No selected file"}
+        return {"response": "No selected file"}, 400
     files = request.files
     for file in files:
         if allowed_file(files[file].filename):
@@ -36,7 +36,7 @@ def upload():
         upload_AI(file_uploaded)
         data = {"response": "Success"}
         return data
-    data = {"response": "Error"}
+    data = {"response": "Incorrect file extension"}, 400
     return data
 
 
