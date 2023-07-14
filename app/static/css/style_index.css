@@ -216,11 +216,11 @@ body {
     }
 
     #file_list {
-        padding: 5vh 0 0 0;
+        padding: 5vh 0 0 5vh;
     }
 
-    #file_list li {
-        list-style: none;
+    #file_list li p {
+        transform: translateX(-5%)
     }
 
     #file_list :last-child {
