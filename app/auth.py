@@ -65,10 +65,10 @@ def login():
         ).fetchone()
         if user is None:
             data = {"response": "Incorrect username"}
-            return data
+            return data, 401
         if not check_password_hash(user[2], password):
             data = {"response": "Incorrect password"}
-            return data
+            return data, 401
         session.clear()
         session["user_id"] = user[0]
         data = {"response": "Success"}

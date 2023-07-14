@@ -21,16 +21,17 @@ async function login() {
             method: 'POST',
             body: formData
         });
-        if (!response.ok)
-            throw new Error("Network response was not OK");
-        const result = await response.json();
-        if (result['response'] === 'Success') {
-            window.location.assign('../');
-            return;
+        if (response.status === 401) {
+            const result = await response.json();
+            throw new Error(result['response']);
         }
-        alert(result['response']);
+        if (!response.ok) {
+            throw new Error("Error");
+        }
+        window.location.assign('../');
     } catch (error) {
         console.error("There has been a problem with your login operation:", error);
+        alert(error.message);
     } finally {
         pendingRequest = false;
     }
