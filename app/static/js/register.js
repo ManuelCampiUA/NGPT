@@ -21,16 +21,17 @@ async function register() {
             method: 'POST',
             body: formData
         });
-        if (!response.ok)
-            throw new Error("Network response was not OK");
-        const result = await response.json();
-        if (result['response'] === 'Success') {
-            window.location.assign('login');
-            return;
+        if (response.status === 400) {
+            const result = await response.json();
+            throw new Error(result['response']);
         }
-        alert(result['response']);
+        if (!response.ok) {
+            throw new Error("Error");
+        }
+        window.location.assign('login');
     } catch (error) {
         console.error("There has been a problem with your register operation:", error);
+        alert(error.message);
     } finally {
         pendingRequest = false;
     }

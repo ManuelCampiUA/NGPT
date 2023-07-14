@@ -35,10 +35,10 @@ def register():
         password = request.form["password"]
         db = get_db()
         if not username:
-            data = {"response": "Username is required"}
+            data = {"response": "Username is required"}, 400
             return data
         elif not password:
-            data = {"response": "Password is required"}
+            data = {"response": "Password is required"}, 400
             return data
         try:
             db.execute(
@@ -47,7 +47,7 @@ def register():
             )
             db.commit()
         except db.IntegrityError:
-            data = {"response": f"User {username} is already registered"}
+            data = {"response": f"User {username} is already registered"}, 400
             return data
         data = {"response": "Success"}
         return data
