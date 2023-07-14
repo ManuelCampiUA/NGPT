@@ -23,13 +23,14 @@ async function QeA() {
                 method: 'POST',
                 body: formData
             });
-            if (!response.ok)
-                throw new Error("Network response was not OK");
-            const result = await response.json();
-            if (result['response'] === false) {
-                alert("No file uploaded");
-                throw new Error("No file uploaded");
+            if (response.status === 400) {
+                const result = await response.json();
+                throw new Error(result['response']);
             }
+            if (!response.ok) {
+                throw new Error("Error");
+            }
+            const result = await response.json();
             const paragraphQuestion = document.createElement('p');
             const paragraphResponse = document.createElement('p');
             paragraphQuestion.appendChild(document.createTextNode(question));
@@ -44,6 +45,7 @@ async function QeA() {
         }
     } catch (error) {
         console.error("There has been a problem with your Q&A operation:", error);
+        alert(error.message);
     } finally {
         pendingQeARequest = false;
     }
