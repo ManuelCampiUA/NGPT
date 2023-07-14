@@ -24,11 +24,11 @@ async function upload(formData) {
             throw new Error(result['response']);
         }
         if (!response.ok) {
-            throw new Error("Error");
+            throw new Error('Error');
         }
         fileUploaded = true;
     } catch (error) {
-        console.error("There has been a problem with your upload operation:", error);
+        console.error('There has been a problem with your upload operation:', error);
         alert(error.message);
     }
     finally {
@@ -40,11 +40,11 @@ async function getFileList() {
     try {
         const response = await fetch('file_list');
         if (!response.ok)
-            throw new Error("Error");
+            throw new Error('Error');
         const result = await response.json();
         return result['response'];
     } catch (error) {
-        console.error("There has been a problem with your getFileList operation:", error);
+        console.error('There has been a problem with your getFileList operation:', error);
         alert(error.message);
         return null;
     }
@@ -65,12 +65,12 @@ function loadingFileList(fileList) {
                 liItem.appendChild(spanSize);
                 ulFileList.appendChild(liItem);
             });
-            alert("Success");
+            alert('Success');
         }
     }
     catch (error) {
-        console.error("There has been a problem with your loadingFileList operation:", error);
-        alert("Error");
+        console.error('There has been a problem with your loadingFileList operation:', error);
+        alert('Error');
     }
 }
 

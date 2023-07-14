@@ -26,11 +26,11 @@ async function login() {
             throw new Error(result['response']);
         }
         if (!response.ok) {
-            throw new Error("Error");
+            throw new Error('Error');
         }
         window.location.assign('../');
     } catch (error) {
-        console.error("There has been a problem with your login operation:", error);
+        console.error('There has been a problem with your login operation:', error);
         alert(error.message);
     } finally {
         pendingRequest = false;

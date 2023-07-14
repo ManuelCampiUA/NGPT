@@ -26,11 +26,11 @@ async function register() {
             throw new Error(result['response']);
         }
         if (!response.ok) {
-            throw new Error("Error");
+            throw new Error('Error');
         }
         window.location.assign('login');
     } catch (error) {
-        console.error("There has been a problem with your register operation:", error);
+        console.error('There has been a problem with your register operation:', error);
         alert(error.message);
     } finally {
         pendingRequest = false;

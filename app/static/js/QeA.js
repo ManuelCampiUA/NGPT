@@ -28,14 +28,14 @@ async function QeA() {
                 throw new Error(result['response']);
             }
             if (!response.ok) {
-                throw new Error("Error");
+                throw new Error('Error');
             }
             const result = await response.json();
             const paragraphQuestion = document.createElement('p');
             const paragraphResponse = document.createElement('p');
             paragraphQuestion.appendChild(document.createTextNode(question));
             if (!firstQuestion) {
-                QeADiv.style.display = "block";
+                QeADiv.style.display = 'block';
                 firstQuestion = true;
             }
             QeADiv.appendChild(paragraphQuestion);
@@ -44,7 +44,7 @@ async function QeA() {
             QeADiv.appendChild(paragraphResponse);
         }
     } catch (error) {
-        console.error("There has been a problem with your Q&A operation:", error);
+        console.error('There has been a problem with your Q&A operation:', error);
         alert(error.message);
     } finally {
         pendingQeARequest = false;
