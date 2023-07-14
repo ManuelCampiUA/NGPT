@@ -21,21 +21,18 @@
         <div>
             <img id="toggle_dark" class="sunicon" src="{{ url_for('static', filename='img/moon.svg') }}">
         </div>
-        {% if g.user %}
+
         <div class="navbar-links">
             <ul>
+                {% if g.user %}
                 <li><a>{{ g.user[1] }}</a></li>
                 <span class="bar"></span>
                 <li><a href="{{ url_for('auth.logout') }}">Logout</a>
-            </ul>
-        </div>
-        {% else %}
-        <div class="navbar-links">
-            <ul>
+                {% else %}
                 <li><a class=login href="{{ url_for('auth.login') }}">Login</a>
+                {% endif %}
             </ul>
         </div>
-        {% endif %}
     </nav>
     {% block content %}{% endblock %}
 </body>
