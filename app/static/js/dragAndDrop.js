@@ -12,24 +12,20 @@ function filePreparation(file) {
     return formData;
 }
 
+function onUploadProgress(progressEvent) {
+    const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+    console.log(percentCompleted + "%");
+}
+
 async function upload(formData) {
     try {
         pendingUploadRequest = true;
-        const response = await fetch('upload', {
-            method: 'POST',
-            body: formData
-        });
-        if (response.status === 400) {
-            const result = await response.json();
-            throw new Error(result['response']);
-        }
-        if (!response.ok) {
-            throw new Error('Error');
-        }
+        await axios.post('upload', formData, { onUploadProgress });
         fileUploaded = true;
     } catch (error) {
-        console.error('There has been a problem with your upload operation:', error);
-        alert(error.message);
+        console.error('There has been a problem with your getFileList operation:', error.message);
+        if (error.response.status === 400)
+            alert(error.response.data['response']);
     }
     finally {
         pendingUploadRequest = false;
