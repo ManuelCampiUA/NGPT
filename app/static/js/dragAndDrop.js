@@ -14,7 +14,7 @@ function filePreparation(file) {
 
 function onUploadProgress(progressEvent) {
     const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-    console.log(percentCompleted + "%");
+    console.log(percentCompleted + '%');
 }
 
 async function upload(formData) {
@@ -23,7 +23,7 @@ async function upload(formData) {
         await axios.post('upload', formData, { onUploadProgress });
         fileUploaded = true;
     } catch (error) {
-        console.error('There has been a problem with your getFileList operation:', error.message);
+        console.error('There has been a problem with your upload operation:', error.message);
         if (error.response.status === 400)
             alert(error.response.data['response']);
     }
