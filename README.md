@@ -10,7 +10,6 @@
 - [x] File list
 - [x] Q&A
 - [x] Error handling
-- [ ] Theme cookie
 
 ## Manu
 
