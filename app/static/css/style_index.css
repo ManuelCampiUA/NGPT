@@ -113,19 +113,19 @@ body {
 #file_list {
     align-content: center;
     padding-left: 60px;
-    padding-top: 6vh;
+    padding-top: 3vh;
 }
 
 #file_list li {
     list-style-image: url(/static/img/pdf.png);
     padding-bottom: 2vh;
+    transform: translateY(30%);
+
 }
 
 #file_list li p {
     margin: 0;
     overflow: hidden;
-    transform: translateY(-100%);
-
 }
 
 /*ChatbotArea*/
