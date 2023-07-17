@@ -90,7 +90,12 @@ body {
 
 
 @media screen and (max-width: 700px) {
+
     .brand-title {
+        padding: 2rem;
+        background: url(/static/img/logoMobile.png) no-repeat;
+    }
+    .logo{
         display: none;
     }
 }
