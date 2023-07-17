@@ -119,13 +119,14 @@ body {
 #file_list li {
     list-style-image: url(/static/img/pdf.png);
     padding-bottom: 2vh;
-    transform: translateY(30%);
 
 }
 
 #file_list li p {
     margin: 0;
+    white-space: nowrap;
     overflow: hidden;
+    transform: translateY(-50%);
 }
 
 /*ChatbotArea*/
