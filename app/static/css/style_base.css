@@ -52,8 +52,13 @@ body {
     font-size: 1.5rem;
     margin: .5rem;
     flex-grow: 1;
+    align-items: start;
     /*questo sopra mette a destra il toggle dark pigliandosi tutto lo spazio disponibile*/
 
+}
+
+.alternative_logo {
+    margin: 0;
 }
 
 .navbar-links {
@@ -89,13 +94,20 @@ body {
 }
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 650px) {
 
     .brand-title {
-        padding: 2rem;
+        padding: 2rem 0 5px 0;
+        width: 0;
+        text-align: left !important;
+    }
+
+    .alternative_logo {
+        padding: 2rem 2rem 2rem 2rem;
         background: url(/static/img/logoMobile.png) no-repeat;
     }
-    .logo{
+
+    .logo {
         display: none;
     }
 }
