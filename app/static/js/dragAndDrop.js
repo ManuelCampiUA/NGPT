@@ -1,9 +1,10 @@
 let pendingUploadRequest = false;
 let fileUploaded = false;
-const ulFileList = document.getElementById('file_list');
 const dropArea = document.querySelector('.drop_section');
 const fileSelector = document.querySelector('.file-selector');
 const fileSelectorInput = document.querySelector('.file-selector-input');
+const progressBar = document.getElementById('progress_bar');
+const ulFileList = document.getElementById('file_list');
 
 function filePreparation(file) {
     const formData = new FormData();
@@ -11,16 +12,17 @@ function filePreparation(file) {
         formData.append(`file_${i}`, PDF);
     return formData;
 }
-
-function onUploadProgress(progressEvent) {
-    const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-    console.log(percentCompleted + '%');
-}
+const axiosConfig = {
+    onUploadProgress: (progressEvent) => {
+        const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        progressBar.setAttribute('value', percentCompleted);
+    }
+};
 
 async function upload(formData) {
     try {
         pendingUploadRequest = true;
-        await axios.post('upload', formData, { onUploadProgress });
+        await axios.post('upload', formData, axiosConfig);
         fileUploaded = true;
     } catch (error) {
         console.error('There has been a problem with your upload operation:', error.message);
