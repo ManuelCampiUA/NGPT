@@ -19,9 +19,16 @@
                 <div class="drop-here">Drop Here</div>
             </div>
         </div>
-        <div>
-            <progress value="0" max="100" id="progress_bar"></progress>
+
+
+        <div id="process">
+            <div class="progress-container">
+                <div class="progress-bar" id="progress_bar"></div>
+            </div>
+            <button class="custom-button">Avvia</button>
         </div>
+
+
         <div class="sidebar" id="pdf sidebar">
             <ul id="file_list">
                 {% for file, size in file_list.items() %}
