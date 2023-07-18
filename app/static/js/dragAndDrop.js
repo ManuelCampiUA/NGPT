@@ -31,7 +31,7 @@ async function upload(formData) {
             alert(error.response.data['response']);
             return;
         }
-        alert("Error");
+        alert('Error');
     }
     finally {
         pendingUploadRequest = false;
@@ -50,7 +50,7 @@ async function getFileList() {
             alert(error.response.data['response']);
             return null;
         }
-        alert("Error");
+        alert('Error');
         return null;
     }
 }

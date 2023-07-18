@@ -17,7 +17,7 @@ async function login() {
             alert(error.response.data['response']);
             return;
         }
-        alert("Error");
+        alert('Error');
     } finally {
         pendingRequest = false;
     }

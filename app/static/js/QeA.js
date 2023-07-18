@@ -31,7 +31,7 @@ async function QeA() {
             alert(error.response.data['response']);
             return;
         }
-        alert("Error");
+        alert('Error');
     } finally {
         pendingQeARequest = false;
     }

@@ -17,7 +17,7 @@ async function register() {
             alert(error.response.data['response']);
             return;
         }
-        alert("Error");
+        alert('Error');
     } finally {
         pendingRequest = false;
     }
