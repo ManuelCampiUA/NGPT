@@ -181,16 +181,6 @@ body {
     transition: width 0.3s ease;
 }
 
-.custom-button {
-    margin-top: 1rem;
-    border: none;
-    padding: 0.5rem 2rem;
-    background-color: coral;
-    cursor: pointer;
-    border-radius: 10px;
-    color: white;
-}
-
 
 /*Breakpoints*/
 @media screen and (max-width: 990px) {
