@@ -8,6 +8,11 @@ from .functions import load_AI
 FILE_FOLDER = "upload"
 
 
+def internal_server_error(e):
+    data = {"response": "Server error"}
+    return data, 500
+
+
 def create_app():
     app = Flask(__name__)
     app.config.update(
@@ -16,6 +21,7 @@ def create_app():
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE="Lax",
     )
+    app.register_error_handler(500, internal_server_error)
     app.register_blueprint(database)
     app.register_blueprint(auth)
     app.register_blueprint(main)

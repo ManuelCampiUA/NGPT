@@ -27,7 +27,7 @@ async function QeA() {
         }
     } catch (error) {
         console.error('There has been a problem with your Q&A operation:', error.message);
-        if (error.response.status === 400) {
+        if (error.response) {
             alert(error.response.data['response']);
             return;
         }

@@ -13,7 +13,7 @@ async function login() {
         window.location.assign('../');
     } catch (error) {
         console.error('There has been a problem with your login operation:', error.message);
-        if (error.response.status === 401) {
+        if (error.response) {
             alert(error.response.data['response']);
             return;
         }

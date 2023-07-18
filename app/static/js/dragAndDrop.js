@@ -27,7 +27,7 @@ async function upload(formData) {
     } catch (error) {
         progressBar.setAttribute('value', 0);
         console.error('There has been a problem with your upload operation:', error.message);
-        if (error.response.status === 400) {
+        if (error.response) {
             alert(error.response.data['response']);
             return;
         }
@@ -46,6 +46,10 @@ async function getFileList() {
     } catch (error) {
         progressBar.setAttribute('value', 0);
         console.error('There has been a problem with your getFileList operation:', error.message);
+        if (error.response) {
+            alert(error.response.data['response']);
+            return null;
+        }
         alert("Error");
         return null;
     }

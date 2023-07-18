@@ -13,7 +13,7 @@ async function register() {
         window.location.assign('login');
     } catch (error) {
         console.error('There has been a problem with your register operation:', error.message);
-        if (error.response.status === 400) {
+        if (error.response) {
             alert(error.response.data['response']);
             return;
         }
