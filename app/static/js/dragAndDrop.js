@@ -30,6 +30,7 @@ async function upload(formData) {
             alert(error.response.data['response']);
     }
     finally {
+        progressBar.setAttribute('value', 0);
         pendingUploadRequest = false;
     }
 }
@@ -44,6 +45,7 @@ async function getFileList() {
     } catch (error) {
         console.error('There has been a problem with your getFileList operation:', error);
         alert(error.message);
+        progressBar.setAttribute('value', 0);
         return null;
     }
 }
@@ -69,6 +71,7 @@ function loadingFileList(fileList) {
     catch (error) {
         console.error('There has been a problem with your loadingFileList operation:', error);
         alert('Error');
+        progressBar.setAttribute('value', 0);
     }
 }
 
@@ -77,6 +80,7 @@ async function uploadFile(file) {
         await upload(filePreparation(file));
     if (fileUploaded) {
         loadingFileList(await getFileList());
+        progressBar.setAttribute('value', 0);
         fileUploaded = false;
     }
 }
