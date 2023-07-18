@@ -4,18 +4,21 @@ body {
 }
 
 .mask {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     background: var(--primary-color);
+    align-items: start;
+
 }
 
 .wrapper {
-    width: 420px;
+    width: 60vh;
     background: transparent;
     color: white;
     padding: 30px 40px;
+    margin-top: 10%;
     border: 2px solid white;
     backdrop-filter: blur(100px);
 }
@@ -74,4 +77,21 @@ body {
 .already_member {
     color: var(--secondary-color);
     font-size: 18px;
+}
+
+@media screen and (max-width: 990px) {
+    .wrapper {
+        padding: 4vh;
+    }
+}
+
+@media screen and (max-width: 650px) {
+
+    .wrapper {
+        padding: 1vh;
+        border: none;
+        backdrop-filter: blur(0);
+
+    }
+
 }
