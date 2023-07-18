@@ -11,18 +11,8 @@ async function QeA() {
         QeAQuestion.value = question;
         if (question) {
             const formData = new FormData(QeAForm);
-            const response = await fetch('QeA', {
-                method: 'POST',
-                body: formData
-            });
-            if (response.status === 400) {
-                const result = await response.json();
-                throw new Error(result['response']);
-            }
-            if (!response.ok) {
-                throw new Error('Error');
-            }
-            const result = await response.json();
+            const response = await axios.post('QeA', formData);
+            const result = response.data['response'];
             const paragraphQuestion = document.createElement('p');
             const paragraphResponse = document.createElement('p');
             paragraphQuestion.appendChild(document.createTextNode(question));
@@ -32,12 +22,16 @@ async function QeA() {
             }
             QeADiv.appendChild(paragraphQuestion);
             QeAForm.reset();
-            paragraphResponse.appendChild(document.createTextNode(result['response']));
+            paragraphResponse.appendChild(document.createTextNode(result));
             QeADiv.appendChild(paragraphResponse);
         }
     } catch (error) {
-        console.error('There has been a problem with your Q&A operation:', error);
-        alert(error.message);
+        console.error('There has been a problem with your Q&A operation:', error.message);
+        if (error.response.status === 400) {
+            alert(error.response.data['response']);
+            return;
+        }
+        alert("Error");
     } finally {
         pendingQeARequest = false;
     }

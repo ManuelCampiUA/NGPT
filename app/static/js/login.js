@@ -9,21 +9,15 @@ async function login() {
         loginUsername.value = loginUsername.value.trim();
         loginPassword.value = loginPassword.value.trim();
         const formData = new FormData(loginForm);
-        const response = await fetch('login', {
-            method: 'POST',
-            body: formData
-        });
-        if (response.status === 401) {
-            const result = await response.json();
-            throw new Error(result['response']);
-        }
-        if (!response.ok) {
-            throw new Error('Error');
-        }
+        await axios.post('login', formData);
         window.location.assign('../');
     } catch (error) {
-        console.error('There has been a problem with your login operation:', error);
-        alert(error.message);
+        console.error('There has been a problem with your login operation:', error.message);
+        if (error.response.status === 401) {
+            alert(error.response.data['response']);
+            return;
+        }
+        alert("Error");
     } finally {
         pendingRequest = false;
     }

@@ -9,21 +9,15 @@ async function register() {
         registerUsername.value = registerUsername.value.trim();
         registerPassword.value = registerPassword.value.trim();
         const formData = new FormData(registerForm);
-        const response = await fetch('register', {
-            method: 'POST',
-            body: formData
-        });
-        if (response.status === 400) {
-            const result = await response.json();
-            throw new Error(result['response']);
-        }
-        if (!response.ok) {
-            throw new Error('Error');
-        }
+        await axios.post('register', formData);
         window.location.assign('login');
     } catch (error) {
-        console.error('There has been a problem with your register operation:', error);
-        alert(error.message);
+        console.error('There has been a problem with your register operation:', error.message);
+        if (error.response.status === 400) {
+            alert(error.response.data['response']);
+            return;
+        }
+        alert("Error");
     } finally {
         pendingRequest = false;
     }

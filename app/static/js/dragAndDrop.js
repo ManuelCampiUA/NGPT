@@ -25,27 +25,28 @@ async function upload(formData) {
         await axios.post('upload', formData, axiosConfig);
         fileUploaded = true;
     } catch (error) {
+        progressBar.setAttribute('value', 0);
         console.error('There has been a problem with your upload operation:', error.message);
-        if (error.response.status === 400)
+        if (error.response.status === 400) {
             alert(error.response.data['response']);
+            return;
+        }
+        alert("Error");
     }
     finally {
-        progressBar.setAttribute('value', 0);
         pendingUploadRequest = false;
     }
 }
 
 async function getFileList() {
     try {
-        const response = await fetch('file_list');
-        if (!response.ok)
-            throw new Error('Error');
-        const result = await response.json();
-        return result['response'];
+        const response = await axios.get('file_list');
+        const result = response.data['response'];
+        return result;
     } catch (error) {
-        console.error('There has been a problem with your getFileList operation:', error);
-        alert(error.message);
         progressBar.setAttribute('value', 0);
+        console.error('There has been a problem with your getFileList operation:', error.message);
+        alert("Error");
         return null;
     }
 }
@@ -69,20 +70,20 @@ function loadingFileList(fileList) {
         }
     }
     catch (error) {
+        progressBar.setAttribute('value', 0);
         console.error('There has been a problem with your loadingFileList operation:', error);
         alert('Error');
-        progressBar.setAttribute('value', 0);
+    }
+    finally {
+        fileUploaded = false;
     }
 }
 
 async function uploadFile(file) {
     if (!pendingUploadRequest)
         await upload(filePreparation(file));
-    if (fileUploaded) {
+    if (fileUploaded)
         loadingFileList(await getFileList());
-        progressBar.setAttribute('value', 0);
-        fileUploaded = false;
-    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
