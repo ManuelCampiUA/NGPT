@@ -164,6 +164,11 @@ body {
     align-content: center;
     text-align: center;
     margin: 1rem;
+    display: flex;
+    /* Imposta il display del div come flex container */
+    align-items: center;
+    /* Centra verticalmente gli elementi all'interno del div */
+    justify-content: center
 }
 
 #progress_bar {
@@ -252,7 +257,7 @@ body {
     }
 
     #progress_bar {
-    width: 50%;
+        width: 50%;
         align-content: center;
-}
+    }
 }
