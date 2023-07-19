@@ -164,20 +164,31 @@ body {
     align-content: center;
     text-align: center;
     margin: 1rem;
-    display: flex;
-    /* Imposta il display del div come flex container */
     align-items: center;
-    /* Centra verticalmente gli elementi all'interno del div */
     justify-content: center
 }
 
 #progress_bar {
     width: 100%;
-    accent-color: orangered;
+    background-color: var(--third-color);
     border-radius: 10px;
-    border: solid white 1px;
-    transition: width 1s ease-in;
+    border: none;
+    animation:ease-in 5s linear infinite ;
+    -moz-animation: ease-in 5s linear infinite;
 }
+
+#progress_bar[value]::-moz-progress-bar{
+    background-color: #e51a19;
+    animation:ease-in 5s linear infinite ;
+    -moz-animation: ease-in 5s linear infinite;
+}
+#progress_bar[value]::-webkit-progress-value{
+    background-color: #e51a19;
+    animation:ease-in 5s linear infinite ;
+    -moz-animation: ease-in 5s linear infinite;
+}
+
+
 
 /*Breakpoints*/
 @media screen and (max-width: 990px) {

@@ -87,15 +87,12 @@ body {
     background-color: var(--third-color);
 }
 
-
 .logo {
     height: 4rem;
     overflow: hidden;
 }
 
-
 /*Allerte*/
-
 .alert {
     --foreground-color: #222222;
     --background-color: #eeeeee;
@@ -136,6 +133,14 @@ body {
 .alert-error {
     --foreground-color: white;
     --background-color: red;
+}
+
+.close-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
 }
 
 @media screen and (max-width: 650px) {

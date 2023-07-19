@@ -7,16 +7,6 @@
 
 <div class="grid">
     <div class="sidebar">
-        <div class="alert alert-success">
-            <div class="alert-icon">
-                <span class="material-symbols-outlined">
-                    info
-                </span>
-            </div>
-            <div class="alert-text">
-                Add Your Custom Message Here
-            </div>
-        </div>
         <div class="drop_section">
             <div class=drop_section_content>
                 <img src="{{ url_for('static', filename='img/cloud.png') }}" alt="cloud">
@@ -31,9 +21,20 @@
         </div>
 
         <div id="process">
-            <progress value="0" max="100" id="progress_bar"></progress>
+            <progress max="100" value="80" id="progress_bar"></progress>
         </div>
 
+        <div class="alert alert-success">
+            <div class="alert-icon">
+                <span class="material-symbols-outlined">
+                    info
+                </span>
+            </div>
+            <div class="alert-text">
+                Add Your Custom Message Here
+            </div>
+            <button class="close-btn" onclick="closeAlert()">&times;</button>
+        </div>
 
         <div class="sidebar" id="pdf sidebar">
             <ul id="file_list">
