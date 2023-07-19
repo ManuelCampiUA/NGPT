@@ -35,3 +35,4 @@
 - [x] fixare lunghezza caselle e nella dark il colore della casella QEA
 - [x] transizione drag and drop
 - [x] fixare height pagina index
+- [x] fare gli alert

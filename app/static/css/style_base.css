@@ -124,18 +124,18 @@ body {
 }
 
 .alert-warning {
-    --foreground-color: #000000;
-    --background-color: #ecd103;
+    --foreground-color: black;
+    --background-color: yellow;
 }
 
 .alert-success {
-    --foreground-color: #ffffff;
-    --background-color: #46b63e;
+    --foreground-color: white;
+    --background-color: green;
 }
 
 .alert-error {
-    --foreground-color: #ffffff;
-    --background-color: #cb0000;
+    --foreground-color: white;
+    --background-color: red;
 }
 
 @media screen and (max-width: 650px) {

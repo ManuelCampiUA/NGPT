@@ -1,6 +1,5 @@
 body {
-    height: 100vh;
-
+    height: max-content;
 }
 
 .grid {
@@ -8,8 +7,6 @@ body {
     grid-template-columns: 20% 80%;
     grid-template-rows: 100%;
     background: var(--primary-color);
-
-
 }
 
 .main_content {
@@ -31,7 +28,7 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     border-radius: 10px;
-    margin: 5% 12% 0% 12%;
+    margin: 5% 12% 0 12%;
 }
 
 /*Mostra il DROP HERE durante drag and drop*/
@@ -94,8 +91,6 @@ body {
     margin: 10%;
 }
 
-
-
 /*Bottone browse files*/
 .drop_section button {
     color: white;
@@ -114,9 +109,10 @@ body {
 }
 
 #file_list {
+    display: block;
     align-content: center;
     padding-left: 60px;
-    padding-top: 3vh;
+    padding-top: 1rem;
 }
 
 #file_list li {
@@ -164,25 +160,19 @@ body {
 }
 
 #process {
+    display: flex;
+    align-content: center;
     text-align: center;
-    padding: 2rem;
+    margin: 1rem;
 }
 
-.progress-container {
+#progress_bar {
     width: 100%;
-    max-width: 200px;
-    height: 20px;
+    accent-color: orangered;
     border-radius: 10px;
-    margin: auto;
-    overflow: hidden;
+    border: solid white 1px;
+    transition: width 1s ease-in;
 }
-
-.progress-bar {
-    background-color: coral;
-    border-radius: 10px;
-    transition: width 0.3s ease;
-}
-
 
 /*Breakpoints*/
 @media screen and (max-width: 990px) {
@@ -201,13 +191,13 @@ body {
 @media screen and (max-width: 800px) {
 
     .main_content {
-        padding-left: 0%;
+        padding-left: 0;
     }
 
     .grid {
         display: grid;
         grid-template-columns: 25% 75%;
-        grid-template-rows: 1fr 1.3fr;
+        grid-template-rows: 1fr 2fr;
     }
 
     .drop_section {
@@ -260,4 +250,9 @@ body {
     #file_list :last-child {
         padding: 0;
     }
+
+    #progress_bar {
+    width: 50%;
+        align-content: center;
+}
 }
