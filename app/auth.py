@@ -1,4 +1,4 @@
-from flask import Blueprint, url_for, redirect, request, render_template, abort
+from flask import Blueprint, url_for, redirect, request, render_template
 from flask_login import UserMixin, login_required, login_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from .database import get_db
@@ -11,22 +11,6 @@ class User(UserMixin):
         self.id = user[0]
         self.username = user[1]
         self.password = user[2]
-
-
-def url_has_allowed_host_and_scheme(url, allowed_hosts, require_https=False):
-    if url is not None:
-        url = url.strip()
-    if not url:
-        return False
-    if allowed_hosts is None:
-        allowed_hosts = set()
-    elif isinstance(allowed_hosts, str):
-        allowed_hosts = {allowed_hosts}
-    return url_has_allowed_host_and_scheme(
-        url, allowed_hosts, require_https=require_https
-    ) and url_has_allowed_host_and_scheme(
-        url.replace("\\", "/"), allowed_hosts, require_https=require_https
-    )
 
 
 @auth.route("/register", methods=("GET", "POST"))
@@ -73,9 +57,6 @@ def login():
             return data, 401
         logged_user = User(user)
         login_user(logged_user)
-        next = request.args.get("next")
-        if not url_has_allowed_host_and_scheme(next, request.host):
-            return abort(400)
         data = {"response": "Success"}
         return data
     return render_template("login.html")
