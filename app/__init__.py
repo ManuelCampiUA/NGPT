@@ -2,7 +2,7 @@ from flask import Flask
 from os import environ, listdir
 from .database import database
 from .auth import auth
-from .main import main
+from .index import index
 from .functions import load_AI
 
 FILE_FOLDER = "upload"
@@ -24,7 +24,7 @@ def create_app():
     app.register_error_handler(500, internal_server_error)
     app.register_blueprint(database)
     app.register_blueprint(auth)
-    app.register_blueprint(main)
+    app.register_blueprint(index)
     if listdir(FILE_FOLDER):
         load_AI()
     return app

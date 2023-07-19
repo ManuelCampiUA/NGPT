@@ -6,10 +6,10 @@ from .functions import upload_AI, allowed_file, get_conversation_chain
 
 FILE_FOLDER = "upload"
 
-main = Blueprint("main", __name__)
+index = Blueprint("index", __name__)
 
 
-@main.route("/")
+@index.route("/")
 @login_required
 def home():
     file_list = {}
@@ -19,7 +19,7 @@ def home():
     return render_template("index.html", file_list=file_list)
 
 
-@main.post("/upload")
+@index.post("/upload")
 @login_required
 def upload():
     file_uploaded = []
@@ -40,7 +40,7 @@ def upload():
     return data
 
 
-@main.get("/file_list")
+@index.get("/file_list")
 @login_required
 def file_list():
     file_list = {}
@@ -51,7 +51,7 @@ def file_list():
     return data
 
 
-@main.post("/QeA")
+@index.post("/QeA")
 @login_required
 def QeA():
     if listdir(FILE_FOLDER):
