@@ -70,11 +70,11 @@ function loadingFileList(fileList) {
                 liItem.appendChild(spanSize);
                 ulFileList.appendChild(liItem);
             });
+            progressBar.setAttribute('value', 0);
             alert('Success');
         }
     }
     catch (error) {
-        progressBar.setAttribute('value', 0);
         console.error('There has been a problem with your loadingFileList operation:', error);
         alert('Error');
     }
