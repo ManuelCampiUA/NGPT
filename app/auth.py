@@ -1,30 +1,32 @@
-from flask import Blueprint, g, url_for, redirect, session, request, render_template
-from functools import wraps
+from flask import Blueprint, url_for, redirect, request, render_template, abort
+from flask_login import UserMixin, login_required, login_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from .database import get_db
 
 auth = Blueprint("auth", __name__)
 
 
-def login_required(view):
-    @wraps(view)
-    def wrapped_view(**kwargs):
-        if g.user is None:
-            return redirect(url_for("auth.login"))
-        return view(**kwargs)
-
-    return wrapped_view
+class User(UserMixin):
+    def __init__(self, user):
+        self.id = user[0]
+        self.username = user[1]
+        self.password = user[2]
 
 
-@auth.before_app_request
-def load_logged_in_user():
-    user_id = session.get("user_id")
-    if user_id is None:
-        g.user = None
-    else:
-        g.user = (
-            get_db().execute("SELECT * FROM user WHERE id = ?", (user_id,)).fetchone()
-        )
+def url_has_allowed_host_and_scheme(url, allowed_hosts, require_https=False):
+    if url is not None:
+        url = url.strip()
+    if not url:
+        return False
+    if allowed_hosts is None:
+        allowed_hosts = set()
+    elif isinstance(allowed_hosts, str):
+        allowed_hosts = {allowed_hosts}
+    return url_has_allowed_host_and_scheme(
+        url, allowed_hosts, require_https=require_https
+    ) and url_has_allowed_host_and_scheme(
+        url.replace("\\", "/"), allowed_hosts, require_https=require_https
+    )
 
 
 @auth.route("/register", methods=("GET", "POST"))
@@ -69,8 +71,11 @@ def login():
         if not check_password_hash(user[2], password):
             data = {"response": "Incorrect password"}
             return data, 401
-        session.clear()
-        session["user_id"] = user[0]
+        logged_user = User(user)
+        login_user(logged_user)
+        next = request.args.get("next")
+        if not url_has_allowed_host_and_scheme(next, request.host):
+            return abort(400)
         data = {"response": "Success"}
         return data
     return render_template("login.html")
@@ -78,5 +83,5 @@ def login():
 
 @auth.route("/logout")
 def logout():
-    session.clear()
+    logout_user()
     return redirect(url_for("auth.login"))

@@ -27,13 +27,13 @@
 
         <div class="navbar-links">
             <ul>
-                {% if g.user %}
-                <li><a>{{ g.user[1] }}</a></li>
+                {% if current_user.is_authenticated %}
+                <li><a>{{ current_user.username }}</a></li>
                 <span class="bar"></span>
                 <li><a href="{{ url_for('auth.logout') }}">Logout</a>
-                    {% else %}
+                {% else %}
                 <li><a class=login href="{{ url_for('auth.login') }}">Login</a>
-                    {% endif %}
+                {% endif %}
             </ul>
         </div>
     </nav>
