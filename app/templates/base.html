@@ -32,7 +32,8 @@
                         src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
         </div>
         <div>
-            <img id="toggle_dark" class="sunicon" src="{{ url_for('static', filename='img/moon.svg') }}">
+            <img id="toggle_dark" class="sunicon" src="{{ url_for('static', filename='img/moon.svg') }}"
+                alt="toggle_dark_mode">
         </div>
 
         <div class="navbar-links">
@@ -51,7 +52,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
     <script src="{{ url_for('static', filename='js/alert.js') }}"></script>
-    
+
 </body>
 
 </html>

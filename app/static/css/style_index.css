@@ -166,7 +166,7 @@
 }
 
 #progress_bar {
-    width: 100%;
+    width: 90%;
     background-color: var(--third-color);
     border-radius: 10px;
     border: none;

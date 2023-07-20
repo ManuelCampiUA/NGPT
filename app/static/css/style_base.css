@@ -24,7 +24,6 @@ div:hover {
 
 
 body {
-    display: grid;
     font-family: Roboto, Arial, Helvetica, sans-serif;
     padding: 0;
     margin: 0;
@@ -47,7 +46,6 @@ body {
     background-color: var(--third-color);
     color: var(--secondary-color);
     border-bottom: coral solid 4px;
-    height: 4rem;
 }
 
 .brand-title {
@@ -57,10 +55,6 @@ body {
     align-items: start;
     /*questo sopra mette a destra il toggle dark pigliandosi tutto lo spazio disponibile*/
 
-}
-
-.alternative_logo {
-    margin: 0;
 }
 
 .navbar-links {
@@ -94,11 +88,12 @@ body {
     width: auto;
     overflow: hidden;
 }
-.alternative_logo{
-    height: auto;
+
+.alternative_logo {
+    margin: 0;
     width: auto;
-    overflow: hidden;
 }
+
 /*Allerte*/
 .alert {
     --foreground-color: #222222;
