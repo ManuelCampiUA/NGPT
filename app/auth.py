@@ -1,9 +1,11 @@
 from flask import Blueprint, url_for, redirect, request, render_template
-from flask_login import UserMixin, login_required, login_user, logout_user
+from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from .database import get_db
 
 auth = Blueprint("auth", __name__)
+login_manager = LoginManager()
+login_manager.session_protection = "strong"
 
 
 class User(UserMixin):
@@ -11,6 +13,17 @@ class User(UserMixin):
         self.id = user[0]
         self.username = user[1]
         self.password = user[2]
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    user = get_db().execute("SELECT * FROM user WHERE id = ?", (user_id,)).fetchone()
+    return User(user)
+
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    return redirect(url_for("auth.login"))
 
 
 @auth.route("/register", methods=("GET", "POST"))
@@ -65,4 +78,4 @@ def login():
 @auth.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for("auth.login"))
+    return redirect(url_for(".login"))
