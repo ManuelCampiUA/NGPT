@@ -1,17 +1,14 @@
-body {
-    height: max-content;
-}
-
 .grid {
     display: grid;
     grid-template-columns: 20% 80%;
-    grid-template-rows: 100%;
+    grid-template-rows: 100vh;
     background: var(--primary-color);
+    padding: 0;
+    margin: 0;
 }
 
 .main_content {
     padding: 3% 3% 0 3%;
-
 }
 
 
@@ -173,18 +170,19 @@ body {
     background-color: var(--third-color);
     border-radius: 10px;
     border: none;
-    animation:ease-in 5s linear infinite ;
+    animation: ease-in 5s linear infinite;
     -moz-animation: ease-in 5s linear infinite;
 }
 
-#progress_bar[value]::-moz-progress-bar{
+#progress_bar[value]::-moz-progress-bar {
     background-color: #e51a19;
-    animation:ease-in 5s linear infinite ;
+    animation: ease-in 5s linear infinite;
     -moz-animation: ease-in 5s linear infinite;
 }
-#progress_bar[value]::-webkit-progress-value{
+
+#progress_bar[value]::-webkit-progress-value {
     background-color: #e51a19;
-    animation:ease-in 5s linear infinite ;
+    animation: ease-in 5s linear infinite;
     -moz-animation: ease-in 5s linear infinite;
 }
 
