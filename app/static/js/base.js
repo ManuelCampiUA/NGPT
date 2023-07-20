@@ -1,4 +1,6 @@
 const themeIcon = document.getElementById('toggle_dark');
+const closeAlert = document.querySelector('.close-btn');
+const alertElement = document.querySelector(".alert");
 
 function setDarkMode() {
     document.body.classList.add('dark_theme');
@@ -30,5 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         setLightMode();
+    });
+    closeAlert.addEventListener('click', (event) => {
+        alertElement.style.display = "none";
     });
 });
