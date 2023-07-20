@@ -1,7 +1,6 @@
 let pendingUploadRequest = false;
 let fileUploaded = false;
 const dropArea = document.querySelector('.drop_section');
-const fileSelector = document.querySelector('.file-selector');
 const fileSelectorInput = document.querySelector('.file-selector-input');
 const progressBar = document.getElementById('progress_bar');
 const ulFileList = document.getElementById('file_list');
@@ -107,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('dragleave', () => {
         dropArea.classList.remove('drag-over-effect');
     });
-    fileSelector.addEventListener('click', () => {
+    dropArea.addEventListener('click', () => {
         fileSelectorInput.click();
     });
     fileSelectorInput.addEventListener('change', (event) => {
