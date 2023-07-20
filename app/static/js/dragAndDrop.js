@@ -27,10 +27,10 @@ async function upload(formData) {
         progressBar.setAttribute('value', 0);
         console.error('There has been a problem with your upload operation:', error.message);
         if (error.response) {
-            alert(error.response.data['response']);
+            errorAlert(error.response.data['response']);
             return;
         }
-        alert('Error');
+        errorAlert('Error');
     }
     finally {
         pendingUploadRequest = false;
@@ -46,10 +46,10 @@ async function getFileList() {
         progressBar.setAttribute('value', 0);
         console.error('There has been a problem with your getFileList operation:', error.message);
         if (error.response) {
-            alert(error.response.data['response']);
+            errorAlert(error.response.data['response']);
             return null;
         }
-        alert('Error');
+        errorAlert('Error');
         return null;
     }
 }
@@ -70,12 +70,12 @@ function loadingFileList(fileList) {
                 ulFileList.appendChild(liItem);
             });
             progressBar.setAttribute('value', 0);
-            alert('Success');
+            successAlert('Success');
         }
     }
     catch (error) {
         console.error('There has been a problem with your loadingFileList operation:', error);
-        alert('Error');
+        errorAlert('Error');
     }
     finally {
         fileUploaded = false;
@@ -90,6 +90,9 @@ async function uploadFile(file) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('dragstart', (event) => {
+        event.preventDefault();
+    });
     window.addEventListener('drop', (event) => {
         event.preventDefault();
         dropArea.classList.remove('drag-over-effect');

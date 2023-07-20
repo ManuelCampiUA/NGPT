@@ -1,6 +1,4 @@
 const themeIcon = document.getElementById('toggle_dark');
-const closeAlert = document.querySelector('.close-btn');
-const alertElement = document.querySelector(".alert");
 
 function setDarkMode() {
     document.body.classList.add('dark_theme');
@@ -14,17 +12,12 @@ function setLightMode() {
     themeIcon.src = 'static/img/moon.svg';
 }
 
-if (localStorage.getItem('theme') === 'light') {
+if (localStorage.getItem('theme') === 'light')
     setLightMode();
-}
-if (localStorage.getItem('theme') === 'dark') {
+if (localStorage.getItem('theme') === 'dark')
     setDarkMode();
-}
 
 document.addEventListener('DOMContentLoaded', () => {
-    window.addEventListener('dragstart', (event) => {
-        event.preventDefault();
-    });
     themeIcon.addEventListener('click', () => {
         const currentTheme = localStorage.key('theme') ? localStorage.getItem('theme') : 'light';
         if (currentTheme === 'light') {
@@ -32,8 +25,5 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         setLightMode();
-    });
-    closeAlert.addEventListener('click', (event) => {
-        alertElement.style.display = "none";
     });
 });

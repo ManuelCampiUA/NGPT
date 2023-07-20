@@ -104,7 +104,7 @@ body {
     --foreground-color: #222222;
     --background-color: #eeeeee;
 
-    display: flex;
+    display: none;
     align-items: center;
     padding: 1em;
     box-sizing: border-box;
