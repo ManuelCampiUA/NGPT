@@ -24,6 +24,7 @@ div:hover {
 
 
 body {
+    display: grid;
     font-family: Roboto, Arial, Helvetica, sans-serif;
     padding: 0;
     margin: 0;
@@ -46,6 +47,7 @@ body {
     background-color: var(--third-color);
     color: var(--secondary-color);
     border-bottom: coral solid 4px;
+    height: 4rem;
 }
 
 .brand-title {
@@ -89,9 +91,14 @@ body {
 
 .logo {
     height: 4rem;
+    width: auto;
     overflow: hidden;
 }
-
+.alternative_logo{
+    height: auto;
+    width: auto;
+    overflow: hidden;
+}
 /*Allerte*/
 .alert {
     --foreground-color: #222222;
