@@ -14,10 +14,10 @@ async function login() {
     } catch (error) {
         console.error('There has been a problem with your login operation:', error.message);
         if (error.response) {
-            errorAlert(error.response.data['response']);
+            alert(error.response.data['response']);
             return;
         }
-        errorAlert('Error');
+        alert('Error');
     } finally {
         pendingRequest = false;
     }
