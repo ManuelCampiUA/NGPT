@@ -18,7 +18,8 @@ class User(UserMixin):
 @login_manager.user_loader
 def load_user(user_id):
     user = get_db().execute("SELECT * FROM user WHERE id = ?", (user_id,)).fetchone()
-    return User(user)
+    logged_user = User(user)
+    return logged_user
 
 
 @login_manager.unauthorized_handler
