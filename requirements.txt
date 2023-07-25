@@ -1,7 +1,7 @@
-chromadb==0.3.29
+chromadb==0.4.3
 Flask==2.3.2
 Flask-Login==0.6.2
-langchain==0.0.234
-openai==0.27.8
-pypdf==3.12.2
+langchain==0.0.240
+openai==0.0.240
+pypdf==3.13.0
 tiktoken==0.4.0
