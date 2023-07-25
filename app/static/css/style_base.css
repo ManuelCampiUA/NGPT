@@ -46,6 +46,7 @@ body {
     background-color: var(--third-color);
     color: var(--secondary-color);
     border-bottom: coral solid 4px;
+    height: 4rem;
 }
 
 .brand-title {

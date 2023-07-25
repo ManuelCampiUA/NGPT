@@ -19,6 +19,12 @@ def home():
     return render_template("index.html", file_list=file_list)
 
 
+@index.route("/settings")
+@login_required
+def settings():
+    return render_template("settings.html")
+
+
 @index.post("/upload")
 @login_required
 def upload():

@@ -1,0 +1,14 @@
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    height: calc(100vh - 4rem);
+    background: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+}
