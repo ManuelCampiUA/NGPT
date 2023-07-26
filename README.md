@@ -10,7 +10,6 @@
 - [x] File list
 - [x] Q&A
 - [x] Error handling
-- [ ] Improve and fix alerts
 - [ ] Add conversational_chain to session
 
 ## Manu
