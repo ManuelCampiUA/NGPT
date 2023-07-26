@@ -22,6 +22,11 @@ def home():
     return render_template("index.html", file_list=file_list)
 
 
+@index.route("/welcome")
+def welcome():
+    return render_template("welcome.html")
+
+
 @index.route("/settings")
 @login_required
 def settings():

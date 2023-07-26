@@ -1,0 +1,34 @@
+.container {
+    height: calc(100vh - 4rem);
+    background: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.welcome_div {
+    height: 10rem;
+}
+
+.welcome_logo {
+    height: 10rem;
+}
+
+a{
+    color: coral;
+}
+a:visited{
+    color: blueviolet;
+}
+
+a:hover{
+    color: coral;
+}
+
+a:focus{
+    color: coral;
+}
+a:active{
+    color: coral;
+}
