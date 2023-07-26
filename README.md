@@ -10,6 +10,8 @@
 - [x] File list
 - [x] Q&A
 - [x] Error handling
+- [ ] Improve and fix alerts
+- [ ] Add conversational_chain to session
 
 ## Manu
 
@@ -36,3 +38,6 @@
 - [x] transizione drag and drop
 - [x] fixare height pagina index
 - [x] fare gli alert
+- [ ] pagina introduttiva
+- [ ] aggiungere stilizzazione dark a barra di caricamento
+- [ ] aggiungere stilizzazione dark a bottone Browse File
