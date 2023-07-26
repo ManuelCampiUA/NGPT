@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, session, render_template, request
 from os import listdir, path
 from werkzeug.utils import secure_filename
 from .auth import login_required
-from .functions import upload_AI, allowed_file, get_conversation_chain
+from .functions import load_AI, upload_AI, allowed_file
 
 FILE_FOLDER = "upload"
 
@@ -13,9 +13,12 @@ index = Blueprint("index", __name__)
 @login_required
 def home():
     file_list = {}
-    for file in listdir(FILE_FOLDER):
-        size = round(path.getsize(path.join(FILE_FOLDER, file)) / 1000000, 3)
-        file_list[file] = str(size) + " MB"
+    if listdir(FILE_FOLDER):
+        global conversation_chain
+        conversation_chain = load_AI()
+        for file in listdir(FILE_FOLDER):
+            size = round(path.getsize(path.join(FILE_FOLDER, file)) / 1000000, 3)
+            file_list[file] = str(size) + " MB"
     return render_template("index.html", file_list=file_list)
 
 
@@ -39,7 +42,8 @@ def upload():
             files[file].save(file_path)
             file_uploaded.append(file_path)
     if file_uploaded:
-        upload_AI(file_uploaded)
+        global conversation_chain
+        conversation_chain = upload_AI(file_uploaded)
         data = {"response": "Success"}
         return data
     data = {"response": "Incorrect file extension"}, 400
@@ -62,7 +66,8 @@ def file_list():
 def QeA():
     if listdir(FILE_FOLDER):
         user_question = request.form["question"]
-        data = {"response": get_conversation_chain().run(question=user_question)}
+        conversation_chain = session.get("conversation_chain")
+        data = {"response": conversation_chain.run(question=user_question)}
         return data
     data = {"response": "No file uploaded"}, 400
     return data

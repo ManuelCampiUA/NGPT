@@ -48,16 +48,12 @@ def get_vectorstore(text_chunks=None):
     return vectorstore
 
 
-def set_conversation_chain(vectorstore):
-    global conversation_chain
+def get_conversation_chain(vectorstore):
     llm = ChatOpenAI()
     memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm=llm, retriever=vectorstore.as_retriever(), memory=memory
     )
-
-
-def get_conversation_chain():
     return conversation_chain
 
 
@@ -65,9 +61,9 @@ def upload_AI(file_uploaded):
     raw_text = get_pdf_text(file_uploaded)
     text_chunks = get_text_chunks(raw_text)
     vectorstore = get_vectorstore(text_chunks)
-    set_conversation_chain(vectorstore)
+    return get_conversation_chain(vectorstore)
 
 
 def load_AI():
     vectorstore = get_vectorstore()
-    set_conversation_chain(vectorstore)
+    return get_conversation_chain(vectorstore)
