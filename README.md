@@ -39,3 +39,5 @@
 - [x] fare gli alert
 - [x] pagina introduttiva
 - [ ] mettere info e contatti domodesk a pagina welcome.html
+- [ ] aggiungere stilizzazione dark della barra di caricamento
+- [ ] aggiungere stilizzazione dark del bottone Browse File
