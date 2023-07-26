@@ -37,6 +37,5 @@
 - [x] transizione drag and drop
 - [x] fixare height pagina index
 - [x] fare gli alert
-- [ ] pagina introduttiva
-- [ ] aggiungere stilizzazione dark a barra di caricamento
-- [ ] aggiungere stilizzazione dark a bottone Browse File
+- [x] pagina introduttiva
+- [ ] mettere info e contatti domodesk a pagina welcome.html
