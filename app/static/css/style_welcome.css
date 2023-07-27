@@ -5,6 +5,12 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    margin: 0;
 }
 
 .welcome_div {
@@ -15,20 +21,25 @@
     height: 10rem;
 }
 
-a{
+a,
+a:hover,
+a:focus,
+a:active {
     color: coral;
 }
-a:visited{
+
+a:visited {
     color: blueviolet;
 }
 
-a:hover{
-    color: coral;
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 
-a:focus{
-    color: coral;
-}
-a:active{
-    color: coral;
+footer p {
+    font-weight: 600;
 }
