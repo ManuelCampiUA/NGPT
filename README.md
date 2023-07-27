@@ -38,6 +38,7 @@
 - [x] fixare height pagina index
 - [x] fare gli alert
 - [x] pagina introduttiva
-- [ ] mettere info e contatti domodesk a pagina welcome.html
+- [x] mettere info e contatti domodesk a pagina welcome.html
+- [ ] stilizzare settings
 - [ ] aggiungere stilizzazione dark della barra di caricamento
 - [ ] aggiungere stilizzazione dark del bottone Browse File
