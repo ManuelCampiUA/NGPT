@@ -5,6 +5,7 @@
 - [x] Chromadb
 - [x] SQLite
 - [x] Authentication
+- [x] Admin
 - [x] Upload file
 - [x] Process file
 - [x] File list

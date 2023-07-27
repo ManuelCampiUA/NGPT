@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, url_for, redirect
 from os import listdir, path
 from werkzeug.utils import secure_filename
-from .auth import login_required
+from .auth import login_required, admin_required
 from .functions import load_AI, upload_AI, allowed_file
 
 FILE_FOLDER = "upload"
@@ -28,6 +28,7 @@ def welcome():
 
 
 @index.route("/settings", methods=("GET", "POST"))
+@admin_required
 @login_required
 def settings():
     if request.method == "POST":

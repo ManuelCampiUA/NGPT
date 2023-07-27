@@ -1,5 +1,13 @@
-from flask import Blueprint, url_for, redirect, request, render_template
-from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
+from flask import Blueprint, url_for, redirect, abort, request, render_template
+from flask_login import (
+    LoginManager,
+    UserMixin,
+    current_user,
+    login_required,
+    login_user,
+    logout_user,
+)
+from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from .database import get_db
 
@@ -13,13 +21,15 @@ class User(UserMixin):
         self.id = user[0]
         self.username = user[1]
         self.password = user[2]
+        self.isAdmin = user[3]
 
 
 @login_manager.user_loader
 def load_user(user_id):
     user = get_db().execute("SELECT * FROM user WHERE id = ?", (user_id,)).fetchone()
-    logged_user = User(user)
-    return logged_user
+    if user is not None:
+        return User(user)
+    return None
 
 
 @login_manager.unauthorized_handler
@@ -27,7 +37,18 @@ def unauthorized():
     return redirect(url_for("auth.login"))
 
 
+def admin_required(view):
+    @wraps(view)
+    def decorated_function(*args, **kwargs):
+        if current_user.isAdmin is None:
+            abort(403)
+        return view(*args, **kwargs)
+
+    return decorated_function
+
+
 @auth.route("/register", methods=("GET", "POST"))
+@admin_required
 @login_required
 def register():
     if request.method == "POST":

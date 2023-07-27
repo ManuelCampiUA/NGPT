@@ -27,10 +27,11 @@ def init_db():
     CREATE TABLE user (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE NOT NULL,
-        password TEXT NOT NULL
+        password TEXT NOT NULL,
+        isAdmin INTEGER
     );
-    INSERT INTO user (username, password)
-    VALUES('admin', '{generate_password_hash("password")}');"""
+    INSERT INTO user (username, password, isAdmin)
+    VALUES('admin', '{generate_password_hash("password")}', 1);"""
     db.cursor().executescript(sql)
     db.commit()
     db.close()
