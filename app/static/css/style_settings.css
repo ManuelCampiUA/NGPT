@@ -15,7 +15,7 @@ ul {
 .setting {
     display: flex;
     flex-direction: row;
-    width: 51rem;
+    width: 40%;
     height: 3rem;
     margin: 1rem 1rem;
     border-radius: 20px;
@@ -32,10 +32,22 @@ ul {
     font-size: 16px;
     color: var(--secondary-color);
 }
+
 .setting button {
     background-color: coral;
     color: var(--secondary-color);
     border: none;
     border-radius: 10px;
     margin-left: 1rem;
+}
+
+@media screen and (max-width: 650px) {
+    .setting {
+
+        width: 80%;
+    }
+
+    .setting button {
+        padding: 0 1rem;
+    }
 }
