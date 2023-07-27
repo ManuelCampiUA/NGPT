@@ -17,10 +17,7 @@
     --humanchat: coral;
 }
 
-div:hover {
-    /*togliere alla fine, debug*/
-    border: 2px solid yellow;
-}
+
 
 
 body {
@@ -34,6 +31,11 @@ body {
 #toggle_dark {
     width: 2rem;
     height: 2rem;
+}
+
+.settings {
+    width: 3rem;
+    height: 3rem;
 }
 
 

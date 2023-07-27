@@ -35,6 +35,10 @@
             <img id="toggle_dark" class="sunicon" src="{{ url_for('static', filename='img/moon.svg') }}"
                 alt="toggle_dark_mode">
         </div>
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('index.settings') }}"><img class="settings"
+            src="{{ url_for('static', filename='img/settings.svg') }}" alt="settings"></a>
+            {% endif %}
 
         <div class="navbar-links">
             <ul>
@@ -42,6 +46,8 @@
                 <li><a>{{ current_user.username }}</a></li>
                 <span class="bar"></span>
                 <li><a href="{{ url_for('auth.logout') }}">Logout</a>
+                    <span class="bar"></span>
+                
                     {% else %}
                 <li><a class=login href="{{ url_for('auth.login') }}">Login</a>
                     {% endif %}
