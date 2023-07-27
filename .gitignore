@@ -2,8 +2,9 @@
 __pycache__
 
 # Environments
-.env
 .venv
+.env
+APIKey.json
 
 # SQLite
 database.sqlite

@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template, request, session, url_for, redirect
+from flask import Blueprint, render_template, request, url_for, redirect
 from os import listdir, path
 from werkzeug.utils import secure_filename
+from openai import error
 from .auth import login_required, admin_required
-from .functions import load_AI, upload_AI, allowed_file
+from .functions import load_AI, set_api_key, get_api_key, upload_AI, allowed_file
 
 FILE_FOLDER = "upload"
 
@@ -15,10 +16,6 @@ def home():
     file_list = {}
     if listdir(FILE_FOLDER):
         global conversation_chain
-        # Test
-        from os import environ
-
-        session["APIKey"] = environ.get("OPENAI_API_KEY")
         conversation_chain = load_AI()
         for file in listdir(FILE_FOLDER):
             size = round(path.getsize(path.join(FILE_FOLDER, file)) / 1000000, 3)
@@ -36,9 +33,9 @@ def welcome():
 @login_required
 def settings():
     if request.method == "POST":
-        session["APIKey"] = request.form["APIKey"]
+        set_api_key(request.form["APIKey"])
         return redirect(url_for(".home"))
-    return render_template("settings.html")
+    return render_template("settings.html", APIKey=get_api_key())
 
 
 @index.post("/upload")
@@ -77,9 +74,12 @@ def file_list():
 @index.post("/QeA")
 @login_required
 def QeA():
-    if listdir(FILE_FOLDER):
-        user_question = request.form["question"]
-        data = {"response": conversation_chain.run(question=user_question)}
+    try:
+        if listdir(FILE_FOLDER):
+            user_question = request.form["question"]
+            data = {"response": conversation_chain.run(question=user_question)}
+            return data
+        data = {"response": "No file uploaded"}, 400
         return data
-    data = {"response": "No file uploaded"}, 400
-    return data
+    except error.AuthenticationError:
+        return {"response": "Wrong API Key"}, 400
