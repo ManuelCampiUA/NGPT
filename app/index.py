@@ -1,4 +1,4 @@
-from flask import Blueprint, session, render_template, request
+from flask import Blueprint, render_template, request
 from os import listdir, path
 from werkzeug.utils import secure_filename
 from .auth import login_required
@@ -71,7 +71,6 @@ def file_list():
 def QeA():
     if listdir(FILE_FOLDER):
         user_question = request.form["question"]
-        conversation_chain = session.get("conversation_chain")
         data = {"response": conversation_chain.run(question=user_question)}
         return data
     data = {"response": "No file uploaded"}, 400

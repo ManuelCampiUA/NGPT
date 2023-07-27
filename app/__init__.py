@@ -14,7 +14,6 @@ def internal_server_error(e):
 
 def create_app():
     app = Flask(__name__)
-    app.config["SECRET_KEY"] = environ.get("SECRET_KEY")
     app.config.update(
         SECRET_KEY=environ.get("SECRET_KEY"),
         SESSION_COOKIE_SECURE=True,
