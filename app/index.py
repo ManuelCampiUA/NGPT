@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, url_for, redirect
+from flask import Blueprint, render_template, request, session, url_for, redirect
 from os import listdir, path
 from werkzeug.utils import secure_filename
 from .auth import login_required, admin_required
@@ -15,6 +15,10 @@ def home():
     file_list = {}
     if listdir(FILE_FOLDER):
         global conversation_chain
+        # Test
+        from os import environ
+
+        session["APIKey"] = environ.get("OPENAI_API_KEY")
         conversation_chain = load_AI()
         for file in listdir(FILE_FOLDER):
             size = round(path.getsize(path.join(FILE_FOLDER, file)) / 1000000, 3)
@@ -32,7 +36,7 @@ def welcome():
 @login_required
 def settings():
     if request.method == "POST":
-        APIKey = request.form["APIKey"]
+        session["APIKey"] = request.form["APIKey"]
         return redirect(url_for(".home"))
     return render_template("settings.html")
 

@@ -1,5 +1,6 @@
 from pypdf import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from flask import session
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 from langchain.chat_models import ChatOpenAI
@@ -36,7 +37,7 @@ def get_text_chunks(text):
 
 
 def get_vectorstore(text_chunks=None):
-    embeddings = OpenAIEmbeddings()
+    embeddings = OpenAIEmbeddings(openai_api_key=session.get("APIKey"))
     if text_chunks:
         vectorstore = Chroma.from_texts(
             text_chunks, embeddings, persist_directory=CHROMADB_FOLDER
@@ -49,7 +50,7 @@ def get_vectorstore(text_chunks=None):
 
 
 def get_conversation_chain(vectorstore):
-    llm = ChatOpenAI()
+    llm = ChatOpenAI(openai_api_key=session.get("APIKey"))
     memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm=llm, retriever=vectorstore.as_retriever(), memory=memory
