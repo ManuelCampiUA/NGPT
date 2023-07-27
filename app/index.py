@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, url_for, redirect
 from os import listdir, path
 from werkzeug.utils import secure_filename
 from .auth import login_required
@@ -27,9 +27,12 @@ def welcome():
     return render_template("welcome.html")
 
 
-@index.route("/settings")
+@index.route("/settings", methods=("GET", "POST"))
 @login_required
 def settings():
+    if request.method == "POST":
+        APIKey = request.form["APIKey"]
+        return redirect(url_for(".home"))
     return render_template("settings.html")
 
 
