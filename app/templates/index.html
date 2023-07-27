@@ -7,23 +7,25 @@
 
 <div class="grid">
     <div class="sidebar">
-        <div class="drop_section">
-            <div class=drop_section_content>
-                <img src="{{ url_for('static', filename='img/cloud.png') }}" alt="cloud">
-                <span>Drag your files here</span>
-                <span>or</span>
-                <button class="file-selector">Browse Files</button>
-                <input type="file" class="file-selector-input" multiple>
+        <div>
+            <div class="drop_section">
+                <div class=drop_section_content>
+                    <img src="{{ url_for('static', filename='img/cloud.png') }}" alt="cloud">
+                    <span>Drag your files here</span>
+                    <span>or</span>
+                    <button class="file-selector">Browse Files</button>
+                    <input type="file" class="file-selector-input" multiple>
+                </div>
+                <div class="col">
+                    <div class="drop-here">Drop Here</div>
+                </div>
             </div>
-            <div class="col">
-                <div class="drop-here">Drop Here</div>
+
+            <div id="process">
+                <progress value="0" max="100" id="progress_bar"></progress>
             </div>
-        </div>
 
-        <div id="process">
-            <progress value="0" max="100" id="progress_bar"></progress>
         </div>
-
         <div class="alert">
             <div class="alert-icon">
                 <img src="{{ url_for('static', filename='img/info.svg') }}">

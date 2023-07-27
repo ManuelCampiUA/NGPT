@@ -4,7 +4,7 @@ body {
 }
 
 .mask {
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,7 +14,7 @@ body {
 }
 
 .wrapper {
-    width: 60vh;
+    width: 30rem;
     background: transparent;
     color: white;
     padding: 30px 40px;
