@@ -77,7 +77,9 @@ def QeA():
     try:
         if listdir(FILE_FOLDER):
             user_question = request.form["question"]
-            data = {"response": conversation_chain.run(question=user_question)}
+            data = {
+                "response": user_question
+            }  # conversation_chain.run(question=user_question)}
             return data
         data = {"response": "No file uploaded"}, 400
         return data

@@ -104,6 +104,7 @@ body {
 
 /*Allerte*/
 .alert {
+    display: flex;
     --foreground-color: #222222;
     --background-color: #eeeeee;
 
@@ -127,6 +128,7 @@ body {
 .alert-icon .material-symbols-outlined,
 .alert-text {
     color: var(--foreground-color);
+    flex-grow: 1;
 }
 
 .alert-warning {
@@ -148,8 +150,10 @@ body {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 1.8rem;
     margin-left: 10px;
+    position: relative;
+    padding-right: 1rem;
 }
 
 @media screen and (max-width: 650px) {
