@@ -24,7 +24,6 @@ async function QeA() {
             QeAForm.reset();
             paragraphResponse.appendChild(document.createTextNode(result));
             QeADiv.appendChild(paragraphResponse);
-            document.body.style.overflow = "scroll";
         }
     } catch (error) {
         console.error("There has been a problem with your Q&A operation:", error.message);

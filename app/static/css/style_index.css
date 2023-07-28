@@ -1,14 +1,18 @@
 .grid {
-    display: grid;
+    display: flex;
     grid-template-columns: 20% 80%;
     grid-template-rows: min-content calc(100vh - 4rem);
-    background: var(--primary-color);
     padding: 0;
     margin: 0;
 }
 
 .main_content {
+    flex: 80%;
     padding: 3% 3% 0 3%;
+}
+
+.sidebar {
+    flex: 20%;
 }
 
 
