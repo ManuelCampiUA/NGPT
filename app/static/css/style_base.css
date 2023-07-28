@@ -109,9 +109,8 @@ body {
 
     display: none;
     align-items: center;
-    padding: 1em;
+    padding: 0.5rem;
     box-sizing: border-box;
-    border-radius: 5px;
     width: 100%;
     background-color: var(--background-color);
 }

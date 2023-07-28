@@ -37,8 +37,8 @@
         </div>
         {% if current_user.is_authenticated %}
         <a href="{{ url_for('index.settings') }}"><img class="settings"
-            src="{{ url_for('static', filename='img/settings.svg') }}" alt="settings"></a>
-            {% endif %}
+                src="{{ url_for('static', filename='img/settings.svg') }}" alt="settings"></a>
+        {% endif %}
 
         <div class="navbar-links">
             <ul>
@@ -47,13 +47,20 @@
                 <span class="bar"></span>
                 <li><a href="{{ url_for('auth.logout') }}">Logout</a>
                     <span class="bar"></span>
-                
+
                     {% else %}
                 <li><a class=login href="{{ url_for('auth.login') }}">Login</a>
                     {% endif %}
             </ul>
         </div>
     </nav>
+    <div class="alert">
+        <div class="alert-icon">
+            <img src="{{ url_for('static', filename='img/info.svg') }}">
+        </div>
+        <div class="alert-text"></div>
+        <button class="close-btn">&times;</button>
+    </div>
     {% block content %}{% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
