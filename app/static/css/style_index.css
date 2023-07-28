@@ -147,11 +147,13 @@
     background-color: var(--botchat);
     color: white;
 }
-.drop_process{
+
+.drop_process {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 #question input {
     width: 97%;
     border-radius: 10px;
@@ -168,10 +170,11 @@
     align-items: center;
     justify-content: center;
 
+
 }
 
 #progress_bar {
-    width: 15rem;
+    width: 100%;
     background-color: var(--third-color);
     border-radius: 10px;
     border: none;
