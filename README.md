@@ -11,7 +11,7 @@
 - [x] File list
 - [x] Q&A
 - [x] Error handling
-- [ ] Add conversational_chain to session
+- [ ] Fix welcome, login, setting, register scrollbar
 
 ## Manu
 
