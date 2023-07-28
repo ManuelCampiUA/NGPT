@@ -1,4 +1,4 @@
-.grid {
+.flex_container {
     display: flex;
     grid-template-columns: 20% 80%;
     grid-template-rows: min-content calc(100vh - 4rem);
@@ -60,7 +60,7 @@
 }
 
 /*Nasconde "drop ur files here" quando trascini un PDF*/
-.drag-over-effect div.drop_section_content span {
+.drag_over_effect div.drop_section_content span {
     opacity: 0;
     visibility: hidden;
 }
@@ -76,14 +76,14 @@
 }
 
 /*Mostra il drag and drop*/
-.drag-over-effect div.col:last-child {
+.drag_over_effect div.col:last-child {
     opacity: 1;
     visibility: visible;
     transform: scale(1);
 }
 
 /*Nasconde il bottone durante il drag-over*/
-.drag-over-effect .file-selector {
+.drag_over_effect .file-selector {
     opacity: 0;
     visibility: hidden;
 }
@@ -207,7 +207,7 @@
         padding-left: 5%;
     }
 
-    .grid {
+    .flex_container {
         display: grid;
         grid-template-columns: 25% 75%;
         grid-template-rows: 1fr 1.3fr;
@@ -220,7 +220,7 @@
         padding-left: 0;
     }
 
-    .grid {
+    .flex_container {
         display: grid;
         grid-template-columns: 25% 75%;
         grid-template-rows: 1fr 2fr;
@@ -246,7 +246,7 @@
         padding: 0;
     }
 
-    .grid {
+    .flex_container {
         display: grid;
         grid-template-columns: 100%;
     }

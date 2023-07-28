@@ -4,12 +4,10 @@ body {
 }
 
 .mask {
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background: var(--primary-color);
-    align-items: start;
 
 }
 
