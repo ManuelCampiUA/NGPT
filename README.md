@@ -11,7 +11,11 @@
 - [x] File list
 - [x] Q&A
 - [x] Error handling
-- [ ] Fix welcome, login, setting, register scrollbar
+- [ ] Fix login redirect
+- [ ] Fix chat input focus
+- [ ] Add 403 Forbidden page
+- [ ] Add QeA animation
+- [ ] Add alerts animation
 
 ## Manu
 
@@ -41,4 +45,3 @@
 - [x] pagina introduttiva
 - [x] mettere info e contatti domodesk a pagina welcome.html
 - [x] stilizzare settings
-- [ ] aggiungere stilizzazione dark della barra di caricamento
