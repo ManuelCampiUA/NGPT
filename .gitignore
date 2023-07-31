@@ -5,6 +5,7 @@ __pycache__
 .venv
 .env
 APIKey.json
+start.sh
 
 # SQLite
 database.sqlite
