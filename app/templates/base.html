@@ -35,7 +35,7 @@
             <img id="toggle_dark" class="sunicon" src="{{ url_for('static', filename='img/moon.svg') }}"
                 alt="toggle_dark_mode">
         </div>
-        {% if current_user.is_authenticated %}
+        {% if current_user.isAdmin %}
         <a href="{{ url_for('settings_views.settings') }}"><img class="settings"
                 src="{{ url_for('static', filename='img/settings.svg') }}" alt="settings"></a>
         {% endif %}
