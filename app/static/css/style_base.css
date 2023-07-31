@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
-:root {
+.light_theme {
     --primary-color: linear-gradient(113deg, rgb(253, 249, 122) 24.4%, rgb(247, 163, 205) 53.7%, #8765b9);
     --secondary-color: black;
     --third-color: white;

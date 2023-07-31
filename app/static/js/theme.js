@@ -1,6 +1,7 @@
 const themeIcon = document.getElementById("toggle_dark");
 
 function setDarkMode() {
+    document.body.classList.remove("light_theme");
     document.body.classList.add("dark_theme");
     localStorage.setItem("theme", "dark");
     themeIcon.src = "static/img/sun.svg";
@@ -8,6 +9,7 @@ function setDarkMode() {
 
 function setLightMode() {
     document.body.classList.remove("dark_theme");
+    document.body.classList.add("light_theme");
     localStorage.setItem("theme", "light");
     themeIcon.src = "static/img/moon.svg";
 }
