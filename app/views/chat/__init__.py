@@ -1,44 +1,29 @@
-from flask import Blueprint, render_template, request, url_for, redirect
+from flask import Blueprint, render_template, request
 from os import listdir, path
 from werkzeug.utils import secure_filename
 from openai import error
-from .auth import login_required, admin_required
-from .functions import load_AI, set_api_key, get_api_key, upload_AI, allowed_file
+from ..auth import login_required
+from .utils import load_AI, upload_AI, allowed_file
 
 FILE_FOLDER = "upload"
 
-index = Blueprint("index", __name__)
+chat_views = Blueprint("chat_views", __name__)
 
 
-@index.route("/")
+@chat_views.route("/chat")
 @login_required
-def home():
+def chat():
     file_list = {}
     if listdir(FILE_FOLDER):
         global conversation_chain
-        conversation_chain = load_AI()
+        # conversation_chain = load_AI()
         for file in listdir(FILE_FOLDER):
             size = round(path.getsize(path.join(FILE_FOLDER, file)) / 1000000, 3)
             file_list[file] = str(size) + " MB"
-    return render_template("index.html", file_list=file_list)
+    return render_template("chat.html", file_list=file_list)
 
 
-@index.route("/welcome")
-def welcome():
-    return render_template("welcome.html")
-
-
-@index.route("/settings", methods=("GET", "POST"))
-@admin_required
-@login_required
-def settings():
-    if request.method == "POST":
-        set_api_key(request.form["APIKey"])
-        return redirect(url_for(".home"))
-    return render_template("settings.html", APIKey=get_api_key())
-
-
-@index.post("/upload")
+@chat_views.post("/upload")
 @login_required
 def upload():
     file_uploaded = []
@@ -53,14 +38,14 @@ def upload():
             file_uploaded.append(file_path)
     if file_uploaded:
         global conversation_chain
-        conversation_chain = upload_AI(file_uploaded)
+        # conversation_chain = upload_AI(file_uploaded)
         data = {"response": "Success"}
         return data
     data = {"response": "Incorrect file extension"}, 400
     return data
 
 
-@index.get("/file_list")
+@chat_views.get("/file_list")
 @login_required
 def file_list():
     file_list = {}
@@ -71,7 +56,7 @@ def file_list():
     return data
 
 
-@index.post("/QeA")
+@chat_views.post("/QeA")
 @login_required
 def QeA():
     try:

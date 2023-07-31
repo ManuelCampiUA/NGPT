@@ -1,4 +1,3 @@
-from json import dump, load
 from pypdf import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
@@ -6,6 +5,7 @@ from langchain.vectorstores import Chroma
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
+from ..settings.utils import get_api_key
 
 CHROMADB_FOLDER = "chromadb"
 ALLOWED_EXTENSIONS = {"pdf"}
@@ -13,17 +13,6 @@ ALLOWED_EXTENSIONS = {"pdf"}
 
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
-def set_api_key(APIKey):
-    json = {"APIKey": APIKey}
-    with open("APIKey.json", "w") as file:
-        dump(json, file)
-
-
-def get_api_key():
-    APIKey = load(open("APIKey.json"))
-    return APIKey["APIKey"]
 
 
 def get_pdf_text(pdf_docs):
@@ -70,12 +59,14 @@ def get_conversation_chain(vectorstore):
 
 
 def upload_AI(file_uploaded):
-    raw_text = get_pdf_text(file_uploaded)
-    text_chunks = get_text_chunks(raw_text)
-    vectorstore = get_vectorstore(text_chunks)
-    return get_conversation_chain(vectorstore)
+    pass
+    # raw_text = get_pdf_text(file_uploaded)
+    # text_chunks = get_text_chunks(raw_text)
+    # vectorstore = get_vectorstore(text_chunks)
+    # return get_conversation_chain(vectorstore)
 
 
 def load_AI():
-    vectorstore = get_vectorstore()
-    return get_conversation_chain(vectorstore)
+    pass
+    # vectorstore = get_vectorstore()
+    # return get_conversation_chain(vectorstore)

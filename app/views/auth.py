@@ -9,9 +9,9 @@ from flask_login import (
 )
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
-from .database import get_db
+from ..database import get_db
 
-auth = Blueprint("auth", __name__)
+auth_views = Blueprint("auth_views", __name__)
 login_manager = LoginManager()
 login_manager.session_protection = "strong"
 
@@ -34,7 +34,7 @@ def load_user(user_id):
 
 @login_manager.unauthorized_handler
 def unauthorized():
-    return redirect(url_for("auth.login"))
+    return redirect(url_for("auth_views.login"))
 
 
 def admin_required(view):
@@ -47,9 +47,9 @@ def admin_required(view):
     return decorated_function
 
 
-@auth.route("/register", methods=("GET", "POST"))
-@admin_required
+@auth_views.route("/register", methods=("GET", "POST"))
 @login_required
+@admin_required
 def register():
     if request.method == "POST":
         username = request.form["username"]
@@ -75,7 +75,7 @@ def register():
     return render_template("register.html")
 
 
-@auth.route("/login", methods=("GET", "POST"))
+@auth_views.route("/login", methods=("GET", "POST"))
 def login():
     if request.method == "POST":
         username = request.form["username"]
@@ -97,7 +97,7 @@ def login():
     return render_template("login.html")
 
 
-@auth.route("/logout")
+@auth_views.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for(".login"))
+    return redirect(url_for("auth_views.login"))

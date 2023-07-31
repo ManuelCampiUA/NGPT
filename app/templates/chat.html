@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Index{% endblock %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_chat.css')  }}">
+{% endblock %}
+{% block content %}
+
+<div class="flex_container">
+    <div class="sidebar">
+        <div class="drop_process">
+            <div class="drop_section">
+                <div class=drop_section_content>
+                    <img src="{{ url_for('static', filename='img/cloud.png') }}" alt="cloud">
+                    <span>Drag your files here</span>
+                    <span>or</span>
+                    <button class="file-selector">Browse Files</button>
+                    <input type="file" class="file-selector-input" multiple>
+                </div>
+                <div class="col">
+                    <div class="drop-here">Drop Here</div>
+                </div>
+            </div>
+
+            <div id="process">
+                <progress value="0" max="100" id="progress_bar"></progress>
+            </div>
+
+        </div>
+
+
+        <div class="sidebar" id="pdf sidebar">
+            <ul id="file_list">
+                {% for file, size in file_list.items() %}
+                <li>
+                    <p>{{ file }}</p>
+                    <p>{{ size }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="main_content">
+        <h1 class="titolo">Chat with your PDFs</h1>
+        <h4 class="titolo">Ask me a question about your documents</h4>
+        <div id="QeA"></div>
+        <form id="question">
+            <input type="text" name="question">
+        </form>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/dragAndDrop.js') }}"></script>
+<script src="{{ url_for('static', filename='js/QeA.js') }}"></script>
+
+{%endblock %}

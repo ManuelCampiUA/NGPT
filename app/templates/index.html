@@ -1,56 +1,24 @@
 {% extends 'base.html' %}
 {% block title %}Index{% endblock %}
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_index.css')  }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_index.css')}}">
+
 {% endblock %}
 {% block content %}
-
-<div class="flex_container">
-    <div class="sidebar">
-        <div class="drop_process">
-            <div class="drop_section">
-                <div class=drop_section_content>
-                    <img src="{{ url_for('static', filename='img/cloud.png') }}" alt="cloud">
-                    <span>Drag your files here</span>
-                    <span>or</span>
-                    <button class="file-selector">Browse Files</button>
-                    <input type="file" class="file-selector-input" multiple>
-                </div>
-                <div class="col">
-                    <div class="drop-here">Drop Here</div>
-                </div>
-            </div>
-
-            <div id="process">
-                <progress value="0" max="100" id="progress_bar"></progress>
-            </div>
-
-        </div>
-
-
-        <div class="sidebar" id="pdf sidebar">
-            <ul id="file_list">
-                {% for file, size in file_list.items() %}
-                <li>
-                    <p>{{ file }}</p>
-                    <p>{{ size }}</p>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+<div class="container">
+    <h1>WELCOME TO</h1>
+    <div class="welcome_div">
+        <img class="welcome_logo" src="{{ url_for('static', filename='img/logo.png') }}">
     </div>
-
-    <div class="main_content">
-        <h1 class="titolo">Chat with your PDFs</h1>
-        <h4 class="titolo">Ask me a question about your documents</h4>
-        <div id="QeA"></div>
-        <form id="question">
-            <input type="text" name="question">
-        </form>
+    <div>
+        <h2>Start <a href="{{ url_for('chat_views.chat') }}">HERE</a> your PDF chat</h2>
     </div>
 </div>
-
-<script src="{{ url_for('static', filename='js/dragAndDrop.js') }}"></script>
-<script src="{{ url_for('static', filename='js/QeA.js') }}"></script>
-
-{%endblock %}
+<footer>
+    <p><em>NapolitanoGPT is a project made by Filippo and Manuel with the
+            collaboration of <a href="https://www.domodesk.com/" target="_blank">DomoDesk S.L</a>, please contact us for
+            more info.
+    </p>
+    <p>Tel +34 96 357 48 62 E-mail service@domodesk.com </em></p>
+</footer>
+{% endblock %}

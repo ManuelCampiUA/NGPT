@@ -10,7 +10,7 @@ async function login() {
         loginPassword.value = loginPassword.value.trim();
         const formData = new FormData(loginForm);
         await axios.post("login", formData);
-        window.location.assign("../");
+        window.location.assign("chat");
     } catch (error) {
         console.error("There has been a problem with your login operation:", error.message);
         if (error.response) {

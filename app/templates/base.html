@@ -27,8 +27,8 @@
 <body class="light_theme">
     <nav class="navbar">
         <div class="brand-title">
-            <a href="{{ url_for('index.home') }}" class="alternative_logo">
-                <a href="{{ url_for('index.home') }}"><img class="logo"
+            <a href="{{ url_for('index_views.home') }}" class="alternative_logo">
+                <a href="{{ url_for('index_views.home') }}"><img class="logo"
                         src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
         </div>
         <div>
@@ -36,7 +36,7 @@
                 alt="toggle_dark_mode">
         </div>
         {% if current_user.is_authenticated %}
-        <a href="{{ url_for('index.settings') }}"><img class="settings"
+        <a href="{{ url_for('settings_views.settings') }}"><img class="settings"
                 src="{{ url_for('static', filename='img/settings.svg') }}" alt="settings"></a>
         {% endif %}
 
@@ -45,11 +45,11 @@
                 {% if current_user.is_authenticated %}
                 <li><a>{{ current_user.username }}</a></li>
                 <span class="bar"></span>
-                <li><a href="{{ url_for('auth.logout') }}">Logout</a>
+                <li><a href="{{ url_for('auth_views.logout') }}">Logout</a>
                     <span class="bar"></span>
 
                     {% else %}
-                <li><a class=login href="{{ url_for('auth.login') }}">Login</a>
+                <li><a class=login href="{{ url_for('auth_views.login') }}">Login</a>
                     {% endif %}
             </ul>
         </div>

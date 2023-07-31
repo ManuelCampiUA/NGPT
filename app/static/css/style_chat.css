@@ -1,0 +1,284 @@
+.flex_container {
+    display: flex;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: min-content calc(100vh - 4rem);
+    padding: 0;
+    margin: 0;
+}
+
+.main_content {
+    flex: 80%;
+    padding: 3% 3% 0 3%;
+}
+
+.sidebar {
+    flex: 20%;
+}
+
+
+/*casella drag your files here*/
+.drop_section {
+    position: relative;
+    display: flex;
+    background-color: var(--third-color);
+    max-width: 15rem;
+    height: 15rem;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 10%;
+}
+
+/*Mostra il DROP HERE durante drag and drop*/
+.drop_section div.col:last-child {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 11rem;
+    height: 4rem;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.6);
+    transition: 0.2s;
+}
+
+/*Fa sparire "drop ur files here" appena prima che arrivi "DROP HERE"*/
+.drop_section div.drop_section_content span {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s;
+}
+
+/*Nasconde "drop ur files here" quando trascini un PDF*/
+.drag_over_effect div.drop_section_content span {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/*Scritta drag your files here or, la transizione gestisce il ritorno della scritta dietro e del bottone*/
+.drop_section span,
+.drop_section button {
+    display: block;
+    margin: auto;
+    color: var(--secondary-color);
+    text-align: center;
+    transition: 1s;
+}
+
+/*Mostra il drag and drop*/
+.drag_over_effect div.col:last-child {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+/*Nasconde il bottone durante il drag-over*/
+.drag_over_effect .file-selector {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.drop_section_content {
+    margin: 10%;
+}
+
+/*Bottone browse files*/
+.drop_section button {
+    color: white;
+    background-color: coral;
+    border: none;
+    outline: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 10px;
+    margin-top: 1.2rem;
+    cursor: pointer;
+}
+
+/*Upload barrette caricamento NON toccare senno si rompe tutto*/
+.drop_section input {
+    display: none;
+}
+
+#file_list {
+    display: block;
+    align-content: center;
+    padding-left: 60px;
+    padding-top: 1rem;
+}
+
+#file_list li {
+    list-style-image: url(/static/img/pdf.png);
+    padding-bottom: 2vh;
+
+}
+
+#file_list li p {
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);
+}
+
+/*ChatbotArea*/
+#QeA {
+    display: none;
+}
+
+#QeA p {
+    border-radius: 10px;
+    padding: 1rem;
+    font-size: 18px;
+    width: 97%;
+}
+
+#QeA p:nth-child(2n+1) {
+    background-color: var(--humanchat);
+    text-align: right;
+    color: black;
+}
+
+#QeA p:nth-child(2n) {
+    background-color: var(--botchat);
+    color: white;
+}
+
+.drop_process {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#question input {
+    width: 97%;
+    border-radius: 10px;
+    border-style: none;
+    font-size: 18px;
+    padding: 1rem;
+}
+
+#process {
+    display: flex;
+    align-content: center;
+    text-align: center;
+    margin: 1rem;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+#progress_bar {
+    width: 100%;
+    background-color: var(--third-color);
+    border-radius: 10px;
+    border: none;
+    animation: ease-in 5s linear infinite;
+    -moz-animation: ease-in 5s linear infinite;
+}
+
+#progress_bar[value]::-moz-progress-bar {
+    background-color: #ff7f50;
+    animation: ease-in 5s linear infinite;
+    -moz-animation: ease-in 5s linear infinite;
+}
+
+#progress_bar[value]::-webkit-progress-value {
+    background-color: #ff7f50;
+    animation: ease-in 5s linear infinite;
+    -moz-animation: ease-in 5s linear infinite;
+}
+
+
+
+/*Breakpoints*/
+@media screen and (max-width: 990px) {
+
+    .main_content {
+        padding-left: 5%;
+    }
+
+    .flex_container {
+        display: grid;
+        grid-template-columns: 25% 75%;
+        grid-template-rows: 1fr 1.3fr;
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+    .main_content {
+        padding-left: 0;
+    }
+
+    .flex_container {
+        display: grid;
+        grid-template-columns: 25% 75%;
+        grid-template-rows: 1fr 2fr;
+    }
+
+    .drop_section {
+        margin: 0 5% 0 5%;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+
+    body {
+        text-align: center;
+    }
+
+    .drop_section_content {
+        margin: 0;
+    }
+
+    .main_content {
+        padding: 0;
+    }
+
+    .flex_container {
+        display: grid;
+        grid-template-columns: 100%;
+    }
+
+    .drop_section {
+        margin: 10% 30% 0 30%;
+    }
+
+    #question input {
+        width: 91%;
+    }
+
+    #QeA {
+        width: 95%;
+    }
+
+    #file_list {
+        font-weight: 700;
+        padding: 1rem 0 0 0;
+        margin-bottom: 0;
+    }
+
+    #file_list li {
+        list-style: none;
+    }
+
+    #file_list :last-child {
+        padding: 0;
+    }
+
+    #progress_bar {
+        width: 70%;
+        align-content: center;
+    }
+}
