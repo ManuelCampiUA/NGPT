@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}Welcome{% endblock %}
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_settings.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_welcome.css')}}">
 
 {% endblock %}
@@ -14,16 +13,15 @@
     <div>
         <h2>Start <a href="{{ url_for('index.home') }}">HERE</a> your PDF chat</h2>
     </div>
-    <footer>
-        <p><em>NapolitanoGPT is a project made by two students from the <a href="https://www.fitstic.it/"
+</div>
+<footer>
+    <p><em>NapolitanoGPT is a project made by two students from the <a href="https://www.fitstic.it/"
                 target="_blank">FITSTIC
                 Foundation</a> with the
             collaboration with <a href="https://www.domodesk.com/" target="_blank">DomoDesk S.L</a>, please contact us
             for
             more info.
-        </p>
-        <p>Tel +34 96 357 48 62 E-mail service@domodesk.com </em></p>
-
-    </footer>
-</div>
+    </p>
+    <p>Tel +34 96 357 48 62 E-mail service@domodesk.com </em></p>
+</footer>
 {% endblock %}
