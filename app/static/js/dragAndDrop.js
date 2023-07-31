@@ -93,21 +93,21 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("dragstart", (event) => {
         event.preventDefault();
     });
+    window.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        dropArea.classList.add("drag_over_effect");
+    });
+    window.addEventListener("dragleave", () => {
+        dropArea.classList.remove("drag_over_effect");
+    });
     window.addEventListener("drop", (event) => {
         event.preventDefault();
-        dropArea.classList.remove("drag-over-effect");
+        dropArea.classList.remove("drag_over_effect");
     });
     dropArea.addEventListener("drop", (event) => {
         event.preventDefault();
-        dropArea.classList.remove("drag-over-effect");
+        dropArea.classList.remove("drag_over_effect");
         uploadFile(event.dataTransfer.files);
-    });
-    window.addEventListener("dragover", (event) => {
-        event.preventDefault();
-        dropArea.classList.add("drag-over-effect");
-    });
-    window.addEventListener("dragleave", () => {
-        dropArea.classList.remove("drag-over-effect");
     });
     dropArea.addEventListener("click", () => {
         fileSelectorInput.click();

@@ -16,6 +16,7 @@
 - [ ] Add 403 Forbidden page
 - [ ] Add QeA animation
 - [ ] Add alerts animation
+- [ ] Refactor class naming
 
 ## Manu
 
