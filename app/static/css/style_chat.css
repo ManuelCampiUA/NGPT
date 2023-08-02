@@ -163,6 +163,7 @@
     border-style: none;
     font-size: 18px;
     padding: 1rem;
+    margin-bottom: 1rem;
 }
 
 #process {
@@ -206,13 +207,14 @@
         padding-left: 5%;
         flex: 70%;
     }
-    .sidebar{
-        flex:30%
+
+    .sidebar {
+        flex: 30%
     }
 
     .flex_container {
         display: flex;
-        
+
     }
 }
 
@@ -225,6 +227,7 @@
     .flex_container {
         display: flex;
     }
+
     .drop_section {
         margin: 5% 5% 0 5%;
     }

@@ -16,7 +16,7 @@ def chat():
     file_list = {}
     if listdir(FILE_FOLDER):
         global conversation_chain
-        conversation_chain = load_AI()
+        # conversation_chain = load_AI()
         for file in listdir(FILE_FOLDER):
             size = round(path.getsize(path.join(FILE_FOLDER, file)) / 1000000, 3)
             file_list[file] = str(size) + " MB"
@@ -38,7 +38,7 @@ def upload():
             file_uploaded.append(file_path)
     if file_uploaded:
         global conversation_chain
-        conversation_chain = upload_AI(file_uploaded)
+        # conversation_chain = upload_AI(file_uploaded)
         data = {"response": "Success"}
         return data
     data = {"response": "Incorrect file extension"}, 400
@@ -63,7 +63,8 @@ def QeA():
         if listdir(FILE_FOLDER):
             user_question = request.form["question"]
             data = {
-                "response": conversation_chain.run(question=user_question)}
+                "response": user_question
+            }  # conversation_chain.run(question=user_question)}
             return data
         data = {"response": "No file uploaded"}, 400
         return data
