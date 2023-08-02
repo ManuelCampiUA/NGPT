@@ -1,13 +1,11 @@
 from flask import Flask
-from os import environ
-from .database import database
+from json import load
 from werkzeug.middleware.proxy_fix import ProxyFix
+from .database import database
 from .views.auth import auth_views, login_manager
 from .views.index import index_views
 from .views.chat import chat_views
 from .views.settings import settings_views
-
-FILE_FOLDER = "upload"
 
 
 def internal_server_error(e):
@@ -17,8 +15,9 @@ def internal_server_error(e):
 
 def create_app():
     app = Flask(__name__)
+    secret_key = load(open("env.json"))["secretKey"]
     app.config.update(
-        SECRET_KEY=environ.get("SECRET_KEY"),
+        SECRET_KEY=secret_key,
         SESSION_COOKIE_SECURE=True,
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE="Lax",

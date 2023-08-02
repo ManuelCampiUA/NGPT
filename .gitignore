@@ -3,8 +3,7 @@ __pycache__
 
 # Environments
 .venv
-.env
-APIKey.json
+*.json
 start.sh
 
 # SQLite
