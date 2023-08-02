@@ -11,5 +11,5 @@ settings_views = Blueprint("settings_views", __name__)
 def settings():
     if request.method == "POST":
         set_api_key(request.form["APIKey"])
-        return redirect(url_for(".home"))
+        return redirect(url_for("chat_views.chat"))
     return render_template("settings.html", APIKey=get_api_key())
