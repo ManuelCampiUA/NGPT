@@ -6,18 +6,16 @@
 - [x] SQLite
 - [x] Authentication
 - [x] Admin
+- [x] Settings
 - [x] Upload file
 - [x] Process file
 - [x] File list
 - [x] Q&A
 - [x] Error handling
 - [ ] Fix login redirect
-- [ ] Fix chat input focus
 - [ ] Fix 500 Internal Server Error page
 - [ ] Add 403 Forbidden page
-- [ ] Add QeA animation
 - [ ] Add alerts animation
-- [ ] Refactor class naming
 
 ## Manu
 
@@ -47,3 +45,5 @@
 - [x] pagina introduttiva
 - [x] mettere info e contatti domodesk a pagina welcome.html
 - [x] stilizzare settings
+- [ ] Minimum 4 media queries for all pages
+- [ ] Refactor class naming
