@@ -1,6 +1,7 @@
 from flask import Flask
 from os import environ
 from .database import database
+from werkzeug.middleware.proxy_fix import ProxyFix
 from .views.auth import auth_views, login_manager
 from .views.index import index_views
 from .views.chat import chat_views
@@ -28,5 +29,6 @@ def create_app():
     app.register_blueprint(index_views)
     app.register_blueprint(chat_views)
     app.register_blueprint(settings_views)
+    app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
     login_manager.init_app(app)
     return app
