@@ -112,6 +112,13 @@ body {
     box-sizing: border-box;
     width: 100%;
     background-color: var(--background-color);
+    animation: striscia 0.2s ease forwards;
+}
+
+@keyframes striscia {
+    0% {
+        transform: translateX(-100%);
+    }
 }
 
 .alert-icon {
