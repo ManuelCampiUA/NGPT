@@ -13,6 +13,7 @@
 - [x] Error handling
 - [ ] Fix login redirect
 - [ ] Fix chat input focus
+- [ ] Fix 500 Internal Server Error page
 - [ ] Add 403 Forbidden page
 - [ ] Add QeA animation
 - [ ] Add alerts animation
