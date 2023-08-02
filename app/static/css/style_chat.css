@@ -1,7 +1,5 @@
 .flex_container {
     display: flex;
-    grid-template-columns: 20% 80%;
-    grid-template-rows: min-content calc(100vh - 4rem);
     padding: 0;
     margin: 0;
 }
@@ -13,6 +11,7 @@
 
 .sidebar {
     flex: 20%;
+    overflow: hidden;
 }
 
 
@@ -205,12 +204,15 @@
 
     .main_content {
         padding-left: 5%;
+        flex: 70%;
+    }
+    .sidebar{
+        flex:30%
     }
 
     .flex_container {
-        display: grid;
-        grid-template-columns: 25% 75%;
-        grid-template-rows: 1fr 1.3fr;
+        display: flex;
+        
     }
 }
 
@@ -221,13 +223,10 @@
     }
 
     .flex_container {
-        display: grid;
-        grid-template-columns: 25% 75%;
-        grid-template-rows: 1fr 2fr;
+        display: flex;
     }
-
     .drop_section {
-        margin: 0 5% 0 5%;
+        margin: 5% 5% 0 5%;
     }
 
 }
@@ -247,8 +246,8 @@
     }
 
     .flex_container {
-        display: grid;
-        grid-template-columns: 100%;
+        display: flex;
+        flex-direction: column;
     }
 
     .drop_section {
