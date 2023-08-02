@@ -110,9 +110,9 @@ body {
     align-items: center;
     padding: 0.5rem;
     box-sizing: border-box;
-    width: 100%;
+    width: 20%;
     background-color: var(--background-color);
-    animation: striscia 0.2s ease forwards;
+    animation: striscia 0.7s ease forwards;
 }
 
 @keyframes striscia {
