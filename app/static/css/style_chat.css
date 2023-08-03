@@ -128,11 +128,7 @@
     transform: translateY(-50%);
 }
 
-#file_list li p:first-child {
-    display: flex;
-}
-
-.delete_btn_filelist {
+#file_list button {
     border: none;
     cursor: pointer;
     position: relative;
@@ -290,12 +286,12 @@
         list-style: none;
     }
 
+    #file_list button {
+        padding: 5px;
+    }
+
     #progress_bar {
         width: 70%;
         align-content: center;
-    }
-
-    .delete_btn_filelist {
-        padding: 5px;
     }
 }

@@ -45,5 +45,4 @@
 - [x] pagina introduttiva
 - [x] mettere info e contatti domodesk a pagina welcome.html
 - [x] stilizzare settings
-- [ ] Minimum 4 media queries for all pages
 - [ ] Refactor class naming
