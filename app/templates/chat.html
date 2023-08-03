@@ -32,7 +32,7 @@
             <ul id="file_list">
                 {% for file, size in file_list.items() %}
                 <li>
-                    <p>{{ file }}</p>
+                    <p><button class="close-btn-filelist">&times;</button>{{ file }}</p>
                     <p>{{ size }}</p>
                 </li>
                 {% endfor %}

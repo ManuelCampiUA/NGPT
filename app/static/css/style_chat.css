@@ -127,6 +127,19 @@
     overflow: hidden;
     transform: translateY(-50%);
 }
+#file_list li p:first-child {
+    display: flex;
+}
+.close-btn-filelist{
+border: none;
+cursor: pointer;
+position: relative;
+font-weight: 800;
+background-color: red;
+color: white;
+border-radius: 5px;
+margin-right: 5px;
+}
 
 /*ChatbotArea*/
 #QeA {
