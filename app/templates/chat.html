@@ -32,8 +32,8 @@
             <ul id="file_list">
                 {% for file, size in file_list.items() %}
                 <li>
-                    <p><button class="close-btn-filelist">&times;</button>{{ file }}</p>
-                    <p>{{ size }}</p>
+                    <p>{{ file }}</p>
+                    <p>{{ size }}<button class="delete_btn_filelist">&times;</button></p>
                 </li>
                 {% endfor %}
             </ul>

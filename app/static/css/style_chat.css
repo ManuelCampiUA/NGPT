@@ -127,18 +127,20 @@
     overflow: hidden;
     transform: translateY(-50%);
 }
+
 #file_list li p:first-child {
     display: flex;
 }
-.close-btn-filelist{
-border: none;
-cursor: pointer;
-position: relative;
-font-weight: 800;
-background-color: red;
-color: white;
-border-radius: 5px;
-margin-right: 5px;
+
+.delete_btn_filelist {
+    border: none;
+    cursor: pointer;
+    position: relative;
+    font-weight: 800;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    margin-left: 5px;
 }
 
 /*ChatbotArea*/
@@ -288,12 +290,12 @@ margin-right: 5px;
         list-style: none;
     }
 
-    #file_list :last-child {
-        padding: 0;
-    }
-
     #progress_bar {
         width: 70%;
         align-content: center;
+    }
+
+    .delete_btn_filelist {
+        padding: 5px;
     }
 }
