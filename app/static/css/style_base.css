@@ -102,17 +102,15 @@ body {
 
 /*Allerte*/
 .alert {
-    display: flex;
     --foreground-color: #222222;
     --background-color: #eeeeee;
-
     display: none;
     align-items: center;
     padding: 0.5rem;
     box-sizing: border-box;
-    width: 20%;
     background-color: var(--background-color);
     animation: striscia 0.7s ease forwards;
+    width: 20%;
 }
 
 @keyframes striscia {
@@ -176,5 +174,9 @@ body {
 
     .logo {
         display: none;
+    }
+
+    .alert {
+        width: 100%;
     }
 }

@@ -15,7 +15,6 @@
 - [ ] Fix login redirect
 - [ ] Fix 500 Internal Server Error page
 - [ ] Add 403 Forbidden page
-- [ ] Add alerts animation
 
 ## Manu
 
