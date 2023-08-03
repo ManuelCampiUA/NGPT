@@ -1,0 +1,14 @@
+.message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 15%;
+}
+
+@media screen and (max-width: 650px) {
+    .message {
+        margin: 5%;
+    }
+}
