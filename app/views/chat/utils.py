@@ -59,14 +59,12 @@ def get_conversation_chain(vectorstore):
 
 
 def upload_AI(file_uploaded):
-    pass
-    # raw_text = get_pdf_text(file_uploaded)
-    # text_chunks = get_text_chunks(raw_text)
-    # vectorstore = get_vectorstore(text_chunks)
-    # return get_conversation_chain(vectorstore)
+    raw_text = get_pdf_text(file_uploaded)
+    text_chunks = get_text_chunks(raw_text)
+    vectorstore = get_vectorstore(text_chunks)
+    return get_conversation_chain(vectorstore)
 
 
 def load_AI():
-    pass
-    # vectorstore = get_vectorstore()
-    # return get_conversation_chain(vectorstore)
+    vectorstore = get_vectorstore()
+    return get_conversation_chain(vectorstore)

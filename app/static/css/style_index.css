@@ -1,19 +1,12 @@
 .container {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 12%;
 }
 
 h1 {
     margin: 0;
-}
-
-.welcome_div {
-    height: 10rem;
 }
 
 .welcome_logo {
@@ -41,4 +34,18 @@ footer {
 
 footer p {
     font-weight: 600;
+    margin: 15px;
+}
+
+@media screen and (max-width: 800px) {
+    .welcome_logo {
+        height: 7rem;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+    .welcome_logo {
+        height: 5rem;
+    }
 }
