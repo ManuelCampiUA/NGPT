@@ -7,11 +7,14 @@
 {% block content %}
 <div class="container">
     <h1>WELCOME TO</h1>
-        <img class="welcome_logo" src="{{ url_for('static', filename='img/logo.png') }}">
-        <h2>Start <a href="{{ url_for('chat_views.chat') }}">HERE</a> your PDF chat</h2>
+    <img class="welcome_logo" src="{{ url_for('static', filename='img/logo.png') }}">
+    <h2>Start <a href="{{ url_for('chat_views.chat') }}">HERE</a> your PDF chat</h2>
 </div>
 <footer>
-    <p><em>NapolitanoGPT is a project made by Filippo and Manuel with the
+    <p><em>NapolitanoGPT is a project made by <a href="https://www.linkedin.com/in/filippobellei/"
+                target="_blank">Filippo</a> and <a href="https://www.linkedin.com/in/manuel-campi-934664278/"
+                target="_blank">Manuel</a>
+            with the
             collaboration of <a href="https://www.domodesk.com/" target="_blank">DomoDesk S.L</a>, please contact us for
             more info.
     </p>
