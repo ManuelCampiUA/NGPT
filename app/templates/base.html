@@ -22,16 +22,16 @@
     {% block style %}{% endblock %}
 </head>
 
-<body class="light_theme">
+<body class="light-theme">
     <nav class="navbar">
         <div class="brand-title">
-            <a href="{{ url_for('index_views.home') }}" class="alternative_logo">
+            <a href="{{ url_for('index_views.home') }}" class="alternative-logo">
                 <a href="{{ url_for('index_views.home') }}"><img class="logo"
                         src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
         </div>
         <div>
-            <img id="toggle_dark" class="sunicon" src="{{ url_for('static', filename='img/moon.svg') }}"
-                alt="toggle_dark_mode">
+            <img id="toggle-dark" class="sunicon" src="{{ url_for('static', filename='img/moon.svg') }}"
+                alt="toggle dark mode">
         </div>
         {% if current_user.isAdmin %}
         <a href="{{ url_for('settings_views.settings') }}"><img class="settings"

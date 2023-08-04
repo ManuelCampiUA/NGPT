@@ -14,8 +14,7 @@
     overflow: hidden;
 }
 
-
-/*casella drag your files here*/
+/* Drag and drop */
 .drop_section {
     position: relative;
     display: flex;
@@ -31,7 +30,7 @@
     margin-top: 10%;
 }
 
-/*Mostra il DROP HERE durante drag and drop*/
+/* "DROP HERE" animation */
 .drop_section div.col:last-child {
     font-size: 3rem;
     font-weight: 700;
@@ -51,20 +50,26 @@
     transition: 0.2s;
 }
 
-/*Fa sparire "drop ur files here" appena prima che arrivi "DROP HERE"*/
+/* Hides "Drag your files here or" while dragging */
 .drop_section div.drop_section_content span {
     opacity: 1;
     visibility: visible;
     transition: opacity 1s;
 }
 
-/*Nasconde "drop ur files here" quando trascini un PDF*/
+/* Hides "Drag your files here or" while dragging */
 .drag_over_effect div.drop_section_content span {
     opacity: 0;
     visibility: hidden;
 }
 
-/*Scritta drag your files here or, la transizione gestisce il ritorno della scritta dietro e del bottone*/
+/* Hides "Browse Files" while dragging */
+.drag_over_effect .file-selector {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Shows "Drag your files here or" and "Browse Files" dropping animation */
 .drop_section span,
 .drop_section button {
     display: block;
@@ -74,24 +79,17 @@
     transition: 1s;
 }
 
-/*Mostra il drag and drop*/
+/* Shows "DROP HERE" dropping animation */
 .drag_over_effect div.col:last-child {
     opacity: 1;
     visibility: visible;
     transform: scale(1);
 }
 
-/*Nasconde il bottone durante il drag-over*/
-.drag_over_effect .file-selector {
-    opacity: 0;
-    visibility: hidden;
-}
-
 .drop_section_content {
     margin: 10%;
 }
 
-/*Bottone browse files*/
 .drop_section button {
     color: white;
     background-color: coral;
@@ -103,7 +101,6 @@
     cursor: pointer;
 }
 
-/*Upload barrette caricamento NON toccare senno si rompe tutto*/
 .drop_section input {
     display: none;
 }
@@ -139,7 +136,7 @@
     margin-left: 5px;
 }
 
-/*ChatbotArea*/
+/* Chatbot */
 #QeA {
     display: none;
 }
@@ -209,11 +206,8 @@
     -moz-animation: ease-in 5s linear infinite;
 }
 
-
-
-/*Breakpoints*/
+/* Breakpoints */
 @media screen and (max-width: 990px) {
-
     .main_content {
         padding-left: 5%;
         flex: 70%;
@@ -230,7 +224,6 @@
 }
 
 @media screen and (max-width: 800px) {
-
     .main_content {
         padding-left: 0;
     }
@@ -242,11 +235,9 @@
     .drop_section {
         margin: 5% 5% 0 5%;
     }
-
 }
 
 @media screen and (max-width: 650px) {
-
     body {
         text-align: center;
     }

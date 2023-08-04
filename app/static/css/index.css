@@ -9,7 +9,7 @@ h1 {
     margin: 0;
 }
 
-.welcome_logo {
+.welcome-logo {
     height: 10rem;
 }
 
@@ -38,14 +38,13 @@ footer p {
 }
 
 @media screen and (max-width: 800px) {
-    .welcome_logo {
+    .welcome-logo {
         height: 7rem;
     }
-
 }
 
 @media screen and (max-width: 650px) {
-    .welcome_logo {
+    .welcome-logo {
         height: 5rem;
     }
 }
