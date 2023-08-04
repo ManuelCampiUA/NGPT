@@ -12,6 +12,8 @@
 - [x] File list
 - [x] Q&A
 - [x] Error handling
+- [ ] Delete file system
+- [ ] Refactor class e id naming with "-" of chat.css
 - [ ] Fix login redirect
 - [ ] Improve and refactor of error page
 
@@ -43,4 +45,3 @@
 - [x] pagina introduttiva
 - [x] mettere info e contatti domodesk a pagina welcome.html
 - [x] stilizzare settings
-- [ ] Refactor class naming
