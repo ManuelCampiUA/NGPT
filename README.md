@@ -13,8 +13,7 @@
 - [x] Q&A
 - [x] Error handling
 - [ ] Fix login redirect
-- [ ] Fix 500 Internal Server Error page
-- [ ] Add 403 Forbidden page
+- [ ] Improve and refactor of error page
 
 ## Manu
 
