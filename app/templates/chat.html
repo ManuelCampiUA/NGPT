@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Index{% endblock %}
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_chat.css')  }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/chat.css') }}">
 {% endblock %}
 {% block content %}
 
@@ -50,7 +50,7 @@
     </div>
 </div>
 
-<script src="{{ url_for('static', filename='js/dragAndDrop.js') }}"></script>
-<script src="{{ url_for('static', filename='js/QeA.js') }}"></script>
+<script src="{{ url_for('static', filename='js/draganddrop.js') }}"></script>
+<script src="{{ url_for('static', filename='js/qea.js') }}"></script>
 
 {%endblock %}
