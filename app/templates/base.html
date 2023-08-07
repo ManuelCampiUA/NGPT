@@ -27,7 +27,7 @@
         <div class="brand-title">
             <a href="{{ url_for('index_views.home') }}" class="alternative-logo">
                 <a href="{{ url_for('index_views.home') }}"><img class="logo"
-                        src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
+                        src="{{ url_for('static', filename='img/logo.png') }}" alt="NapolitanoGPT"></a>
         </div>
         <div>
             <img id="toggle-dark" class="sunicon" src="{{ url_for('static', filename='img/moon.svg') }}"
@@ -42,9 +42,9 @@
             <ul>
                 {% if current_user.is_authenticated %}
                 <li><a>{{ current_user.username }}</a></li>
-                <span class="bar"></span>
+                <span></span>
                 <li><a href="{{ url_for('auth_views.logout') }}">Logout</a>
-                    <span class="bar"></span>
+                    <span></span>
 
                     {% else %}
                 <li><a class=login href="{{ url_for('auth_views.login') }}">Login</a>
@@ -54,7 +54,7 @@
     </nav>
     <div class="alert">
         <div class="alert-icon">
-            <img src="{{ url_for('static', filename='img/info.svg') }}">
+            <img alt="alert" src="{{ url_for('static', filename='img/info.svg') }}">
         </div>
         <div class="alert-text"></div>
         <button class="close-btn">&times;</button>
