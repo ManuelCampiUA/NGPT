@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, request
-from os import listdir, path
+from os import listdir, path, remove
 from werkzeug.utils import secure_filename
 from openai import error
 from ..auth import login_required
-from .utils import load_AI, upload_AI, allowed_file
+from .utils import load_AI, upload_AI, allowed_file, reset_AI
 
 FILE_FOLDER = "upload"
 
@@ -28,7 +28,8 @@ def chat():
 def upload():
     file_uploaded = []
     if "file_0" not in request.files:
-        return {"response": "No selected file"}, 400
+        data = {"response": "No selected file"}
+        return data, 400
     files = request.files
     for file in files:
         if allowed_file(files[file].filename):
@@ -41,8 +42,8 @@ def upload():
         conversation_chain = upload_AI(file_uploaded)
         data = {"response": "Success"}
         return data
-    data = {"response": "Incorrect file extension"}, 400
-    return data
+    data = {"response": "Incorrect file extension"}
+    return data, 400
 
 
 @chat_views.get("/file_list")
@@ -56,16 +57,26 @@ def file_list():
     return data
 
 
+@chat_views.delete("/delete/<int:file_id>")
+@login_required
+def delete_file(file_id):
+    file = listdir(FILE_FOLDER)[file_id]
+    remove(path.join(FILE_FOLDER, file))
+    reset_AI(listdir(FILE_FOLDER))
+    data = {"response": "Success"}
+    return data
+
+
 @chat_views.post("/QeA")
 @login_required
 def QeA():
     try:
         if listdir(FILE_FOLDER):
             user_question = request.form["question"]
-            data = {
-                "response": conversation_chain.run(question=user_question)}
+            data = {"response": conversation_chain.run(question=user_question)}
             return data
-        data = {"response": "No file uploaded"}, 400
-        return data
+        data = {"response": "No file uploaded"}
+        return data, 400
     except error.AuthenticationError:
-        return {"response": "Wrong API Key"}, 400
+        data = {"response": "Wrong API Key"}
+        return data, 400

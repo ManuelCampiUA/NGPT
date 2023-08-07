@@ -16,6 +16,7 @@
 - [ ] Refactor class e id naming with "-" of chat.css
 - [ ] Fix login redirect
 - [ ] Improve and refactor of error page
+- [ ] Check draganddrop.js, delete.js and filelist.js consistency
 
 ## Manu
 

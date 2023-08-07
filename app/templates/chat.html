@@ -20,26 +20,22 @@
                     <div class="drop-here">Drop Here</div>
                 </div>
             </div>
-
             <div id="process">
                 <progress value="0" max="100" id="progress_bar"></progress>
             </div>
-
         </div>
-
 
         <div class="sidebar" id="pdf sidebar">
             <ul id="file_list">
                 {% for file, size in file_list.items() %}
                 <li>
                     <p>{{ file }}</p>
-                    <p>{{ size }}<button>&times;</button></p>
+                    <p>{{ size }}<button onclick="deleteFile(event)"></button></p>
                 </li>
                 {% endfor %}
             </ul>
         </div>
     </div>
-
     <div class="main_content">
         <h1 class="titolo">Chat with your PDFs</h1>
         <h4 class="titolo">Ask me a question about your documents</h4>
@@ -50,7 +46,9 @@
     </div>
 </div>
 
+<script src="{{ url_for('static', filename='js/filelist.js') }}"></script>
 <script src="{{ url_for('static', filename='js/draganddrop.js') }}"></script>
+<script src="{{ url_for('static', filename='js/delete.js') }}"></script>
 <script src="{{ url_for('static', filename='js/qea.js') }}"></script>
 
 {%endblock %}

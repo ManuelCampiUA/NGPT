@@ -5,6 +5,7 @@ from langchain.vectorstores import Chroma
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
+from shutil import rmtree
 from ..settings.utils import get_api_key
 
 CHROMADB_FOLDER = "chromadb"
@@ -60,6 +61,14 @@ def get_conversation_chain(vectorstore):
 
 def upload_AI(file_uploaded):
     raw_text = get_pdf_text(file_uploaded)
+    text_chunks = get_text_chunks(raw_text)
+    vectorstore = get_vectorstore(text_chunks)
+    return get_conversation_chain(vectorstore)
+
+
+def reset_AI(files):
+    rmtree(CHROMADB_FOLDER)
+    raw_text = get_pdf_text(files)
     text_chunks = get_text_chunks(raw_text)
     vectorstore = get_vectorstore(text_chunks)
     return get_conversation_chain(vectorstore)
