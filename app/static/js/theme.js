@@ -8,7 +8,8 @@ function setDarkMode() {
     localStorage.setItem('theme', 'dark');
     themeIcon.src = 'static/img/sun.svg';
     themeLogo.src = 'static/img/logodark.png';
-    themeLogoIndex.src='static/img/logodark.png';
+    if (themeLogoIndex)
+        themeLogoIndex.src = 'static/img/logodark.png';
 }
 
 function setLightMode() {
@@ -17,7 +18,8 @@ function setLightMode() {
     localStorage.setItem('theme', 'light');
     themeIcon.src = 'static/img/moon.svg';
     themeLogo.src = 'static/img/logo.png';
-    themeLogoIndex.src='static/img/logo.png';
+    if (themeLogoIndex)
+        themeLogoIndex.src = 'static/img/logo.png';
 }
 
 if (localStorage.getItem('theme') === 'dark')
