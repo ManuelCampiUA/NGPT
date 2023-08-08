@@ -43,3 +43,7 @@ function loadingFileList(fileList) {
         errorAlert('Error');
     }
 }
+
+document.addEventListener('DOMContentLoaded', async () => {
+    loadingFileList(await getFileList());
+});

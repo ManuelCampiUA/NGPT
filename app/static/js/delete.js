@@ -3,16 +3,10 @@ let pendingDeleteRequest = false;
 async function deleteFile(event) {
     try {
         if (!pendingDeleteRequest) {
-            const deleteButtons = document.querySelectorAll('#file_list button');
-            let buttonIndex;
             pendingDeleteRequest = true;
-            deleteButtons.forEach((button, index) => {
-                if (button === event.target) {
-                    buttonIndex = index;
-                    return;
-                }
-            });
-            await axios.delete(`delete/${buttonIndex}`);
+            const liFile = event.target.parentNode.parentNode;
+            const fileName = liFile.childNodes[0].textContent;
+            await axios.delete('delete', { data: { fileName: fileName } });
             loadingFileList(await getFileList());
             successAlert('Success');
         }

@@ -26,14 +26,7 @@
         </div>
 
         <div class="sidebar" id="pdf sidebar">
-            <ul id="file_list">
-                {% for file, size in file_list.items() %}
-                <li>
-                    <p>{{ file }}</p>
-                    <p>{{ size }}<button onclick="deleteFile(event)"></button></p>
-                </li>
-                {% endfor %}
-            </ul>
+            <ul id="file_list"></ul>
         </div>
     </div>
     <div class="main_content">

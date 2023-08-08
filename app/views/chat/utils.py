@@ -6,6 +6,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from shutil import rmtree
+from os import listdir, path
 from ..settings.utils import get_api_key
 
 CHROMADB_FOLDER = "chromadb"
@@ -66,9 +67,13 @@ def upload_AI(file_uploaded):
     return get_conversation_chain(vectorstore)
 
 
-def reset_AI(files):
+def reset_AI(file_folder):
+    file_list = []
     rmtree(CHROMADB_FOLDER)
-    raw_text = get_pdf_text(files)
+    for file in listdir(file_folder):
+        file_path = path.join(file_folder, file)
+        file_list.append(file_path)
+    raw_text = get_pdf_text(file_list)
     text_chunks = get_text_chunks(raw_text)
     vectorstore = get_vectorstore(text_chunks)
     return get_conversation_chain(vectorstore)

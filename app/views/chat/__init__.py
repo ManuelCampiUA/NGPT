@@ -13,14 +13,10 @@ chat_views = Blueprint("chat_views", __name__)
 @chat_views.route("/chat")
 @login_required
 def chat():
-    file_list = {}
     if listdir(FILE_FOLDER):
         global conversation_chain
         conversation_chain = load_AI()
-        for file in listdir(FILE_FOLDER):
-            size = round(path.getsize(path.join(FILE_FOLDER, file)) / 1000000, 3)
-            file_list[file] = str(size) + " MB"
-    return render_template("chat.html", file_list=file_list)
+    return render_template("chat.html")
 
 
 @chat_views.post("/upload")
@@ -57,12 +53,13 @@ def file_list():
     return data
 
 
-@chat_views.delete("/delete/<int:file_id>")
+@chat_views.delete("/delete")
 @login_required
-def delete_file(file_id):
-    file = listdir(FILE_FOLDER)[file_id]
+def delete_file():
+    file = request.get_json()["fileName"]
     remove(path.join(FILE_FOLDER, file))
-    reset_AI(listdir(FILE_FOLDER))
+    global conversation_chain
+    conversation_chain = reset_AI(FILE_FOLDER)
     data = {"response": "Success"}
     return data
 
