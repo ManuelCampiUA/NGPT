@@ -1,21 +1,19 @@
 from json import dump, load
-from ...database import get_db
 
 
 def set_api_key(APIKey):
-    json = {"APIKey": APIKey}
+    data = {"APIKey": APIKey}
     with open("APIKey.json", "w") as file:
-        dump(json, file)
+        dump(data, file)
 
 
 def get_api_key():
-    APIKey = load(open("APIKey.json"))
-    return APIKey["APIKey"]
+    with open("APIKey.json") as file:
+        data = load(file)
+    return data.get("APIKey", None)
 
 
 def get_temp_password():
-    db = get_db()
-    temp_password = db.execute(
-        "SELECT password FROM user WHERE username = 'tempuser';"
-    ).fetchone()
-    return temp_password[0]
+    with open("tempuser.json") as file:
+        data = load(file)
+    return data.get("tempPassword", None)

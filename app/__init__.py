@@ -1,5 +1,6 @@
 from flask import Flask
 from json import load
+from datetime import timedelta
 from werkzeug.middleware.proxy_fix import ProxyFix
 from .database import database
 from .views.auth import auth_views, login_manager
@@ -21,6 +22,7 @@ def create_app():
         SESSION_COOKIE_SECURE=True,
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE="Lax",
+        REMEMBER_COOKIE_DURATION=timedelta(hours=1),
     )
     app.register_error_handler(500, internal_server_error)
     app.register_blueprint(database, cli_group=None)
