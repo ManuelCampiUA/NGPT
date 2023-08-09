@@ -1,7 +1,7 @@
 let pendingUploadRequest = false;
-const dropArea = document.querySelector('.drop_section');
+const dropArea = document.querySelector('.drop-section');
 const fileSelectorInput = document.querySelector('.file-selector-input');
-const progressBar = document.getElementById('progress_bar');
+const progressBar = document.getElementById('progress-bar');
 
 function filePreparation(file) {
     const formData = new FormData();
@@ -47,18 +47,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     window.addEventListener('dragover', (event) => {
         event.preventDefault();
-        dropArea.classList.add('drag_over_effect');
+        dropArea.classList.add('drag-over-effect');
     });
     window.addEventListener('dragleave', () => {
-        dropArea.classList.remove('drag_over_effect');
+        dropArea.classList.remove('drag-over-effect');
     });
     window.addEventListener('drop', (event) => {
         event.preventDefault();
-        dropArea.classList.remove('drag_over_effect');
+        dropArea.classList.remove('drag-over-effect');
     });
     dropArea.addEventListener('drop', (event) => {
         event.preventDefault();
-        dropArea.classList.remove('drag_over_effect');
+        dropArea.classList.remove('drag-over-effect');
         uploadFile(event.dataTransfer.files);
     });
     dropArea.addEventListener('click', () => {

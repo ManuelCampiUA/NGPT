@@ -10,14 +10,14 @@
 - [x] Upload file
 - [x] Process file
 - [x] File list
+- [x] Delete file
 - [x] Q&A
 - [x] Error handling
-- [ ] Delete file system
-- [ ] Refactor class e id naming with "-" of chat.css
 - [ ] Fix login redirect
 - [ ] Improve and refactor of error page
 - [ ] Check draganddrop.js, delete.js and filelist.js consistency
 - [ ] Check index logo
+- [ ] Improve delete file
 
 ## Manu
 

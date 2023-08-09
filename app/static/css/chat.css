@@ -1,10 +1,10 @@
-.flex_container {
+.flex-container {
     display: flex;
     padding: 0;
     margin: 0;
 }
 
-.main_content {
+.main-content {
     flex: 80%;
     padding: 3% 3% 0 3%;
 }
@@ -15,7 +15,7 @@
 }
 
 /* Drag and drop */
-.drop_section {
+.drop-section {
     position: relative;
     display: flex;
     background-color: var(--third-color);
@@ -31,7 +31,7 @@
 }
 
 /* "DROP HERE" animation */
-.drop_section div.col:last-child {
+.drop-section div.col:last-child {
     font-size: 3rem;
     font-weight: 700;
     color: var(--secondary-color);
@@ -51,27 +51,27 @@
 }
 
 /* Hides "Drag your files here or" while dragging */
-.drop_section div.drop_section_content span {
+.drop-section div.drop-section-content span {
     opacity: 1;
     visibility: visible;
     transition: opacity 1s;
 }
 
 /* Hides "Drag your files here or" while dragging */
-.drag_over_effect div.drop_section_content span {
+.drag-over-effect div.drop-section-content span {
     opacity: 0;
     visibility: hidden;
 }
 
 /* Hides "Browse Files" while dragging */
-.drag_over_effect .file-selector {
+.drag-over-effect .file-selector {
     opacity: 0;
     visibility: hidden;
 }
 
 /* Shows "Drag your files here or" and "Browse Files" dropping animation */
-.drop_section span,
-.drop_section button {
+.drop-section span,
+.drop-section button {
     display: block;
     margin: auto;
     color: var(--secondary-color);
@@ -80,17 +80,17 @@
 }
 
 /* Shows "DROP HERE" dropping animation */
-.drag_over_effect div.col:last-child {
+.drag-over-effect div.col:last-child {
     opacity: 1;
     visibility: visible;
     transform: scale(1);
 }
 
-.drop_section_content {
+.drop-section-content {
     margin: 10%;
 }
 
-.drop_section button {
+.drop-section button {
     color: white;
     background-color: coral;
     border: none;
@@ -101,31 +101,31 @@
     cursor: pointer;
 }
 
-.drop_section input {
+.drop-section input {
     display: none;
 }
 
-#file_list {
+#file-list {
     display: block;
     align-content: center;
     padding-left: 60px;
     padding-top: 1rem;
 }
 
-#file_list li {
+#file-list li {
     list-style-image: url(/static/img/pdf.png);
     padding-bottom: 2vh;
 
 }
 
-#file_list li p {
+#file-list li p {
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
     transform: translateY(-50%);
 }
 
-#file_list button {
+#file-list button {
     border: none;
     cursor: pointer;
     position: relative;
@@ -136,7 +136,7 @@
     margin-left: 5px;
 }
 
-#file_list button::before {
+#file-list button::before {
     content: "\2715";
 }
 
@@ -163,7 +163,7 @@
     color: white;
 }
 
-.drop_process {
+.drop-process {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -189,7 +189,7 @@
 
 }
 
-#progress_bar {
+#progress-bar {
     width: 100%;
     background-color: var(--third-color);
     border-radius: 10px;
@@ -198,13 +198,13 @@
     -moz-animation: ease-in 5s linear infinite;
 }
 
-#progress_bar[value]::-moz-progress-bar {
+#progress-bar[value]::-moz-progress-bar {
     background-color: #ff7f50;
     animation: ease-in 5s linear infinite;
     -moz-animation: ease-in 5s linear infinite;
 }
 
-#progress_bar[value]::-webkit-progress-value {
+#progress-bar[value]::-webkit-progress-value {
     background-color: #ff7f50;
     animation: ease-in 5s linear infinite;
     -moz-animation: ease-in 5s linear infinite;
@@ -212,7 +212,7 @@
 
 /* Breakpoints */
 @media screen and (max-width: 990px) {
-    .main_content {
+    .main-content {
         padding-left: 5%;
         flex: 70%;
     }
@@ -221,22 +221,22 @@
         flex: 30%
     }
 
-    .flex_container {
+    .flex-container {
         display: flex;
 
     }
 }
 
 @media screen and (max-width: 800px) {
-    .main_content {
+    .main-content {
         padding-left: 0;
     }
 
-    .flex_container {
+    .flex-container {
         display: flex;
     }
 
-    .drop_section {
+    .drop-section {
         margin: 5% 5% 0 5%;
     }
 }
@@ -246,20 +246,20 @@
         text-align: center;
     }
 
-    .drop_section_content {
+    .drop-section-content {
         margin: 0;
     }
 
-    .main_content {
+    .main-content {
         padding: 0;
     }
 
-    .flex_container {
+    .flex-container {
         display: flex;
         flex-direction: column;
     }
 
-    .drop_section {
+    .drop-section {
         margin: 10% 30% 0 30%;
     }
 
@@ -271,21 +271,21 @@
         width: 95%;
     }
 
-    #file_list {
+    #file-list {
         font-weight: 700;
         padding: 1rem 0 0 0;
         margin-bottom: 0;
     }
 
-    #file_list li {
+    #file-list li {
         list-style: none;
     }
 
-    #file_list button {
+    #file-list button {
         padding: 5px;
     }
 
-    #progress_bar {
+    #progress-bar {
         width: 70%;
         align-content: center;
     }

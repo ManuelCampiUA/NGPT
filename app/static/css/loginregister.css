@@ -55,15 +55,15 @@
     font-weight: 700;
 }
 
-.login_link {
+.login-link {
     color: var(--secondary-color);
 }
 
-.login_link:visited {
+.login-link:visited {
     color: var(--secondary-color);
 }
 
-.already_member {
+.already-member {
     color: var(--secondary-color);
     font-size: 18px;
 }

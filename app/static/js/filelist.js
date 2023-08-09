@@ -1,4 +1,4 @@
-const ulFileList = document.getElementById('file_list');
+const ulFileList = document.getElementById('file-list');
 
 async function getFileList() {
     try {

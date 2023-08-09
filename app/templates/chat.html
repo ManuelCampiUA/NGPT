@@ -5,11 +5,11 @@
 {% endblock %}
 {% block content %}
 
-<div class="flex_container">
+<div class="flex-container">
     <div class="sidebar">
-        <div class="drop_process">
-            <div class="drop_section">
-                <div class=drop_section_content>
+        <div class="drop-process">
+            <div class="drop-section">
+                <div class=drop-section-content>
                     <img src="{{ url_for('static', filename='img/cloud.png') }}">
                     <span>Drag your files here</span>
                     <span>or</span>
@@ -21,16 +21,16 @@
                 </div>
             </div>
             <div id="process">
-                <progress value="0" max="100" id="progress_bar"></progress>
+                <progress value="0" max="100" id="progress-bar"></progress>
             </div>
         </div>
 
         <div class="sidebar" id="pdf sidebar">
-            <ul id="file_list"></ul>
+            <ul id="file-list"></ul>
         </div>
     </div>
-    <div class="main_content">
-        <h1 class="titolo">Chat with your PDFs</h1>
+    <div class="main-content">
+        <h1 class="titolo">Start a conversation with your PDFs</h1>
         <h4 class="titolo">Ask me a question about your documents</h4>
         <div id="QeA"></div>
         <form id="question">
