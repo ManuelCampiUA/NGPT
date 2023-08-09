@@ -23,7 +23,7 @@ def close_connection(exception):
         db.close()
 
 
-@database.cli.command("init-db")
+@database.cli.command("initdb")
 def init_db():
     """Initialize the database"""
     db = connect(DATABASE)
@@ -44,7 +44,7 @@ def init_db():
     print("Database initialized")
 
 
-@database.cli.command("change-temp-user")
+@database.cli.command("tempuser-update")
 def change_temp_user():
     """Change temporary user password"""
     password = ""
