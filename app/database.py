@@ -1,6 +1,8 @@
 from flask import Blueprint, g
 from sqlite3 import connect
 from werkzeug.security import generate_password_hash
+from random import choice
+from string import ascii_letters, digits, punctuation
 
 DATABASE = "database.sqlite"
 
@@ -21,7 +23,9 @@ def close_connection(exception):
         db.close()
 
 
+@database.cli.command("init-db")
 def init_db():
+    """Initialize the database"""
     db = connect(DATABASE)
     sql = f"""DROP TABLE IF EXISTS user;
     CREATE TABLE user (
@@ -31,8 +35,27 @@ def init_db():
         isAdmin INTEGER
     );
     INSERT INTO user (username, password, isAdmin)
-    VALUES('admin', '{generate_password_hash("password")}', 1);"""
+    VALUES('admin', '{generate_password_hash("toreros")}', 1);
+    INSERT INTO user (username, password)
+    VALUES('tempuser', '{"temppassword"}');"""
     db.cursor().executescript(sql)
     db.commit()
     db.close()
     print("Database initialized")
+
+
+@database.cli.command("change-temp-user")
+def change_temp_user():
+    """Change temporary user password"""
+    password = ""
+    for i in range(6):
+        tempchar = choice(ascii_letters + digits + punctuation)
+        password += tempchar
+    db = connect(DATABASE)
+    sql = f"""UPDATE user
+    SET password = '{password}'
+    WHERE id = 2;"""
+    db.cursor().executescript(sql)
+    db.commit()
+    db.close()
+    print("Temporary user modified")

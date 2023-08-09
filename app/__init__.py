@@ -23,7 +23,7 @@ def create_app():
         SESSION_COOKIE_SAMESITE="Lax",
     )
     app.register_error_handler(500, internal_server_error)
-    app.register_blueprint(database)
+    app.register_blueprint(database, cli_group=None)
     app.register_blueprint(auth_views)
     app.register_blueprint(index_views)
     app.register_blueprint(chat_views)
