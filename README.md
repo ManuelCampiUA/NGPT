@@ -14,7 +14,6 @@
 - [x] Q&A
 - [x] Error handling
 - [ ] Fix login redirect
-- [ ] Improve and refactor of error page
 - [ ] Check draganddrop.js, delete.js and filelist.js consistency
 - [ ] Check index logo
 - [ ] Improve delete file
