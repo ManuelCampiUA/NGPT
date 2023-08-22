@@ -15,9 +15,7 @@
 - [x] Error handling
 - [ ] Fix login redirect
 - [ ] Check draganddrop.js, delete.js and filelist.js consistency
-- [ ] Check index logo
 - [ ] Improve delete file
-- [ ] Add `map()` to file list
 
 ## Manu
 

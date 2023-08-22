@@ -6,6 +6,9 @@
     --third-color: white;
     --botchat: #8765b9;
     --humanchat: rgb(253, 249, 122);
+    --logo: url(../img/logo.png);
+    --theme-icon: url(../img/moon.svg);
+    
 }
 
 .dark-theme {
@@ -15,6 +18,8 @@
     --third-color: black;
     --botchat: rgb(5, 5, 5, 1);
     --humanchat: coral;
+    --logo: url(../img/logodark.png);
+    --theme-icon: url(../img/sun.svg);
 }
 
 /* Debug
@@ -33,6 +38,7 @@ body {
 }
 
 #toggle-dark {
+    content: var(--theme-icon);
     width: 2rem;
     height: 2rem;
 }
@@ -87,6 +93,7 @@ body {
 }
 
 .logo {
+    content: var(--logo);
     height: 4rem;
     width: auto;
     overflow: hidden;

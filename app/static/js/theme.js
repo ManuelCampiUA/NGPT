@@ -1,23 +1,15 @@
 const themeIcon = document.getElementById('toggle-dark');
-const themeLogo = document.getElementById('NapolitanoGPT-logo');
-const themeLogoIndex = document.getElementById('NapolitanoGPT-logo-Index');
 
 const setDarkMode = () => {
     document.body.classList.remove('light-theme');
     document.body.classList.add('dark-theme');
     localStorage.setItem('theme', 'dark');
-    themeIcon.src = 'static/img/sun.svg';
-    themeLogo.src = 'static/img/logodark.png';
-    if (themeLogoIndex) themeLogoIndex.src = 'static/img/logodark.png';
 };
 
 const setLightMode = () => {
     document.body.classList.remove('dark-theme');
     document.body.classList.add('light-theme');
     localStorage.setItem('theme', 'light');
-    themeIcon.src = 'static/img/moon.svg';
-    themeLogo.src = 'static/img/logo.png';
-    if (themeLogoIndex) themeLogoIndex.src = 'static/img/logo.png';
 };
 
 if (localStorage.getItem('theme') === 'dark') setDarkMode();

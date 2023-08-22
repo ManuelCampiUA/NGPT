@@ -11,6 +11,7 @@ h1 {
 
 .welcome-logo {
     height: 10rem;
+    content: var(--logo);
 }
 
 a,
