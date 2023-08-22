@@ -8,9 +8,8 @@ const setDarkMode = () => {
     localStorage.setItem('theme', 'dark');
     themeIcon.src = 'static/img/sun.svg';
     themeLogo.src = 'static/img/logodark.png';
-    if (themeLogoIndex)
-        themeLogoIndex.src = 'static/img/logodark.png';
-}
+    if (themeLogoIndex) themeLogoIndex.src = 'static/img/logodark.png';
+};
 
 const setLightMode = () => {
     document.body.classList.remove('dark-theme');
@@ -18,14 +17,12 @@ const setLightMode = () => {
     localStorage.setItem('theme', 'light');
     themeIcon.src = 'static/img/moon.svg';
     themeLogo.src = 'static/img/logo.png';
-    if (themeLogoIndex)
-        themeLogoIndex.src = 'static/img/logo.png';
-}
+    if (themeLogoIndex) themeLogoIndex.src = 'static/img/logo.png';
+};
 
-if (localStorage.getItem('theme') === 'dark')
-    setDarkMode();
+if (localStorage.getItem('theme') === 'dark') setDarkMode();
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () =>
     themeIcon.addEventListener('click', () => {
         const currentTheme = document.body.classList[0];
         if (currentTheme === 'light-theme') {
@@ -33,5 +30,5 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         setLightMode();
-    });
-});
+    })
+);

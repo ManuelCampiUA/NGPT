@@ -27,7 +27,10 @@ const QeA = async () => {
             QeAForm.scrollIntoView({ behavior: 'smooth' });
         }
     } catch (error) {
-        console.error('There has been a problem with your Q&A operation:', error.message);
+        console.error(
+            'There has been a problem with your Q&A operation:',
+            error.message
+        );
         if (error.response) {
             errorAlert(error.response.data['response']);
             return;
@@ -36,12 +39,11 @@ const QeA = async () => {
     } finally {
         pendingQeARequest = false;
     }
-}
+};
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () =>
     QeAForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        if (!pendingQeARequest)
-            QeA();
-    });
-});
+        if (!pendingQeARequest) QeA();
+    })
+);

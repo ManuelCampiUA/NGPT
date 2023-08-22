@@ -7,7 +7,10 @@ const getFileList = async () => {
         return result;
     } catch (error) {
         progressBar.setAttribute('value', 0);
-        console.error('There has been a problem with your getFileList operation:', error.message);
+        console.error(
+            'There has been a problem with your getFileList operation:',
+            error.message
+        );
         if (error.response) {
             errorAlert(error.response.data['response']);
             return null;
@@ -15,7 +18,7 @@ const getFileList = async () => {
         errorAlert('Error');
         return null;
     }
-}
+};
 
 const loadingFileList = (fileList) => {
     try {
@@ -29,7 +32,9 @@ const loadingFileList = (fileList) => {
                 const deleteButton = document.createElement('button');
                 spanFile.appendChild(document.createTextNode(file));
                 spanSize.appendChild(document.createTextNode(fileList[file]));
-                deleteButton.addEventListener('click', (event) => deleteFile(event));
+                deleteButton.addEventListener('click', (event) =>
+                    deleteFile(event)
+                );
                 spanSize.appendChild(deleteButton);
                 liItem.appendChild(spanFile);
                 liItem.appendChild(spanSize);
@@ -37,11 +42,15 @@ const loadingFileList = (fileList) => {
             });
             progressBar.setAttribute('value', 0);
         }
-    }
-    catch (error) {
-        console.error('There has been a problem with your loadingFileList operation:', error);
+    } catch (error) {
+        console.error(
+            'There has been a problem with your loadingFileList operation:',
+            error
+        );
         errorAlert('Error');
     }
-}
+};
 
-document.addEventListener('DOMContentLoaded', async () => loadingFileList(await getFileList()));
+document.addEventListener('DOMContentLoaded', async () =>
+    loadingFileList(await getFileList())
+);

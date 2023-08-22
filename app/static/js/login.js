@@ -12,7 +12,10 @@ const login = async () => {
         await axios.post('login', formData);
         window.location.assign('chat');
     } catch (error) {
-        console.error('There has been a problem with your login operation:', error.message);
+        console.error(
+            'There has been a problem with your login operation:',
+            error.message
+        );
         if (error.response) {
             errorAlert(error.response.data['response']);
             return;
@@ -21,12 +24,11 @@ const login = async () => {
     } finally {
         pendingRequest = false;
     }
-}
+};
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () =>
     loginForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        if (!pendingRequest)
-            login();
-    });
-});
+        if (!pendingRequest) login();
+    })
+);

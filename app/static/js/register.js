@@ -12,7 +12,10 @@ const register = async () => {
         await axios.post('register', formData);
         window.location.assign('login');
     } catch (error) {
-        console.error('There has been a problem with your register operation:', error.message);
+        console.error(
+            'There has been a problem with your register operation:',
+            error.message
+        );
         if (error.response) {
             errorAlert(error.response.data['response']);
             return;
@@ -21,12 +24,11 @@ const register = async () => {
     } finally {
         pendingRequest = false;
     }
-}
+};
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () =>
     registerForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        if (!pendingRequest)
-            register();
-    });
-});
+        if (!pendingRequest) register();
+    })
+);

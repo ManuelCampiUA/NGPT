@@ -8,13 +8,15 @@ const filePreparation = (file) => {
     for (const [i, PDF] of Array.from(file).entries())
         formData.append(`file_${i}`, PDF);
     return formData;
-}
+};
 
 const axiosConfig = {
     onUploadProgress: (progressEvent) => {
-        const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        const percentCompleted = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+        );
         progressBar.setAttribute('value', percentCompleted);
-    }
+    },
 };
 
 const upload = async (formData) => {
@@ -25,22 +27,23 @@ const upload = async (formData) => {
         successAlert('Success');
     } catch (error) {
         progressBar.setAttribute('value', 0);
-        console.error('There has been a problem with your upload operation:', error.message);
+        console.error(
+            'There has been a problem with your upload operation:',
+            error.message
+        );
         if (error.response) {
             errorAlert(error.response.data['response']);
             return;
         }
         errorAlert('Error');
-    }
-    finally {
+    } finally {
         pendingUploadRequest = false;
     }
-}
+};
 
 const uploadFile = async (file) => {
-    if (!pendingUploadRequest)
-        await upload(filePreparation(file));
-}
+    if (!pendingUploadRequest) await upload(filePreparation(file));
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('dragstart', (event) => event.preventDefault());
@@ -48,7 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         dropArea.classList.add('drag-over-effect');
     });
-    window.addEventListener('dragleave', () => dropArea.classList.remove('drag-over-effect'));
+    window.addEventListener('dragleave', () =>
+        dropArea.classList.remove('drag-over-effect')
+    );
     window.addEventListener('drop', (event) => {
         event.preventDefault();
         dropArea.classList.remove('drag-over-effect');
@@ -59,5 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         uploadFile(event.dataTransfer.files);
     });
     dropArea.addEventListener('click', () => fileSelectorInput.click());
-    fileSelectorInput.addEventListener('change', () => uploadFile(fileSelectorInput.files));
+    fileSelectorInput.addEventListener('change', () =>
+        uploadFile(fileSelectorInput.files)
+    );
 });

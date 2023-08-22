@@ -10,10 +10,12 @@ const deleteFile = async (event) => {
             loadingFileList(await getFileList());
             successAlert('Success');
         }
-    }
-    catch (error) {
-        console.error('There has been a problem with your file deletion operation:', error.message);
-        console.log(error.response)
+    } catch (error) {
+        console.error(
+            'There has been a problem with your file deletion operation:',
+            error.message
+        );
+        console.log(error.response);
         if (error.response) {
             errorAlert(error.response.data['response']);
             return;
@@ -22,4 +24,4 @@ const deleteFile = async (event) => {
     } finally {
         pendingDeleteRequest = false;
     }
-}
+};
