@@ -5,7 +5,7 @@ from openai import error
 from ..auth import login_required
 from .utils import load_AI, upload_AI, allowed_file, reset_AI
 
-FILE_FOLDER = "upload"
+FILES_FOLDER = "upload"
 
 chat_views = Blueprint("chat_views", __name__)
 
@@ -13,7 +13,7 @@ chat_views = Blueprint("chat_views", __name__)
 @chat_views.route("/chat")
 @login_required
 def chat():
-    if listdir(FILE_FOLDER):
+    if listdir(FILES_FOLDER):
         global conversation_chain
         conversation_chain = load_AI()
     return render_template("chat.html")
@@ -30,7 +30,7 @@ def upload():
     for file in files:
         if allowed_file(files[file].filename):
             secure_file_name = secure_filename(files[file].filename)
-            file_path = path.join(FILE_FOLDER, secure_file_name)
+            file_path = path.join(FILES_FOLDER, secure_file_name)
             files[file].save(file_path)
             file_uploaded.append(file_path)
     if file_uploaded:
@@ -46,8 +46,8 @@ def upload():
 @login_required
 def file_list():
     file_list = {}
-    for file in listdir(FILE_FOLDER):
-        size = round(path.getsize(path.join(FILE_FOLDER, file)) / 1000000, 3)
+    for file in listdir(FILES_FOLDER):
+        size = round(path.getsize(path.join(FILES_FOLDER, file)) / 1000000, 3)
         file_list[file] = str(size) + " MB"
     data = {"response": file_list}
     return data
@@ -57,9 +57,9 @@ def file_list():
 @login_required
 def delete_file():
     file = request.get_json()["fileName"]
-    remove(path.join(FILE_FOLDER, file))
+    remove(path.join(FILES_FOLDER, file))
     global conversation_chain
-    conversation_chain = reset_AI(FILE_FOLDER)
+    conversation_chain = reset_AI(FILES_FOLDER)
     data = {"response": "Success"}
     return data
 
@@ -68,7 +68,7 @@ def delete_file():
 @login_required
 def QeA():
     try:
-        if listdir(FILE_FOLDER):
+        if listdir(FILES_FOLDER):
             user_question = request.form["question"]
             data = {"response": conversation_chain.run(question=user_question)}
             return data
