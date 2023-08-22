@@ -3,7 +3,7 @@ const registerForm = document.getElementById('register');
 const registerUsername = registerForm.elements['username'];
 const registerPassword = registerForm.elements['password'];
 
-async function register() {
+const register = async () => {
     try {
         pendingRequest = true;
         registerUsername.value = registerUsername.value.trim();

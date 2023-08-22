@@ -3,7 +3,7 @@ const loginForm = document.getElementById('login');
 const loginUsername = loginForm.elements['username'];
 const loginPassword = loginForm.elements['password'];
 
-async function login() {
+const login = async () => {
     try {
         pendingRequest = true;
         loginUsername.value = loginUsername.value.trim();

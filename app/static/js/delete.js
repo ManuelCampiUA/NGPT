@@ -1,6 +1,6 @@
 let pendingDeleteRequest = false;
 
-async function deleteFile(event) {
+const deleteFile = async (event) => {
     try {
         if (!pendingDeleteRequest) {
             pendingDeleteRequest = true;

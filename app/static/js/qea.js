@@ -4,7 +4,7 @@ const QeAForm = document.getElementById('question');
 const QeAQuestion = QeAForm.elements['question'];
 const QeADiv = document.getElementById('QeA');
 
-async function QeA() {
+const QeA = async () => {
     try {
         pendingQeARequest = true;
         const question = QeAQuestion.value.trim();

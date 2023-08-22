@@ -2,7 +2,7 @@ const themeIcon = document.getElementById('toggle-dark');
 const themeLogo = document.getElementById('NapolitanoGPT-logo');
 const themeLogoIndex = document.getElementById('NapolitanoGPT-logo-Index');
 
-function setDarkMode() {
+const setDarkMode = () => {
     document.body.classList.remove('light-theme');
     document.body.classList.add('dark-theme');
     localStorage.setItem('theme', 'dark');
@@ -12,7 +12,7 @@ function setDarkMode() {
         themeLogoIndex.src = 'static/img/logodark.png';
 }
 
-function setLightMode() {
+const setLightMode = () => {
     document.body.classList.remove('dark-theme');
     document.body.classList.add('light-theme');
     localStorage.setItem('theme', 'light');

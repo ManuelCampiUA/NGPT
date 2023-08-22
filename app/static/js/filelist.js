@@ -1,6 +1,6 @@
 const ulFileList = document.getElementById('file-list');
 
-async function getFileList() {
+const getFileList = async () => {
     try {
         const response = await axios.get('file_list');
         const result = response.data['response'];
@@ -17,19 +17,19 @@ async function getFileList() {
     }
 }
 
-function loadingFileList(fileList) {
+const loadingFileList = (fileList) => {
     try {
         if (fileList) {
             while (ulFileList.firstChild)
                 ulFileList.removeChild(ulFileList.firstChild);
-            Object.keys(fileList).forEach(file => {
+            Object.keys(fileList).forEach((file) => {
                 const liItem = document.createElement('li');
                 const spanFile = document.createElement('p');
                 const spanSize = document.createElement('p');
                 const deleteButton = document.createElement('button');
                 spanFile.appendChild(document.createTextNode(file));
                 spanSize.appendChild(document.createTextNode(fileList[file]));
-                deleteButton.onclick = (event) => deleteFile(event);
+                deleteButton.addEventListener('click', (event) => deleteFile(event));
                 spanSize.appendChild(deleteButton);
                 liItem.appendChild(spanFile);
                 liItem.appendChild(spanSize);
@@ -44,6 +44,4 @@ function loadingFileList(fileList) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-    loadingFileList(await getFileList());
-});
+document.addEventListener('DOMContentLoaded', async () => loadingFileList(await getFileList()));
