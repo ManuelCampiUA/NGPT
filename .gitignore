@@ -3,17 +3,20 @@ __pycache__
 
 # Environments
 .venv
-*.json
-start.sh
+config.json
 
 # SQLite
 database.sqlite
 
+# Files folder
+upload
+
 # Chromadb
 chromadb
 
-# Upload
-upload
+# Start scripts
+*.sh
+*.ps1
 
 # IntelliJ
 .idea
