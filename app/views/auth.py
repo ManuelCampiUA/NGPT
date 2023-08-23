@@ -32,11 +32,6 @@ def load_user(user_id):
     return None
 
 
-@login_manager.unauthorized_handler
-def unauthorized():
-    return redirect(url_for("auth_views.login"))
-
-
 def admin_required(view):
     @wraps(view)
     def decorated_function(*args, **kwargs):

@@ -10,12 +10,10 @@
 - [x] Upload file
 - [x] Process file
 - [x] File list
-- [x] Delete file
+- [ ] Delete file (to be improved)
 - [x] Q&A
 - [x] Error handling
-- [ ] Fix login redirect
 - [ ] Check draganddrop.js, delete.js and filelist.js consistency
-- [ ] Improve delete file
 
 ## Manu
 

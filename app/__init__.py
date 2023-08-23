@@ -33,5 +33,6 @@ def create_app():
     app.register_blueprint(settings_views)
     app.register_blueprint(chat_views)
     app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
+    login_manager.login_view = "auth_views.login"
     login_manager.init_app(app)
     return app
