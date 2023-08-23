@@ -16,7 +16,7 @@ const axiosConfig = {
             (progressEvent.loaded * 100) / progressEvent.total
         );
         progressBar.setAttribute('value', percentCompleted);
-    },
+    }
 };
 
 const upload = async (formData) => {
