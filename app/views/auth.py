@@ -95,4 +95,4 @@ def login():
 @auth_views.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for("auth_views.login"))
+    return redirect(url_for("index_views.index"))
