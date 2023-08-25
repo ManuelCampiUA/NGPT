@@ -99,10 +99,6 @@ body {
     overflow: hidden;
 }
 
-.alternative-logo {
-    margin: 0;
-    width: auto;
-}
 
 /* Alert */
 .alert {
@@ -164,19 +160,8 @@ body {
 }
 
 @media screen and (max-width: 650px) {
-    .brand-title {
-        padding: 2rem 0 5px 0;
-        width: 0;
-        text-align: left !important;
-    }
-
-    .alternative-logo {
-        padding: 2rem 2rem 2rem 2rem;
-        background: url(/static/img/logomobile.png) no-repeat;
-    }
-
-    .logo {
-        display: none;
+    .alternative-logo img {
+        content: url(/static/img/logomobile.svg);
     }
 
     .alert {
