@@ -14,9 +14,5 @@ upload
 # Chromadb
 chromadb
 
-# Start scripts
-*.sh
-*.ps1
-
 # IntelliJ
 .idea
