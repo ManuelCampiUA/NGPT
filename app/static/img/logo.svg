@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
    version="1.1"
    id="svg1"
-   width="2412"
-   height="712"
-   viewBox="0 0 2412 712"
+   width="1735.8462"
+   height="384.04678"
+   viewBox="0 0 1735.8462 384.04678"
    sodipodi:docname="logo.svg"
    inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -23,9 +24,9 @@
      inkscape:pagecheckerboard="1"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="1.1322554"
-     inkscape:cx="1206"
-     inkscape:cy="356.36836"
-     inkscape:window-width="3729"
+     inkscape:cx="875.24422"
+     inkscape:cy="164.71549"
+     inkscape:window-width="3730"
      inkscape:window-height="2120"
      inkscape:window-x="-12"
      inkscape:window-y="-12"
@@ -35,14 +36,14 @@
      id="defs1">
     <rect
        x="1789.4965"
-       y="412.58953"
+       y="412.58954"
        width="1204.7936"
-       height="405.35112"
+       height="405.35114"
        id="rect10" />
   </defs>
   <g
      id="g1"
-     transform="translate(-61.823507,17.663859)">
+     transform="translate(-393.01917,-174.12498)">
     <rect
        style="display:inline;opacity:1;fill:#ff0000;fill-opacity:1;stroke-width:1.13096"
        id="rect24"
@@ -131,7 +132,7 @@
   </g>
   <g
      id="layer1"
-     transform="translate(-61.823507,17.663859)">
+     transform="translate(-393.01917,-174.12498)">
     <text
        xml:space="preserve"
        style="fill:#000000"
@@ -285,5 +286,5 @@
   </g>
   <g
      id="layer2"
-     transform="translate(-38.604868,-105.76125)" />
+     transform="translate(-369.80053,-297.55009)" />
 </svg>
