@@ -1,6 +1,7 @@
 from json import dump, load
 
-CONFIG_FILE = "config.json"
+CONFIG_FILE = "env.json"
+
 
 def set_api_key(APIKey):
     data = {"APIKey": APIKey}

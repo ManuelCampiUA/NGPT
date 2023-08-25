@@ -26,7 +26,7 @@ class User(UserMixin):
 
 @login_manager.user_loader
 def load_user(user_id):
-    user = get_db().execute("SELECT * FROM user WHERE id = ?", (user_id,)).fetchone()
+    user = get_db().execute("SELECT * FROM user WHERE id = ?;", (user_id,)).fetchone()
     if user is not None:
         return User(user)
     return None

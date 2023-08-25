@@ -3,7 +3,7 @@ __pycache__
 
 # Environments
 .venv
-config.json
+env.json
 
 # SQLite
 database.sqlite

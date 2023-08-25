@@ -60,6 +60,6 @@ def change_temp_user():
     db.commit()
     db.close()
     data = {"tempPassword": password}
-    with open("config.json", "w") as file:
+    with open("env.json", "w") as file:
         dump(data, file)
     print("Temporary user modified")
