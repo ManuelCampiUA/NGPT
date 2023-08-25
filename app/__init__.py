@@ -24,6 +24,7 @@ def create_app():
     app.register_blueprint(index_views)
     app.register_blueprint(settings_views)
     app.register_blueprint(chat_views)
+    login_manager.session_protection = "strong"
     login_manager.login_view = "auth_views.login"
     login_manager.init_app(app)
     return app
