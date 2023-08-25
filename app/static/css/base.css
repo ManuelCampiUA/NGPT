@@ -7,8 +7,8 @@
     --botchat: #8765b9;
     --humanchat: rgb(253, 249, 122);
     --logo: url(../img/logo.svg);
+    --logo-icon-mobile: url(../img/logomobile.svg);
     --theme-icon: url(../img/moon.svg);
-    --theme-icon-mobile: url(../img/logomobile.svg)
 }
 
 .dark-theme {
@@ -19,8 +19,8 @@
     --botchat: rgb(5, 5, 5, 1);
     --humanchat: coral;
     --logo: url(../img/logo-dark.svg);
+    --logo-icon-mobile: url(../img/logomobile-dark.svg);
     --theme-icon: url(../img/sun.svg);
-    --theme-icon-mobile: url(../img/logomobile-dark.svg)
 }
 
 /* Debug
@@ -100,8 +100,6 @@ body {
     overflow: hidden;
 }
 
-<<<<<<< HEAD=======>>>>>>>6767895 (cambiamento loghi mobile in svg)
-
 /* Alert */
 .alert {
     --foreground-color: #222222;
@@ -162,8 +160,9 @@ body {
 }
 
 @media screen and (max-width: 650px) {
-    .alternative-logo img {
-        content: url(/static/img/logomobile.svg);
+    .logo {
+        content: var(--logo-icon-mobile);
+        height: 3rem;
     }
 
     .alert {

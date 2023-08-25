@@ -3,46 +3,24 @@
 <svg
    version="1.1"
    id="svg1"
-   width="390.89429"
-   height="384.04678"
-   viewBox="0 0 390.89429 384.04678"
-   sodipodi:docname="logomobile-dark.svg"
-   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   width="2412"
+   height="712"
+   viewBox="0 0 2412 712"
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview1"
-     pagecolor="#ffffff"
-     bordercolor="#111111"
-     borderopacity="1"
-     inkscape:showpageshadow="0"
-     inkscape:pageopacity="0"
-     inkscape:pagecheckerboard="1"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="0.7733614"
-     inkscape:cx="1020.2216"
-     inkscape:cy="440.93227"
-     inkscape:window-width="3730"
-     inkscape:window-height="2120"
-     inkscape:window-x="-12"
-     inkscape:window-y="-12"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg1" />
   <defs
      id="defs1">
     <rect
        x="1789.4965"
-       y="412.58954"
+       y="412.58953"
        width="1204.7936"
-       height="405.35114"
+       height="405.35112"
        id="rect10" />
   </defs>
   <g
      id="g1"
-     transform="translate(-1737.9711,-174.12498)">
+     transform="translate(-61.823507,17.663859)">
     <rect
        style="display:inline;opacity:1;fill:#ff0000;fill-opacity:1;stroke-width:1.13096"
        id="rect24"
@@ -131,7 +109,7 @@
   </g>
   <g
      id="layer1"
-     transform="translate(-1737.9711,-174.12498)">
+     transform="translate(-61.823507,17.663859)">
     <text
        xml:space="preserve"
        style="fill:#000000"
@@ -146,7 +124,17 @@
        style="font-size:192px;line-height:0;letter-spacing:0px;fill:#b670ec;fill-opacity:1"
        x="1034.7379"
        y="408.43347"
-       id="text2" />
+       id="text2"><tspan
+         x="1034.7379"
+         y="408.43347"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;text-anchor:middle;opacity:1;fill:#b670ec;fill-opacity:1"
+         id="tspan8"
+         dy="4.0213404"
+         dx="-3.235624e-08">NapolitanoGPT</tspan><tspan
+         x="1034.7379"
+         y="410.18466"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;text-anchor:middle;fill:#b670ec;fill-opacity:1"
+         id="tspan6" /></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56px;line-height:0px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;text-anchor:middle;fill:#b872ed;fill-opacity:1"
@@ -156,7 +144,7 @@
          id="tspan9"
          x="1339.882"
          y="471.16638"
-         style="font-size:56px;fill:#b872ed;fill-opacity:1" /></text>
+         style="font-size:56px;fill:#b872ed;fill-opacity:1">A local AI tool by Domodesk</tspan></text>
     <text
        xml:space="preserve"
        id="text10"
@@ -275,6 +263,5 @@
   </g>
   <g
      id="layer2"
-     transform="translate(-1714.7525,-297.55009)"
-     inkscape:label="layer2" />
+     transform="translate(-38.604868,-105.76125)" />
 </svg>
