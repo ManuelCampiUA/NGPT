@@ -52,20 +52,15 @@ body {
 /* Navbar */
 .navbar {
     display: flex;
-    position: relative;
-    justify-content: space-between;
     align-items: center;
     background-color: var(--third-color);
     color: var(--secondary-color);
     border-bottom: coral solid 4px;
-    height: 4rem;
 }
 
 .brand-title {
-    font-size: 1.5rem;
     margin-left: 0.5rem;
     flex-grow: 1;
-    align-items: start;
 }
 
 .navbar-links {
@@ -163,6 +158,7 @@ body {
     .logo {
         content: var(--logo-icon-mobile);
         height: 3rem;
+        transform: translateY(4%);
     }
 
     .alert {
