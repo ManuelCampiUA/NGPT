@@ -8,7 +8,7 @@
     --humanchat: rgb(253, 249, 122);
     --logo: url(../img/logo.svg);
     --theme-icon: url(../img/moon.svg);
-
+    --theme-icon-mobile: url(../img/logomobile.svg)
 }
 
 .dark-theme {
@@ -18,8 +18,9 @@
     --third-color: black;
     --botchat: rgb(5, 5, 5, 1);
     --humanchat: coral;
-    --logo: url(../img/logodark.svg);
+    --logo: url(../img/logo-dark.svg);
     --theme-icon: url(../img/sun.svg);
+    --theme-icon-mobile: url(../img/logomobile-dark.svg)
 }
 
 /* Debug
@@ -99,6 +100,7 @@ body {
     overflow: hidden;
 }
 
+<<<<<<< HEAD=======>>>>>>>6767895 (cambiamento loghi mobile in svg)
 
 /* Alert */
 .alert {
