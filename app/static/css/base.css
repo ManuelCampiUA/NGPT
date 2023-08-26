@@ -93,6 +93,7 @@ body {
     height: 4rem;
     width: auto;
     overflow: hidden;
+    padding-top: 5px
 }
 
 /* Alert */

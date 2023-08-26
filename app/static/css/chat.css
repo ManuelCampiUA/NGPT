@@ -75,7 +75,6 @@
     display: block;
     margin: auto;
     color: var(--secondary-color);
-    text-align: center;
     transition: 1s;
 }
 
@@ -87,7 +86,15 @@
 }
 
 .drop-section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 10%;
+}
+
+#upload-icon {
+    height: 4rem;
+    padding-left: 10px;
 }
 
 .drop-section button {
