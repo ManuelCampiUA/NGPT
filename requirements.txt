@@ -1,6 +1,7 @@
 chromadb==0.4.3
 Flask==2.3.2
 Flask-Login==0.6.2
+Flask-WTF==1.1.1
 langchain==0.0.247
 openai==0.27.8
 pypdf==3.14.0

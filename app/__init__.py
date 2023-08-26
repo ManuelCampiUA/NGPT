@@ -1,5 +1,6 @@
 from flask import Flask
 from werkzeug.middleware.proxy_fix import ProxyFix
+from flask_wtf import CSRFProtect
 from .database import database
 from .views.error import error_views
 from .views.auth import auth_views, login_manager
@@ -24,6 +25,7 @@ def create_app():
     app.register_blueprint(index_views)
     app.register_blueprint(settings_views)
     app.register_blueprint(chat_views)
+    CSRFProtect(app)
     login_manager.session_protection = "strong"
     login_manager.login_view = "auth_views.login"
     login_manager.init_app(app)
