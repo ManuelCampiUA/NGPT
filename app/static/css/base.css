@@ -159,7 +159,7 @@ body {
     .logo {
         content: var(--logo-icon-mobile);
         height: 3rem;
-        transform: translateY(4%);
+        margin-right: 100%;
     }
 
     .alert {
