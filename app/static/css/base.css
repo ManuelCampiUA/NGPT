@@ -61,6 +61,8 @@ body {
 .brand-title {
     margin-left: 0.5rem;
     flex-grow: 1;
+    justify-content: flex-start;
+    text-align: left;
 }
 
 .navbar-links {
@@ -159,7 +161,7 @@ body {
     .logo {
         content: var(--logo-icon-mobile);
         height: 3rem;
-        margin-right: 100%;
+
     }
 
     .alert {
