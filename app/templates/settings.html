@@ -9,6 +9,7 @@
     <form method="post" id="settings">
         <h3>Change your API key</h3>
         <div class="setting">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
             <input type="text" name="APIKey" value="{{ APIKey }}" required>
             <button type="submit">Update settings</button>
         </div>
