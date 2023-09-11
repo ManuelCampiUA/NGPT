@@ -3,7 +3,7 @@ from sqlite3 import connect
 from werkzeug.security import generate_password_hash
 from random import choice
 from string import ascii_letters, digits, punctuation
-from json import dump
+from json import load, dump
 
 DATABASE = "database.sqlite"
 
@@ -59,7 +59,9 @@ def change_temp_user():
     db.cursor().executescript(sql)
     db.commit()
     db.close()
-    data = {"tempPassword": password}
+    with open("env.json") as file:
+        data = load(file)
+    data["tempPassword"] = password
     with open("env.json", "w") as file:
         dump(data, file)
     print("Temporary user modified")
