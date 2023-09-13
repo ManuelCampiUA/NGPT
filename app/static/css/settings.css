@@ -41,11 +41,24 @@ ul {
 }
 
 @media screen and (max-width: 650px) {
+    .container {
+        text-align: center;
+        align-content: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+    }
+
     .setting {
-        width: 80%;
+        width: 95%;
+    }
+
+    .setting input {
+        font-size: small;
     }
 
     .setting button {
-        padding: 0 1rem;
+        padding: 0;
+        margin: 3px;
     }
 }
