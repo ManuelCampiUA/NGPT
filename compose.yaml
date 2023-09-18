@@ -1,0 +1,12 @@
+services:
+  flask:
+    build: server
+    hostname: flask
+    restart: always
+  nginx:
+    build: nginx
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - flask

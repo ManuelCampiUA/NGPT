@@ -1,18 +1,2 @@
-# Python
-__pycache__
-
-# Environments
-.venv
+# Environment
 env.json
-
-# SQLite
-database.sqlite
-
-# Files folder
-upload
-
-# Chromadb
-chromadb
-
-# IntelliJ
-.idea
